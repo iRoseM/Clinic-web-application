@@ -30,24 +30,33 @@
     text-align: left;
     /* padding-left: 30pt; */
 }
+#logout{
+    position: absolute;
+    top: 0%;
+    left: 93%;
+    font-size: 16pt;
+    padding: 10pt 0pt 10pt 0pt;
+}
 
-.docAppointment th, td, tr{
+.docAppointment th, td, tr, .docPatients th, td, tr{
     border: solid black;
     padding: 15pt;
     width: 130pt;
-
-
 }
-.docAppointment h2{
+.docAppointment h2, .docPatients h2{
     padding-bottom: 20pt;
     padding-left: 30pt;
     font-size: 20pt;
 }
-.docAppointment table{
+.docAppointment table, .docPatients table{
     padding-left: 30pt;
+    padding-right: 30pt;
 }
 .docAppointment{
-    padding-top: 40pt;
+    padding-top: 50pt;
+}
+.docPatients{
+    padding-top: 80pt;
 }
 
 #docAppointmentsConfirm{
