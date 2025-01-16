@@ -2,15 +2,80 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Booking Appointments</title>
         <style>
+            body {
+            margin: 0;
+            background-color: #f5f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            }
+
             h1{
                 text-align: center;
+                font-weight: 600;
+                color: #000000;
             }
             #AppointmentForms {
-                width: 50%;
-                border: solid;
-                padding: 2em ;
+                background: white;
+                box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+                border-radius: 10px;
+                width: 100%;
+                max-width: 500px; 
+                padding: 2em;
+                margin: 1em;
+                
+            }
+            
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5em;
+            }
+
+            label {
+            font-weight: 500;
+            color: #2f353c;
+            }
+
+            select, input, textarea, button {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            padding: 0.75em;
+            border: 1px solid #dcdfe6;
+            border-radius: 5px;
+            outline: none;
+            transition: 0.3s;
+            }
+
+            /*select:focus, input:focus, textarea:focus {
+                border-color: #3498db;
+                box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+            } */
+
+            button {
+                border: none;
+                cursor: pointer;
+                font-weight: 500;
+            }
+
+            /*button:hover {
+                background-color: #2980b9;
+            }*/
+
+            textarea {
+                resize: none;
+            }
+
+            .form-footer {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .form-footer button {
+                width: 48%;
             }
         </style>
     </head>
@@ -43,17 +108,16 @@
             <!-- A drop-down list to display the doctors according to the selected specialty 
 from the first form -->
         </select>
-        <br><br>
+        
         <label for="date">Select Date:</label>
         <input type="date" id="date" name="date" required>
-        <br>
-        <br>
+        
         <label for="time">Select Time:</label>
         <input type="time" id="time" name="time" required>
-        <br><br>
+        
         <label for="reason">Reason for Visit:</label>
         <textarea id="reason" name="reason" rows="4" placeholder="Describe the reason for your visit..." required></textarea>
-        <br><br>
+        
         <button type="submit">Book Appointment</button>
     </form>
 
