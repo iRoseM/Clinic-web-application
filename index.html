@@ -10,12 +10,19 @@
         margin: 0;
         padding: 0;
         background-color: #dad7cd;
+        overflow: hidden;
     }
+
 
     .image-container {
         position: relative;
         max-width: 800px;
         margin-left: 0%;
+    }
+
+    .welcome{
+        bottom:20rem;
+
     }
 
     .image-container img {
@@ -24,9 +31,17 @@
         display: block;
     }
 
+    .logo {
+        position: relative;
+        max-width: 20rem;
+        z-index: 2; 
+        top: -45rem; 
+        left: 52.5rem; 
+    }
+
     header {
         position: absolute;
-        bottom: 20%; 
+        bottom: 37%; 
         left: 80%;
         background-color: rgba(165, 165, 141, 0.8);
         color: white;
@@ -37,6 +52,7 @@
         max-width: 40em; 
         width: 100%; 
     }
+
 
     nav {
         margin-top: 1rem;
@@ -49,7 +65,7 @@
         padding: 1rem 2rem;
         border-radius: 5px;
         display: inline-block;
-        font-size:1rem;
+        font-size: 1rem;
     }
 
     nav .login-btn:hover {
@@ -75,12 +91,19 @@
         color: #fff;
         font-size: 2.5rem; 
         line-height: 1.4; 
+        margin-top: 2rem;
     }
 </style>
+
 
 <body>
     <div class="image-container">
         <img src="img/loginBackground(2).png" alt="TheraFlix">
+
+        <div class="welcome"> 
+        <img src="img/Logo.png" alt="TheraFlix Logo" class="logo">
+        
+
         <header>
             <h1>Welcome to TheraFlix! Your trusted clinic for personalized physical therapy and recovery. Let us help you feel your best.</h1>
             <nav>
@@ -91,6 +114,9 @@
                 </div>
             </nav>
         </header>
+
+         </div>
+
     </div>
 </body>
 
