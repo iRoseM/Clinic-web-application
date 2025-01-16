@@ -25,6 +25,126 @@
 
 */
 
+
+/*========== Nav bar ==========*/
+.navbar ul li{
+    display: flex;
+    position: absolute;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    padding: 10pt 0pt;
+    margin: 0%;
+    height: 60px;
+}
+.navbar ul li img{
+    height: 100px;
+    width: auto;
+    left: 0%;
+}
+
+/*========== Footer ==========*/
+footer {
+    background-color: #6B705C;
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    height: 160pt;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer div {
+    padding: 10px;
+}
+
+.contactusSec {
+    color: white;
+    width: 33%;
+    text-align: left;
+    padding-left: 180pt;
+    font-size: 20pt;
+    background-color: #575a4c; /* Dark Green background */
+}
+
+.contactusSec p {
+    padding: 3pt 0pt 3pt 10pt;
+}
+
+.logoSec {
+    width: 33%;
+    text-align: right;
+    background-color: #e6e6dab1; /* Light Green background */
+    padding-right: 200pt;
+    position: relative;
+}
+
+.logoSec img {
+    max-width: 200px;
+    padding-right: 150pt;
+}
+
+.copyrightSec {
+    color: white;
+    text-align: center;
+    flex: 1;
+    background-color: #626754;
+}
+
+.copyrightSec p{
+    padding: 10pt;
+}
+
+footer .contactusSec h4,
+footer .logoSec h4,
+footer .copyrightSec p {
+    margin: 0;
+}
+
+footer .contactusSec p,
+footer .copyrightSec p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+footer .logoSec a {
+    display: inline-block;
+}
+
+footer .logoSec img {
+    display: block;
+    margin: 0 auto;
+}
+
+footer .contactusSec h4,
+footer .copyrightSec p {
+    margin-bottom: 8px;
+}
+
+footer .logoSec::before {
+    content: "|";
+    color: #484a3e;
+    font-size: 50px;
+    position: absolute;
+    top: 0;
+    left: -20px; /* the distance from logo */
+    height: 100%;
+    margin-left: 10px;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer .contactusSec,
+footer .logoSec{
+    flex: 1;
+}
+
+
 /*========== HomePage - Doctor ==========*/
 .docBanner{
     position: relative;
@@ -34,7 +154,7 @@
 .docBanner img{
     width: 100%;
     height: 300pt;
-    opacity: 60%;
+    opacity: 100%;
 }
 .docBanner h2{
     position: absolute;
@@ -61,9 +181,15 @@
 
 .docAppointment th, td, tr, .docPatients th, td, tr{
     border: solid black;
+    background-color: rgb(239, 238, 235);
     padding: 15pt;
     width: 130pt;
 }
+
+.docAppointment th, .docPatients th{
+    background-color: #cdcdc3;
+}
+
 .docAppointment h2, .docPatients h2{
     padding-bottom: 20pt;
     padding-left: 30pt;
@@ -74,10 +200,12 @@
     padding-right: 30pt;
 }
 .docAppointment{
-    padding-top: 50pt;
+    padding: 50pt 30pt;
 }
 .docPatients{
-    padding-top: 80pt;
+    padding: 80pt 30pt;
+    background-color:#dbdbd1;
+    background: linear-gradient(to bottom, #fffffee9, #cdcdc3);
 }
 
 #docAppointmentsConfirm{

@@ -1,19 +1,285 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Sign up </title>
+<title>Sign up</title>
 <link rel="stylesheet" href="style.css">
 
-</head>
+<style>
+   body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #dad7cd;
+    overflow: hidden;
+}
 
+h1 {
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    line-height: 1.4;
+    margin-top: 2rem;
+    color: #333;
+}
 
+input, select, button {
+    width: 100%;
+    padding: 0.6rem;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #22372d;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+label {
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+    display: block;
+    color: #333;
+}
+
+.image-container {
+    position: relative;
+    max-width: 800px;
+    margin-left: 0%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    bottom: 60rem;
+}
+
+.role-selection, .form-container {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    display: none;
+}
+
+.role-selection {
+    display: block;
+    color: #22372d;
+}
+
+.welcome {
+    bottom: 90rem;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.logo {
+    position: relative;
+    max-width: 20rem;
+    z-index: 2;
+    top: -45rem;
+    left: 52.5rem;
+}
+
+header {
+    position: absolute;
+    bottom: 0.2%;
+    left: 80%;
+    background-color: rgba(165, 165, 141, 0.8);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    z-index: 1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 40em;
+    width: 100%;
+}
+
+nav {
+    margin-top: 1rem;
+}
+
+nav .signup-text {
+    margin-top: 1rem;
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+nav .signup-text a {
+    color: #333;
+    text-decoration: underline;
+}
+
+nav .signup-text a:hover {
+    color: #555;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.form-container label,
+.form-container input,
+.form-container select {
+    width: 100%;
+    margin-bottom: 0.8rem;
+}
+
+.form-container label {
+    font-size: 1rem;
+    text-align: left;
+}
+
+.form-container input, 
+.form-container select {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    margin-top: 1rem;
+    width: 100%;
+    padding: 0.6rem;
+    font-size: 1rem;
+}
+
+</style>
 
 <body>
+    <div class="image-container">
+        <img src="img/loginBackground(2).png" alt="TheraFlix" class="background">
 
-    
+        <div class="welcome"> 
+            <header>
+                <div class="container">
+                    <!-- Role Selection -->
+                    <div class="role-selection" id="role-selection">
+                        <h1>Sign Up</h1>
+                        <p style="margin-bottom: 1rem;">Select your role to proceed:</p>
+                        <select id="user-role" required>
+                            <option value="">Select Role</option>
+                            <option value="patient">Patient</option>
+                            <option value="doctor">Doctor</option>
+                        </select>
+                        <button onclick="showForm()">Continue</button>
+                    </div>
+
+                    <!-- Patient Form -->
+                    <div class="form-container" id="patient-form">
+                        <h1>Patient Sign-Up</h1>
+                        <form onsubmit="redirectToHome(event, 'patient')">
+                            <label for="first-name">First Name</label>
+                            <input type="text" id="first-name" required>
+
+                            <label for="last-name">Last Name</label>
+                            <input type="text" id="last-name" required>
+
+                            <label for="id">ID</label>
+                            <input type="text" id="id" required>
+
+                            <label for="gender">Gender</label>
+                            <select id="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" id="dob" required>
+
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" required>
+
+                            <label for="password">Password</label>
+                            <input type="password" id="password" required>
+
+                            <button type="submit">Sign Up</button>
+                        </form>
+                    </div>
+
+                    <!-- Doctor Form -->
+                    <div class="form-container" id="doctor-form">
+                        <h1>Doctor Sign-Up</h1>
+                        <form onsubmit="redirectToHome(event, 'doctor')">
+                            <label for="first-name">First Name</label>
+                            <input type="text" id="first-name" required>
+
+                            <label for="last-name">Last Name</label>
+                            <input type="text" id="last-name" required>
+
+                            <label for="id">ID</label>
+                            <input type="text" id="id" required>
+
+                            <label for="photo">Photo</label>
+                            <input type="file" id="photo" accept="image/*" required>
+
+                            <label for="speciality">Speciality</label>
+                            <select id="speciality" required>
+                                <option value="">Select Speciality</option>
+                                <option value="cardiology">Cardiology</option>
+                                <option value="neurology">Neurology</option>
+                                <option value="orthopedics">Orthopedics</option>
+                                <option value="pediatrics">Pediatrics</option>
+                            </select>
+
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" required>
+
+                            <label for="password">Password</label>
+                            <input type="password" id="password" required>
+
+                            <button type="submit">Sign Up</button>
+                        </form>
+                    </div>
+                </div>
+            </header>
+        </div>
+    </div>
+
+    <script>
+        function showForm() {
+            const role = document.getElementById("user-role").value;
+            document.getElementById("role-selection").style.display = "none";
+
+            if (role === "patient") {
+                document.getElementById("patient-form").style.display = "block";
+            } else if (role === "doctor") {
+                document.getElementById("doctor-form").style.display = "block";
+            } else {
+                alert("Please select a valid role.");
+                document.getElementById("role-selection").style.display = "block";
+            }
+        }
+
+        function redirectToHome(event, role) {
+            event.preventDefault();
+            if (role === "patient") {
+                window.location.href = "indexPatient.html";
+            } else if (role === "doctor") {
+                window.location.href = "indexDoctor.html";
+            }
+        }
+    </script>
 </body>
-
-
-
-
 </html>
