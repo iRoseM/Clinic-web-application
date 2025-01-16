@@ -1,19 +1,123 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Home </title>
+<title>Home</title>
 <link rel="stylesheet" href="style.css">
 
-</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #dad7cd;
+        overflow: hidden;
+    }
 
+
+    .image-container {
+        position: relative;
+        max-width: 800px;
+        margin-left: 0%;
+    }
+
+    .welcome{
+        bottom:20rem;
+
+    }
+
+    .image-container img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .logo {
+        position: relative;
+        max-width: 20rem;
+        z-index: 2; 
+        top: -45rem; 
+        left: 52.5rem; 
+    }
+
+    header {
+        position: absolute;
+        bottom: 37%; 
+        left: 80%;
+        background-color: rgba(165, 165, 141, 0.8);
+        color: white;
+        padding: 2rem;
+        text-align: center; 
+        z-index: 1;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        max-width: 40em; 
+        width: 100%; 
+    }
+
+
+    nav {
+        margin-top: 1rem;
+    }
+
+    nav .login-btn {
+        text-decoration: none;
+        color: white;
+        background-color: #22372d;
+        padding: 1rem 2rem;
+        border-radius: 5px;
+        display: inline-block;
+        font-size: 1rem;
+    }
+
+    nav .login-btn:hover {
+        background-color: #555;
+    }
+
+    nav .signup-text {
+        margin-top: 1rem;
+        color: #fff;
+        font-size: 1.5rem;
+    }
+
+    nav .signup-text a {
+        color: #333;
+        text-decoration: underline;
+    }
+
+    nav .signup-text a:hover {
+        color: #555;
+    }
+
+    h1 {
+        color: #fff;
+        font-size: 2.5rem; 
+        line-height: 1.4; 
+        margin-top: 2rem;
+    }
+</style>
 
 
 <body>
+    <div class="image-container">
+        <img src="img/loginBackground(2).png" alt="TheraFlix">
 
+        <div class="welcome"> 
+        <img src="img/Logo.png" alt="TheraFlix Logo" class="logo">
+        
 
+        <header>
+            <h1>Welcome to TheraFlix! Your trusted clinic for personalized physical therapy and recovery. Let us help you feel your best.</h1>
+            <nav>
+                <a href="LogIn.html" class="login-btn">Login</a>
+                <div class="signup-text">
+                    Don't have an account? 
+                    <a href="SignUp.html">Sign up</a>
+                </div>
+            </nav>
+        </header>
+
+         </div>
+
+    </div>
 </body>
 
-
-
-
-</html>
+</html> 
