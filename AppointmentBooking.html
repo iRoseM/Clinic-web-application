@@ -3,9 +3,22 @@
     <head>
         <meta charset="utf-8">
         <title>Booking Appointments</title>
+        <style>
+            h1{
+                text-align: center;
+            }
+            #AppointmentForms {
+                width: 50%;
+                border: solid;
+                padding: 2em ;
+            }
+        </style>
     </head>
 
     <body>
+
+        <div id="AppointmentForms" >
+
         <h1>Appointment Booking</h1>
 
     <!--First Form-->
@@ -21,23 +34,29 @@
     </form>
 
     <!-- Second Form -->
-    <form id="bookingForm" method="POST" style="display: none;">
+    <form id="bookingForm" method="POST">
         <label for="doctor">Select Doctor:</label>
         <select name="doctor" required>
             <option value="">--Choose a Doctor--</option>
-            <!-- Options dynamically populated based on selected specialty -->
-        </select>
+            <option value="xx">Doctor</option>
 
+            <!-- A drop-down list to display the doctors according to the selected specialty 
+from the first form -->
+        </select>
+        <br><br>
         <label for="date">Select Date:</label>
         <input type="date" id="date" name="date" required>
-
+        <br>
+        <br>
         <label for="time">Select Time:</label>
         <input type="time" id="time" name="time" required>
-
+        <br><br>
         <label for="reason">Reason for Visit:</label>
         <textarea id="reason" name="reason" rows="4" placeholder="Describe the reason for your visit..." required></textarea>
-
+        <br><br>
         <button type="submit">Book Appointment</button>
     </form>
+
+    </div>
     </body>
 </html>
