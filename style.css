@@ -13,7 +13,7 @@
 .docBanner img{
     width: 100%;
     height: 300pt;
-    opacity: 60%;
+    opacity: 100%;
 }
 .docBanner h2{
     position: absolute;
@@ -53,10 +53,12 @@
     padding-right: 30pt;
 }
 .docAppointment{
-    padding-top: 50pt;
+    padding: 50pt 30pt;
 }
 .docPatients{
-    padding-top: 80pt;
+    padding: 80pt 30pt;
+    background-color:#dbdbd1;
+    background: linear-gradient(to bottom, #fffffee9, #cdcdc3, #fffffee9);
 }
 
 #docAppointmentsConfirm{
