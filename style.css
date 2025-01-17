@@ -304,3 +304,101 @@ footer .logoSec{
 #PatientMedForm input[type="submit"]:hover {
     background-color: #45a049;
 }
+
+/*========= AppointmentsBooking ========*/
+#AppointmentsTitle {
+    font-size: 25pt;
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translate(-10%, -50%);
+    max-width: 40pt;
+    padding-bottom: 30pt;
+    color: #333;
+}
+
+#AppointmentsTitle h1 span {
+    color: white;
+    font-size: 60pt;
+}
+
+#AppointmentForms {
+    width: 100%;
+    max-width: 350pt;
+    margin: 10pt auto;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 30pt 20pt;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    gap: 2pt;
+    position: absolute;
+    top: 50%;
+    right: 7.2%;
+    transform: translate(-10%, -50%);
+}
+
+#AppointmentForms h1 {
+    font-size: 1.8em;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20pt;
+}
+
+#AppointmentForms label {
+    display: block;
+    font-weight: bold;
+    font-size: large;
+    margin: 10pt 0pt 8pt 0pt;
+    color: #000000;
+}
+
+#AppointmentForms select,
+#AppointmentForms input,
+#AppointmentForms textarea,
+#AppointmentForms button {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 1rem;
+    padding: 0.75em;
+    border: 1px solid #dcdfe6;
+    border-radius: 5px;
+    outline: none;
+    transition: 0.3s;
+    width: 100%;
+    margin-bottom: 15pt;
+}
+
+#AppointmentForms button {
+    background-color: #A5A58D;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    padding: 10pt 20pt;
+}
+
+#AppointmentForms button:hover {
+    background-color: #6B705C;
+}
+
+#AppointmentForms textarea {
+    resize: none;
+}
+
+/* Date and Time Inputs Styling */
+#AppointmentForms input[type="date"],
+#AppointmentForms input[type="time"] {
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 10pt;
+    width: 100%;
+    margin-bottom: 15pt;
+}
+
+/* Adjust HR lines */
+#AppointmentForms hr {
+    border: 0;
+    border-top: 2px solid #ccc;
+    margin: 20px 0;
+}
