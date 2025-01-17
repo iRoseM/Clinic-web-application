@@ -48,7 +48,26 @@
     height: 100px;
     width: auto;
     left: 0%;
+} 
+/*========== Header ==========*/
+/* header {
+    display:flex;
+    z-index: 1;
+    position: absolute;
+    width: 50pt;
 }
+.header-menu {
+    display: block;
+    padding: 20pt;
+    align-content: center;
+    justify-content: center;
+}
+.header-logout {
+
+}
+.header-logo {
+
+} */
 
 /*========== Footer ==========*/
 footer {
@@ -67,11 +86,11 @@ footer div {
 }
 
 .contactusSec {
-    color: white;
+    color: #c1c1b3;
     width: 33%;
     text-align: left;
     padding-left: 180pt;
-    font-size: 20pt;
+    font-size: 13pt;
     background-color: #575a4c; /* Dark Green background */
 }
 
@@ -101,6 +120,7 @@ footer div {
 
 .copyrightSec p{
     padding: 10pt;
+    color: #A5A58D;
 }
 
 footer .contactusSec h4,
