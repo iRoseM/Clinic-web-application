@@ -4,6 +4,13 @@
     padding: 0;
 }
 
+.title{
+    text-align: center;
+    font-size: 1.8em;
+    margin: 0pt 0pt 20pt 0pt;
+    color: #000000;
+    width: 100%;
+}
 /* colors================
     CB997E  
     Buff
@@ -211,4 +218,89 @@ footer .logoSec{
 #docAppointmentsConfirm{
     width: 120pt;
     height: 20pt;
+}
+
+/*========== Prescribe Medication  ==========*/
+
+#PrescribtionTitle{
+    font-size: 25pt;
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translate(-10%, -50%);
+    max-width: 40pt;
+    padding-bottom: 30pt;
+    color: #333;
+}
+#PrescribtionTitle h1 span{
+    color: white;
+    font-size: 60pt;
+}
+
+#PatientMedForm{
+    width: 100%;
+    max-width: 350pt;
+    margin: 10pt auto;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 30pt 20pt;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    gap: 2pt;
+    position: absolute;
+    top: 50%;
+    right: 7.2%;
+    transform: translate(-10%, -50%);
+}
+
+
+#PatientMedForm label{
+    display: block;
+    font-weight: bold;
+    font-size: large;
+    margin: 10pt 0pt 8pt 0pt;
+    color: #000000;
+}
+
+#PatientMedForm input[type="text"],
+#PatientMedForm input[type="number"] {
+    width: 90%;
+    height: 10pt;
+    padding: 10pt;
+    margin: 10pt 10pt;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+#PatientMedForm ul {
+    list-style: none;
+    padding: 0pt;
+    margin: 10pt 0pt 15pt 0pt;
+}
+
+#PatientMedForm ul li {
+    margin-bottom: 10pt;
+}
+
+#PatientMedForm input[type="radio"],
+#PatientMedForm input[type="checkbox"] {
+    margin-right: 8pt;
+}
+
+#PatientMedForm input[type="submit"] {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    width: 100%;
+}
+
+#PatientMedForm input[type="submit"]:hover {
+    background-color: #45a049;
 }
