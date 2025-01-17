@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>TheraFlex - Medication</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" href="img/Logo.png" type="image/x-icon">
+    </head>
+    <body style="background-image: url(img/medication.png); background-size: cover; background-repeat: no-repeat; background-position: center; min-height: 100vh; margin: 0;">
+            <div id="PrescribtionTitle">
+                <h1>Patient's Medication <span>Prescribtion</span></h1>
+                <hr style="width:400pt; border: 2pt solid white;">
+            </div>
+            <form action="x" method="post" id="PatientMedForm">
+                <h1 class="title">Patient's Medications</h1>
+                <label>Patient's Name: <input type="text" name="pName"></label>
+                <label>Age: <input type="number" name="pAge"></label>
+
+                <label>Gender:</label>
+                <ul>
+                    <li><input type="radio" name="pGender" value="male">Male</li>
+                    <li><input type="radio" name="pGender" value="female">Female</li>
+                </ul>
+
+                <label>Medications:</label>
+                <ul>
+                    <li><input type="checkbox" name="pMedication" value="Asprin">Asprin</li>
+                    <li><input type="checkbox" name="pMedication" value="Ibrufen">Ibrufen</li>
+                    <li><input type="checkbox" name="pMedication" value="Paracetamol">Paracetamol</li>
+                    <li><input type="checkbox" name="pMedication" value="Antibiotics">Antibiotics</li>
+                </ul>
+                <input type="submit" value="Submit" id="pSubmit" onclick="navToDoctor(event)">
+            </form>
+            <script src="script.js"></script>
+    </body>
+</html>

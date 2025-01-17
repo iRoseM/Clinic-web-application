@@ -4,6 +4,154 @@
     padding: 0;
 }
 
+.title{
+    text-align: center;
+    font-size: 1.8em;
+    margin: 0pt 0pt 20pt 0pt;
+    color: #000000;
+    width: 100%;
+}
+/* colors================
+    CB997E  
+    Buff
+
+    DDBEA9
+    Desert sand
+
+    FFE8D6
+    Champagne pink
+
+    B7B7A4
+    Ash gray
+
+    A5A58D
+    Sage
+
+    6B705C 
+    Reseda green
+
+*/
+
+
+/*========== Nav bar ==========*/
+.navbar ul li{
+    display: flex;
+    position: absolute;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    padding: 10pt 0pt;
+    margin: 0%;
+    height: 60px;
+}
+.navbar ul li img{
+    height: 100px;
+    width: auto;
+    left: 0%;
+}
+
+/*========== Footer ==========*/
+footer {
+    background-color: #6B705C;
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    height: 160pt;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer div {
+    padding: 10px;
+}
+
+.contactusSec {
+    color: white;
+    width: 33%;
+    text-align: left;
+    padding-left: 180pt;
+    font-size: 20pt;
+    background-color: #575a4c; /* Dark Green background */
+}
+
+.contactusSec p {
+    padding: 3pt 0pt 3pt 10pt;
+}
+
+.logoSec {
+    width: 33%;
+    text-align: right;
+    background-color: #e6e6dab1; /* Light Green background */
+    padding-right: 200pt;
+    position: relative;
+}
+
+.logoSec img {
+    max-width: 200px;
+    padding-right: 150pt;
+}
+
+.copyrightSec {
+    color: white;
+    text-align: center;
+    flex: 1;
+    background-color: #626754;
+}
+
+.copyrightSec p{
+    padding: 10pt;
+}
+
+footer .contactusSec h4,
+footer .logoSec h4,
+footer .copyrightSec p {
+    margin: 0;
+}
+
+footer .contactusSec p,
+footer .copyrightSec p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+footer .logoSec a {
+    display: inline-block;
+}
+
+footer .logoSec img {
+    display: block;
+    margin: 0 auto;
+}
+
+footer .contactusSec h4,
+footer .copyrightSec p {
+    margin-bottom: 8px;
+}
+
+footer .logoSec::before {
+    content: "|";
+    color: #484a3e;
+    font-size: 50px;
+    position: absolute;
+    top: 0;
+    left: -20px; /* the distance from logo */
+    height: 100%;
+    margin-left: 10px;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer .contactusSec,
+footer .logoSec{
+    flex: 1;
+}
+
+
 /*========== HomePage - Doctor ==========*/
 .docBanner{
     position: relative;
@@ -13,7 +161,7 @@
 .docBanner img{
     width: 100%;
     height: 300pt;
-    opacity: 60%;
+    opacity: 100%;
 }
 .docBanner h2{
     position: absolute;
@@ -40,9 +188,15 @@
 
 .docAppointment th, td, tr, .docPatients th, td, tr{
     border: solid black;
+    background-color: rgb(239, 238, 235);
     padding: 15pt;
     width: 130pt;
 }
+
+.docAppointment th, .docPatients th{
+    background-color: #cdcdc3;
+}
+
 .docAppointment h2, .docPatients h2{
     padding-bottom: 20pt;
     padding-left: 30pt;
@@ -53,10 +207,12 @@
     padding-right: 30pt;
 }
 .docAppointment{
-    padding-top: 50pt;
+    padding: 50pt 30pt;
 }
 .docPatients{
-    padding-top: 80pt;
+    padding: 80pt 30pt;
+    background-color:#dbdbd1;
+    background: linear-gradient(to bottom, #fffffee9, #cdcdc3);
 }
 
 #docAppointmentsConfirm{
@@ -64,31 +220,87 @@
     height: 20pt;
 }
 
-/*========== HomePage - Pateint ==========*/
+/*========== Prescribe Medication  ==========*/
 
-.BookAppointment {
-    display: flex;
+#PrescribtionTitle{
+    font-size: 25pt;
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translate(-10%, -50%);
+    max-width: 40pt;
+    padding-bottom: 30pt;
+    color: #333;
+}
+#PrescribtionTitle h1 span{
+    color: white;
+    font-size: 60pt;
+}
+
+#PatientMedForm{
+    width: 100%;
+    max-width: 350pt;
+    margin: 10pt auto;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 30pt 20pt;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    gap: 2pt;
+    position: absolute;
+    top: 50%;
+    right: 7.2%;
+    transform: translate(-10%, -50%);
+}
+
+
+#PatientMedForm label{
+    display: block;
+    font-weight: bold;
+    font-size: large;
+    margin: 10pt 0pt 8pt 0pt;
+    color: #000000;
+}
+
+#PatientMedForm input[type="text"],
+#PatientMedForm input[type="number"] {
+    width: 90%;
+    height: 10pt;
     padding: 10pt;
-} 
-.BookAppointment a {
-    align-content: flex-end;
-    left: 80%;
-    position:absolute;
-}
-.patAppointment {
-    padding-top: 60pt;
-}
-.patAppointment  table{
-    padding-left: 30pt;
-    padding-right: 30pt;
-}
-.patAppointment th, td, tr{
-    border: solid black;
-    padding: 15pt;
-    width: 130pt;
-}
-.patAppointment table tr td img {
-    width: 100pt;
-    height: auto;
+    margin: 10pt 10pt;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
 }
 
+#PatientMedForm ul {
+    list-style: none;
+    padding: 0pt;
+    margin: 10pt 0pt 15pt 0pt;
+}
+
+#PatientMedForm ul li {
+    margin-bottom: 10pt;
+}
+
+#PatientMedForm input[type="radio"],
+#PatientMedForm input[type="checkbox"] {
+    margin-right: 8pt;
+}
+
+#PatientMedForm input[type="submit"] {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    width: 100%;
+}
+
+#PatientMedForm input[type="submit"]:hover {
+    background-color: #45a049;
+}
