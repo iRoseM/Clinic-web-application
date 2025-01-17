@@ -303,6 +303,35 @@ footer .logoSec{
 
 /*========== Prescribe Medication  ==========*/
 
+.pcontainer{
+    display: flex;
+    height: 100vh;
+}
+.ptitleBackground {
+    flex: 0 0 40%; /* Takes up half of the width */
+    background-image: url("img/medicationleft.png");
+    background-size: cover;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.pformBackground {
+    flex: 0 0 60%; /* Takes up half of the width */
+    background-image: url("img/medicationright.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    
+}
+
 #PrescribtionTitle{
     font-size: 25pt;
     position: absolute;
@@ -312,12 +341,14 @@ footer .logoSec{
     max-width: 40pt;
     padding-bottom: 30pt;
     color: #333;
+    text-align: center;
+    margin-bottom: 20px;
 }
 #PrescribtionTitle h1 span{
     color: white;
     font-size: 60pt;
 }
-
+ 
 #PatientMedForm{
     width: 100%;
     max-width: 350pt;
@@ -332,6 +363,7 @@ footer .logoSec{
     top: 50%;
     right: 7.2%;
     transform: translate(-10%, -50%);
+    
 }
 
 
@@ -386,6 +418,40 @@ footer .logoSec{
     background-color: #45a049;
 }
 
+/* Responsive adjustments for smaller screens */
+@media (max-width: 1024px) {
+    #PrescribtionTitle {
+        font-size: 20pt;
+        left: 5%;
+        transform: translate(-5%, -50%);
+        max-width: 80%;
+    }
+    #PrescribtionTitle h1 span {
+        font-size: 40pt;
+    }
+    #PatientMedForm {
+        max-width: 300pt;
+        right: 5%;
+        padding: 20pt 15pt;
+    }
+}
+
+@media (max-width: 768px) {
+    #PrescribtionTitle {
+        font-size: 18pt;
+        left: 5%;
+        transform: translate(-5%, -50%);
+        max-width: 90%;
+    }
+    #PrescribtionTitle h1 span {
+        font-size: 35pt;
+    }
+    #PatientMedForm {
+        max-width: 280pt;
+        padding: 15pt 10pt;
+        right: 2%;
+    }
+}
 /*========= AppointmentsBooking ========*/
 #AppointmentsTitle {
     font-size: 25pt;
