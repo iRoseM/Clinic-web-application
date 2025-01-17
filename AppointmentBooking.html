@@ -7,10 +7,13 @@
         <style>
             body {
             margin: 0;
-            background-color: #f5f7fa;
+            background: url('img/AppointmentsBackground.jpg') no-repeat center center fixed;
+            background-size: cover;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: flex-start;
+            padding: 2em;
+
             }
 
             h1{
@@ -26,7 +29,6 @@
                 max-width: 500px; 
                 padding: 2em;
                 margin: 1em;
-                
                 
             }
             
@@ -60,24 +62,19 @@
                 border: none;
                 cursor: pointer;
                 font-weight: 500;
+                background-color: #A5A58D;
+                color: white;
             }
 
-            /*button:hover {
-                background-color: #2980b9;
-            }*/
+            button:hover {
+                background-color: #6B705C;
+            }
 
             textarea {
                 resize: none;
             }
 
-            .form-footer {
-                display: flex;
-                justify-content: space-between;
-            }
-
-            .form-footer button {
-                width: 48%;
-            }
+            
         </style>
     </head>
 
@@ -98,7 +95,7 @@
         </select>
         <button type="button" id="specialtySubmit">Submit</button>
     </form>
-
+    <br><hr><br>
     <!-- Second Form -->
     <form id="bookingForm" method="POST">
         <label for="doctor">Select Doctor:</label>

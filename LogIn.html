@@ -1,19 +1,215 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
-<title>Log in </title>
+<title>Log In</title>
 <link rel="stylesheet" href="style.css">
 
-</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #dad7cd;
+        overflow: hidden;
+    }
 
+
+    .image-container {
+        position: relative;
+        max-width: 800px;
+        margin-left: 0%; 
+    }
+
+    .login-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #6b705c;
+            padding: 2rem;
+            box-shadow: -4px 0 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-container form {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-container h1 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            color: #333;
+        }
+
+        .login-container input,
+        .login-container select,
+        .login-container button {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-container button {
+            background-color: #22372d;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .login-container button:hover {
+            background-color: #555;
+        }
+
+        .login-container .signup-text {
+            margin-top: 1rem;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .login-container .signup-text a {
+            color: #22372d;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .login-container .signup-text a:hover {
+            text-decoration: underline;
+        }
+
+    .welcome{
+        bottom:20rem;
+
+    }
+
+    .image-container img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .logo {
+        position: relative;
+        max-width: 20rem;
+        z-index: 2; 
+        top: -45rem; 
+        left: 52.5rem; 
+    }
+
+    header {
+        position: absolute;
+        bottom: 15%; 
+        left: 80%;
+        background-color: rgba(165, 165, 141, 0.8);
+        color: white;
+        padding: 2rem;
+        text-align: center; 
+        z-index: 1;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        max-width: 40em; 
+        width: 100%; 
+    }
+
+
+    nav {
+        margin-top: 1rem;
+    }
+
+    nav .login-btn {
+        text-decoration: none;
+        color: white;
+        background-color: #22372d;
+        padding: 1rem 2rem;
+        border-radius: 5px;
+        display: inline-block;
+        font-size: 1rem;
+    }
+
+    nav .login-btn:hover {
+        background-color: #555;
+    }
+
+    nav .signup-text {
+        margin-top: 1rem;
+        color: #fff;
+        font-size: 1.5rem;
+    }
+
+    nav .signup-text a {
+        color: #333;
+        text-decoration: underline;
+    }
+
+    nav .signup-text a:hover {
+        color: #555;
+    }
+
+    h1 {
+        color: #fff;
+        font-size: 2.5rem; 
+        line-height: 1.4; 
+        margin-top: 2rem;
+    }
+</style>
 
 
 <body>
+    <div class="image-container">
+        <img src="img/loginBackground(2).png" alt="TheraFlix" class="background">
 
-    
+        <div class="welcome"> 
+        
+
+        <header>
+            <div class="login-container">
+                <form id="login-form">
+                    <h1>Log In</h1>
+                    <select id="user-role" required>
+                        <option value="">Select Role</option>
+                        <option value="patient">Patient</option>
+                        <option value="doctor">Doctor</option>
+                    </select>
+
+                    <input type="email" id="email" placeholder="Email Address" required>
+                    <input type="password" id="password" placeholder="Password" required>
+
+                    <button type="submit">Log In</button>
+                    <div class="signup-text">
+                        Don't have an account? <a href="SignUp.html">Sign up</a>
+                    </div>
+                </form>
+            </div>
+        </header>
+
+         </div>
+
+    </div>
+
+    <script>
+        document.getElementById("login-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const userRole = document.getElementById("user-role").value;
+
+            if (userRole === "patient") {
+                window.location.href = "indexPatient.html";
+            } else if (userRole === "doctor") {
+                window.location.href = "indexDoctor.html";
+            } else {
+                alert("Please select a valid role.");
+            }
+        });
+    </script>
 </body>
 
-
-
-
-</html>
+</html> 
