@@ -5,32 +5,41 @@
         <title>TheraFlex - Medication</title>
         <link rel="stylesheet" href="style.css">
         <link rel="icon" href="img/Logo.png" type="image/x-icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body style="background-image: url(img/medication.png); background-size: cover; background-repeat: no-repeat; background-position: center; min-height: 100vh; margin: 0;">
-            <div id="PrescribtionTitle">
-                <h1>Patient's Medication <span>Prescribtion</span></h1>
-                <hr style="width:400pt; border: 2pt solid white;">
+    <body>
+            
+        <div class="pcontainer">
+            <div class="ptitleBackground">
+                <div id="PrescribtionTitle">
+                    <h1>Patient's Medication <span>Prescribtion</span></h1>
+                    <hr style="width:400pt; border: 2pt solid white;">
+                </div>
             </div>
-            <form action="x" method="post" id="PatientMedForm">
-                <h1 class="title">Patient's Medications</h1>
-                <label>Patient's Name: <input type="text" name="pName"></label>
-                <label>Age: <input type="number" name="pAge"></label>
 
-                <label>Gender:</label>
-                <ul>
-                    <li><input type="radio" name="pGender" value="male">Male</li>
-                    <li><input type="radio" name="pGender" value="female">Female</li>
-                </ul>
+            <div class="pformBackground">
+                <form action="x" method="post" id="PatientMedForm">
+                    <h1 class="title">Patient's Medications</h1>
+                    <label>Patient's Name: <input type="text" name="pName"></label>
+                    <label>Age: <input type="number" name="pAge"></label>
 
-                <label>Medications:</label>
-                <ul>
-                    <li><input type="checkbox" name="pMedication" value="Asprin">Asprin</li>
-                    <li><input type="checkbox" name="pMedication" value="Ibrufen">Ibrufen</li>
-                    <li><input type="checkbox" name="pMedication" value="Paracetamol">Paracetamol</li>
-                    <li><input type="checkbox" name="pMedication" value="Antibiotics">Antibiotics</li>
-                </ul>
-                <input type="submit" value="Submit" id="pSubmit" onclick="navToDoctor(event)">
-            </form>
+                    <label>Gender:</label>
+                    <ul>
+                        <li><input type="radio" name="pGender" value="male">Male</li>
+                        <li><input type="radio" name="pGender" value="female">Female</li>
+                    </ul>
+
+                    <label>Medications:</label>
+                    <ul>
+                        <li><input type="checkbox" name="pMedication" value="Asprin">Asprin</li>
+                        <li><input type="checkbox" name="pMedication" value="Ibrufen">Ibrufen</li>
+                        <li><input type="checkbox" name="pMedication" value="Paracetamol">Paracetamol</li>
+                        <li><input type="checkbox" name="pMedication" value="Antibiotics">Antibiotics</li>
+                    </ul>
+                    <input type="submit" value="Submit" id="pSubmit" onclick="navToDoctor(event)">
+                </form>
+            </div>
+        </div>
             <script src="script.js"></script>
     </body>
 </html>
