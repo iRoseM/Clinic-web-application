@@ -452,7 +452,18 @@ footer .logoSec{
         right: 2%;
     }
 }
+
+
 /*========= AppointmentsBooking ========*/
+#main-container {
+    display: flex;
+    justify-content: space-between; /* Align left and right sections */
+    align-items: center; /* Vertically center the content */
+    height: 100vh; /* Full height of the viewport */
+    padding: 0 5%; /* Add padding on left and right */
+    box-sizing: border-box; /* Include padding in the total width */
+}
+
 #AppointmentsTitle {
     font-size: 25pt;
     position: absolute;
@@ -470,20 +481,29 @@ footer .logoSec{
 }
 
 #AppointmentForms {
-    width: 100%;
-    max-width: 350pt;
-    margin: 10pt auto;
+    width: 90%; /* Make the width responsive */
+    max-width: 400px; /* Limit the maximum width */
+    margin: 0 auto; /* Center horizontally */
     background-color: #f9f9f9;
     border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 30pt 20pt;
+    padding: 20px; /* Reduce padding for better fit */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    gap: 2pt;
-    position: absolute;
+    position: relative;
     top: 50%;
-    right: 7.2%;
-    transform: translate(-10%, -50%);
+    left: 50%; /* Center the form horizontally */
+    transform: translate(-50%, -50%); /* Center the form vertically and horizontally */
+    box-sizing: border-box; /* Include padding and border in the element's dimensions */
 }
+
+/* For smaller screens */
+@media (max-width: 768px) {
+    #AppointmentForms {
+        width: 95%; /* Adjust width for smaller devices */
+        padding: 15px; /* Reduce padding for better fit */
+    }
+}
+
 
 #AppointmentForms h1 {
     font-size: 1.8em;
@@ -533,7 +553,6 @@ footer .logoSec{
     resize: none;
 }
 
-/* Date and Time Inputs Styling */
 #AppointmentForms input[type="date"],
 #AppointmentForms input[type="time"] {
     font-family: inherit;
@@ -543,9 +562,9 @@ footer .logoSec{
     margin-bottom: 15pt;
 }
 
-/* Adjust HR lines */
 #AppointmentForms hr {
     border: 0;
     border-top: 2px solid #ccc;
     margin: 20px 0;
 }
+

@@ -8,7 +8,10 @@
         
     </head>
 
-    <body style="background: url('img/AppointmentsBackground.jpg') no-repeat center center fixed; background-size: cover; min-height: 100vh; margin: 0;">
+<body style="background: url('img/AppointmentsBackground.jpg') no-repeat center center fixed; background-size: cover; min-height: 100vh; margin: 0;">
+    <div id="main-container">
+
+    
         <div id="AppointmentsTitle">
             <h1>Schedule Your <span>Appointment</span></h1>
             <hr style="width:400pt; border: 2pt solid white;">
@@ -16,43 +19,42 @@
 
         <div id="AppointmentForms" >
 
-        <h1>Appointment Booking</h1>
+            <h1>Appointment Booking</h1>
 
-    <!--First Form-->
-    <form id="specialtyForm" method="POST">
-        <label for="specialty">Select Specialty:</label>
-        <select name="specialty" required>
-            <option value="">--Choose a Specialty--</option>
-            <option value="Pediatric">Pediatric</option>
-            <option value="Chronic Pain">Chronic Pain</option>
-            <option value="--">--</option>
-        </select>
-        <button type="button" id="specialtySubmit">Submit</button>
-    </form>
-    <br><hr><br>
-    <!-- Second Form -->
-    <form id="bookingForm" method="POST">
-        <label for="doctor">Select Doctor:</label>
-        <select name="doctor" required>
-            <option value="">--Choose a Doctor--</option>
-            <option value="xx">Doctor</option>
+            <!--First Form-->
+            <form id="specialtyForm" method="POST">
+                <label for="specialty">Select Specialty:</label>
+                <select name="specialty" required>
+                    <option value="">--Choose a Specialty--</option>
+                    <option value="Pediatric">Pediatric</option>
+                    <option value="Chronic Pain">Chronic Pain</option>
+                    <option value="--">--</option>
+                </select>
+                <button type="button" id="specialtySubmit">Submit</button>
+            </form>
+            <br><hr><br>
+            <!-- Second Form -->
+            <form id="bookingForm" method="POST">
+                <label for="doctor">Select Doctor:</label>
+                <select name="doctor" required>
+                    <option value="">--Choose a Doctor--</option>
+                    <option value="xx">Doctor</option>
 
-            <!-- A drop-down list to display the doctors according to the selected specialty 
-from the first form -->
-        </select>
-        
-        <label for="date">Select Date:</label>
-        <input type="date" id="date" name="date" required>
-        
-        <label for="time">Select Time:</label>
-        <input type="time" id="time" name="time" required>
-        
-        <label for="reason">Reason for Visit:</label>
-        <textarea id="reason" name="reason" rows="4" placeholder="Describe the reason for your visit..." required></textarea>
-        
-        <button type="submit">Book Appointment</button>
-    </form>
-
+                    <!-- A drop-down list to display the doctors according to the selected specialty from the first form -->
+                </select>
+                
+                <label for="date">Select Date:</label>
+                <input type="date" id="date" name="date" required>
+                
+                <label for="time">Select Time:</label>
+                <input type="time" id="time" name="time" required>
+                
+                <label for="reason">Reason for Visit:</label>
+                <textarea id="reason" name="reason" rows="4" placeholder="Describe the reason for your visit..." required></textarea>
+                
+                <button type="submit">Book Appointment</button>
+            </form>
+        </div>
     </div>
-    </body>
+</body>
 </html>
