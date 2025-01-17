@@ -220,6 +220,67 @@ footer .logoSec{
     height: 20pt;
 }
 
+/*========== HomePage - Patient ==========*/
+.patBanner{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+.patBanner img{
+    width: 100%;
+    height: 500pt;
+    opacity: 100%;
+}
+.patBanner h2{
+    position: absolute;
+    top: 50%;
+    left: 9%;
+    font-size: 25pt;
+    text-align: left;
+}
+.patBanner p{
+    position: absolute;
+    top: 60%;
+    left: 9%;
+    font-size: 20pt;
+    text-align: left;
+    /* padding-left: 30pt; */
+}
+.BookAppointment{
+    padding-top: 20pt;
+}
+.BookAppointment p{
+    display: block;
+}
+.BookAppointment a{
+    padding-left: 84%;
+}
+.patAppointment {
+    padding: 40pt 30pt;
+    padding-bottom: 200pt;
+    background-color:#dbdbd1;
+    background: linear-gradient(to bottom, #fffffee9, #cdcdc3);
+}
+.patAppointment table {
+    padding-left: 30pt;
+    padding-right: 30pt; 
+}
+
+.patAppointment th, td, tr{
+    border: solid black;
+    background-color: rgb(239, 238, 235);
+    padding: 15pt;
+    width: 130pt;
+}
+
+.patAppointment th{
+    background-color: #cdcdc3;
+}
+
+.patAppointment img {
+    width: 100pt;
+}
+
 /*========== Prescribe Medication  ==========*/
 
 #PrescribtionTitle{
