@@ -63,3 +63,32 @@
     width: 120pt;
     height: 20pt;
 }
+
+/*========== HomePage - Pateint ==========*/
+
+.BookAppointment {
+    display: flex;
+    padding: 10pt;
+} 
+.BookAppointment a {
+    align-content: flex-end;
+    left: 80%;
+    position:absolute;
+}
+.patAppointment {
+    padding-top: 60pt;
+}
+.patAppointment  table{
+    padding-left: 30pt;
+    padding-right: 30pt;
+}
+.patAppointment th, td, tr{
+    border: solid black;
+    padding: 15pt;
+    width: 130pt;
+}
+.patAppointment table tr td img {
+    width: 100pt;
+    height: auto;
+}
+
