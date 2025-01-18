@@ -69,7 +69,7 @@
 
 } */
 
-/*========== Footer ==========*/
+/*========== Footer ==========*//*
 footer {
     background-color: #6B705C;
     padding: 20px 0;
@@ -91,7 +91,7 @@ footer div {
     text-align: left;
     padding-left: 180pt;
     font-size: 13pt;
-    background-color: #575a4c; /* Dark Green background */
+    background-color: #575a4c; /* Dark Green background *
 }
 
 .contactusSec p {
@@ -101,7 +101,7 @@ footer div {
 .logoSec {
     width: 33%;
     text-align: right;
-    background-color: #e6e6dab1; /* Light Green background */
+    background-color: #e6e6dab1; /* Light Green background *
     padding-right: 200pt;
     position: relative;
 }
@@ -155,7 +155,7 @@ footer .logoSec::before {
     font-size: 50px;
     position: absolute;
     top: 0;
-    left: -20px; /* the distance from logo */
+    left: -20px; /* the distance from logo *
     height: 100%;
     margin-left: 10px;
 }
@@ -169,7 +169,7 @@ footer {
 footer .contactusSec,
 footer .logoSec{
     flex: 1;
-}
+}*/
 
 
 /*========== HomePage - Doctor ==========*/
