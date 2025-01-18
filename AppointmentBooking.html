@@ -3,154 +3,87 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!--<link rel="stylesheet" href="style.css">-->
+        <link rel="stylesheet" href="style.css">
         <title>Booking Appointment</title>
         <style>
-           /* Body Styling */
-body {
-    margin: 0;
-    background: url('img/AppointmentsBackground.jpg') no-repeat center center fixed;
-    background-size: cover;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 20px; /* Add padding for top, bottom, left, and right */
-    box-sizing: border-box; /* Ensure padding is part of the element size */
-}
+            body {
+                margin: 0;
+                background: url('img/AppointmentsBackground.jpg') no-repeat center center fixed;
+                background-size: cover;
+                min-height: 100vh;
+                display: flex;
+                /*justify-content: center;
+                align-items: center;*/
+                padding: 40px 20px; 
+                box-sizing: border-box; 
+                flex-direction: column;
+            }
+            #mainContainer {
+                flex: 1;
+                display: flex;
+                justify-content: space-between; 
+                align-items: center; 
+                width: 90%;
+                max-width: 1200px; 
+                margin: auto; 
+                gap: 20px; 
+                padding: 20px 0; 
+            }
+            .footer {
+                background-image: url('img/footer.jpg'); 
+                background-size: cover;
+                background-position: center;
+                color: white;
+                text-align: center;
+                padding: 50px 20px;
+                margin-top: auto;
+            }
 
-/* Main Container */
-#main-container {
-    display: flex;
-    justify-content: space-between; /* Space between title and form */
-    align-items: center; /* Center items vertically */
-    width: 90%;
-    max-width: 1200px; /* Limit overall width */
-    margin: auto; /* Center the main container horizontally */
-    gap: 20px; /* Space between title and form */
-    padding: 20px 0; /* Add padding on top and bottom for extra space */
-}
+            .footer h2 {
+                margin-bottom: 10px;
+                font-size: 24px;
+            }
 
-/* Title Section */
-#AppointmentsTitle {
-    flex: 1;
-    color: white;
-    text-align: left;
-    margin-right: 20px; /* Add margin to separate from the form */
-}
+            .footer p {
+                margin: 5px 0;
+                font-size: 14px;
+            }
 
-#AppointmentsTitle h1 {
-    font-size: 2.5rem;
-    margin: 0;
-}
+            .footer a {
+                color: #ffffff;
+                text-decoration: none;
+                margin: 0 10px;
+            }
 
-#AppointmentsTitle h1 span {
-    font-size: 3rem;
-    font-weight: bold;
-    display: block;
-    margin-top: 10px;
-}
+            .footer a:hover {
+                text-decoration: underline;
+            }
 
-#AppointmentsTitle hr {
-    width: 100px;
-    border: 2px solid white;
-    margin-top: 15px;
-}
+            .footer .social-icons {
+                margin-top: 20px;
+            }
 
-/* Form Section */
-#AppointmentForms {
-    flex: 1;
-    background: white;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    max-width: 500px;
-    width: 100%;
-    padding: 2em;
-    margin-left: 20px; /* Add margin to separate from the title */
-    box-sizing: border-box; /* Ensure padding is part of the element size */
-}
+            .footer .social-icons a {
+                margin: 0 10px;
+                font-size: 18px;
+                color: white;
+            }
 
-/* Form Styling */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5em;
-}
+            .footer .social-icons a:hover {
+                color: #d4af37;
+            }
 
-label {
-    font-weight: 500;
-    color: #2f353c;
-}
-
-select, input, textarea, button {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    padding: 0.75em;
-    border: 1px solid #dcdfe6;
-    border-radius: 5px;
-    outline: none;
-    transition: 0.3s;
-}
-
-select:focus, input:focus, textarea:focus {
-    border-color: #B7B7A4;
-    box-shadow: 0 0 5px #A5A58D;
-}
-
-button {
-    border: none;
-    cursor: pointer;
-    font-weight: 500;
-    background-color: #A5A58D;
-    color: white;
-}
-
-button:hover {
-    background-color: #6B705C;
-}
-
-textarea {
-    resize: none;
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-    #main-container {
-        flex-direction: column; /* Stack title and form vertically */
-        gap: 30px; /* Add spacing between stacked sections */
-        padding: 20px 0; /* Maintain top and bottom space on smaller screens */
-    }
-
-    #AppointmentsTitle {
-        text-align: center;
-        margin: 0; /* Reset margins */
-    }
-
-    #AppointmentForms {
-        margin: 0; /* Reset margins */
-    }
-}
-
-@media (max-width: 768px) {
-    #AppointmentsTitle h1 {
-        font-size: 1.5rem;
-    }
-
-    #AppointmentsTitle h1 span {
-        font-size: 2rem;
-    }
-
-    #AppointmentForms {
-        padding: 1.5em;
-    }
-}
+            .footer-bottom {
+                margin-top: 30px;
+                font-size: 12px;
+            }
 
         </style>
         
     </head>
 
-<body style="background: url('img/AppointmentsBackground.jpg') no-repeat center center fixed; background-size: cover; min-height: 100vh; margin: 0;">
-    <div id="main-container">
+<body >
+    <div id="mainContainer">
 
     
         <div id="AppointmentsTitle">
@@ -163,39 +96,60 @@ textarea {
             <h1>Appointment Booking</h1>
 
             <!--First Form-->
-            <form id="specialtyForm" method="POST">
-                <label for="specialty">Select Specialty:</label>
-                <select name="specialty" required>
-                    <option value="">--Choose a Specialty--</option>
-                    <option value="Pediatric">Pediatric</option>
-                    <option value="Chronic Pain">Chronic Pain</option>
-                    <option value="--">--</option>
-                </select>
-                <button type="button" id="specialtySubmit">Submit</button>
-            </form>
-            <br><hr><br>
-            <!-- Second Form -->
-            <form id="bookingForm" method="POST">
-                <label for="doctor">Select Doctor:</label>
-                <select name="doctor" required>
-                    <option value="">--Choose a Doctor--</option>
-                    <option value="xx">Doctor</option>
+            <div class="form-section">
+                <form id="specialtyForm" onsubmit="handleSpecialtySubmit(event)">
+					<label for="specialty">Select Specialty:</label>
+					<select name="specialty" id="specialty" required>
+						<option value="">--Choose a Specialty--</option>
+						<option value="Pediatric">Pediatric</option>
+						<option value="Chronic Pain">Chronic Pain</option>
+						<option value="Cardiology">Cardiology</option>
+					</select>
+					<button type="submit">Submit</button>
+				</form>
 
-                    <!-- A drop-down list to display the doctors according to the selected specialty from the first form -->
-                </select>
-                
-                <label for="date">Select Date:</label>
-                <input type="date" id="date" name="date" required>
-                
-                <label for="time">Select Time:</label>
-                <input type="time" id="time" name="time" required>
-                
-                <label for="reason">Reason for Visit:</label>
-                <textarea id="reason" name="reason" rows="4" placeholder="Describe the reason for your visit..." required></textarea>
-                
-                <button type="submit">Book Appointment</button>
-            </form>
+            </div>
+            <br><hr><br>
+
+            <!-- Second Form -->
+            <div class="form-section" id="bookingFormSection" style="display: none;">
+                <form id="bookingForm" onsubmit="handleBookingSubmit(event)">
+                    <label for="doctor">Select Doctor:</label>
+                    <select name="doctor" id="doctor" required>
+                        <option value="">--Choose a Doctor--</option>
+                        <!-- Doctors will be dynamically populated -->
+                    </select>
+
+                    <label for="date">Select Date:</label>
+                    <input type="date" id="date" name="date" required>
+
+                    <label for="time">Select Time:</label>
+                    <input type="time" id="time" name="time" required>
+
+                    <label for="reason">Reason for Visit:</label>
+                    <textarea id="reason" name="reason" rows="4" placeholder="Describe the reason for your visit..." required></textarea>
+
+                    <button type="submit">Book Appointment</button>
+                </form>
         </div>
     </div>
+
+    <div class="footer">
+        <h2>Contact Us</h2>
+        <p>123 Wellness Street, Healing City, HC 54321</p>
+        <p>Phone: (123) 456-7890 | Email: contact@ptclinic.com</p>
+        <div class="social-icons">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Physical Therapy Clinic. All rights reserved.
+        </div>
+    </div>
+
+
+    <script src="script.js">
+    </script>
 </body>
 </html>
