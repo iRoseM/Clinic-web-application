@@ -6,16 +6,31 @@
         <link rel="stylesheet" href="style.css">
         <link rel="icon" href="img/Logo.png" type="image/x-icon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+            /* Body Styling */
+             body {
+                 margin: 0;
+                 background: url('img/medication.png') no-repeat center center fixed;
+                 background-size: cover;
+                 min-height: 100vh;
+                 display: flex;
+                 justify-content: center;
+                 align-items: center;
+                 padding: 40px 20px; /* Add padding for top, bottom, left, and right */
+                 box-sizing: border-box; /* Ensure padding is part of the element size */
+             }
+ 
+         </style>
     </head>
+
     <body>
             
         <div class="pcontainer">
-            <div class="ptitleBackground">
-                <div id="PrescribtionTitle">
+                <div id="prescribtionTitle">
                     <h1>Patient's Medication <span>Prescribtion</span></h1>
-                    <hr style="width:400pt; border: 2pt solid white;">
+                    <hr>
                 </div>
-            </div>
 
             <div class="pformBackground">
                 <form action="x" method="post" id="PatientMedForm">
