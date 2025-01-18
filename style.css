@@ -54,7 +54,7 @@
 /*========== Header ==========*/
 
 .header {
-    position: absolute;
+    position: fixed;
     width: 100%;
     max-width: 100%;
     z-index: 999;
@@ -64,7 +64,6 @@
     color: #FFE8D6;
     padding-top: 10pt;
     padding-bottom: 5pt;
-    position: fixed;
     transition: all 0.3s ease; /* Smooth transition for minimizing and background color */
 
   }
@@ -133,6 +132,48 @@
     font-weight: bold;
 
   }
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    transition: all 0.3s ease;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .navigation {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #575a4c;
+        flex-direction: column;
+        align-items: center;
+        z-index: 1000;
+        padding: 10px 0;
+    }
+
+    .navigation.active {
+        display: flex;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+}
 
 /*========== Footer ==========*//*
 footer {
