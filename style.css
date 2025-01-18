@@ -89,11 +89,12 @@
   }
   .logo a {
     color: #FFE8D6;
-    /* color:black; */
     text-decoration: none;
   }
+
   .navigation {
     padding-left: 300pt ;
+    display:flex;
 }
   .nav-links {
     list-style: none;
@@ -110,7 +111,6 @@
   
   .nav-links a {
     text-decoration: none;
-    /* color: #FFE8D6; */
     color:black;
     font-size: 16px;
     font-weight: bold;
@@ -137,41 +137,82 @@
     flex-direction: column;
     gap: 4px;
     cursor: pointer;
-}
-
+    justify-content: center;
+    align-items: center;
+    padding-right: 9pt;
+    }
 .hamburger span {
     width: 25px;
     height: 3px;
-    background-color: black;
+    background-color: #FFE8D6;
     transition: all 0.3s ease;
 }
 
-/* Mobile Styles */
+/* Mobile-Specific Styles */
 @media (max-width: 768px) {
+    /* Hamburger Icon */
+    .hamburger {
+        display: flex;
+    }
+    .header{
+        background-color: #575a4c;
+
+    }
+
+    /* Navigation Menu Hidden by Default */
     .navigation {
         display: none;
         position: absolute;
         top: 60px;
-        left: 0;
+        right: 0;
         width: 100%;
         background-color: #575a4c;
         flex-direction: column;
-        align-items: center;
-        z-index: 1000;
-        padding: 10px 0;
+        align-items: flex-start;
+        padding: 10px 20px;
+        z-index: 999;
     }
 
+    /* Show Navigation When Active */
     .navigation.active {
         display: flex;
     }
 
     .nav-links {
         flex-direction: column;
-        gap: 15px;
+        gap: 10px;
     }
 
-    .hamburger {
-        display: flex;
+    .nav-links a {
+        color: #FFE8D6;
+        font-size: 18px;
+    }
+
+    .nav-links a:hover {
+        color: white;
+    }
+
+    /* Hide Desktop Logout */
+    .logout {
+        display: none;
+    }
+
+    /* Mobile Logout */
+    .logout-mobile {
+        display: block;
+    }
+    .logo img{
+        width: 80pt;
+    }
+    .logo span {
+        display:none;
+    }
+}
+
+@media (min-width: 769px) {
+    /* Hide Mobile Logout on Desktop */
+    .logout-mobile {
+        display: none;
     }
 }
 
@@ -405,6 +446,100 @@ footer .logoSec{
 
 .patAppointment img {
     width: 100pt;
+}
+
+/*========== Responsive Styles ==========*/
+
+/* Tablet (<=1024px) */
+@media (max-width: 1024px) {
+    .patBanner img {
+        height: 450pt; /* Reduce banner height for smaller screens */
+    }
+
+    .patBanner h2 {
+        font-size: 22pt; /* Adjust heading font size */
+        top: 45%;
+    }
+
+    .patBanner p {
+        font-size: 18pt; /* Adjust paragraph font size */
+        top: 55%;
+    }
+
+    .patAppointment table {
+        font-size: 14px; /* Adjust table font size */
+    }
+
+    .patAppointment th, .patAppointment td {
+        padding: 10px; /* Reduce cell padding */
+    }
+
+    .BookAppointment a {
+        padding-left: 75%; /* Adjust alignment */
+    }
+}
+
+/* Mobile (<=768px) */
+@media (max-width: 768px) {
+    .patBanner img {
+        height: 300pt; /* Further reduce banner height */
+    }
+
+    .patBanner h2 {
+        font-size: 18pt; /* Smaller font size */
+        top: 40%;
+    }
+
+    .patBanner p {
+        font-size: 16pt; /* Smaller font size for paragraph */
+        top: 50%;
+    }
+
+    .patAppointment table {
+        font-size: 12px; /* Smaller font size for table */
+    }
+
+    .patAppointment th, .patAppointment td {
+        padding: 8px; /* Reduce cell padding */
+        width: auto; /* Allow table to resize */
+    }
+
+    .patAppointment img {
+        width: 80px; /* Adjust image size in the table */
+    }
+
+    .BookAppointment a {
+        padding-left: 60%; /* Center align for smaller screens */
+    }
+}
+
+/* Extra Small Screens (<=480px) */
+@media (max-width: 480px) {
+    .patBanner h2 {
+        font-size: 16pt; /* Smaller heading */
+        top: 35%;
+    }
+
+    .patBanner p {
+        font-size: 14pt; /* Smaller paragraph text */
+        top: 45%;
+    }
+
+    .patAppointment th, .patAppointment td {
+        padding: 5px; /* Minimal padding for small screens */
+    }
+
+    .patAppointment img {
+        width: 60px; /* Further reduce image size */
+    }
+
+    .BookAppointment a {
+        padding-left: 50%; /* Adjust alignment further */
+    }
+
+    .patAppointment table {
+        width: 100%; /* Table spans full width */
+    }
 }
 
 /*========== Prescribe Medication  ==========*/
