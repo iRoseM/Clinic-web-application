@@ -52,7 +52,7 @@
             margin-bottom: 1rem;
             font-size: 1rem;
             border: 1px solid #ccc;
-            border-radius: 25px; /* الحواف دائرية */
+            border-radius: 25px; 
         }
     
         .login-container button {
@@ -144,24 +144,25 @@
         }
     
         .role-group {
-            margin-bottom: 1rem;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-    
-        .role-group label {
-            font-size: 1rem;
-            color: #333;
-            display: inline-flex;
-            align-items: center;
-            margin-right: 1rem;
-        }
-    
-        .role-group input[type="radio"] {
-            margin-right: 0.5rem;
-        }
+    margin-bottom: 1rem;
+    text-align: left;
+    display: flex;
+    flex-direction:column; 
+    align-items: flex-start; 
+}
+
+.role-group label {
+    font-size: 1rem;
+    color: #333;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 0.5rem; 
+}
+
+.role-group input[type="radio"] {
+    margin-right: 0.5rem; 
+}
+
     </style>
 </head>
 <body>
@@ -175,7 +176,6 @@
                         <h1 style="margin-bottom: 0.7em;">Log In</h1>
                         <p style="color: #333 ; margin-bottom: 0.9em;"> Log in to your account </p>
 
-                        <!-- Radio buttons for role selection -->
                         <div class="role-group">
                             <label >
                                 <input type="radio" name="role" value="patient" required> Patient
