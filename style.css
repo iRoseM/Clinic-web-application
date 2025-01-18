@@ -175,7 +175,7 @@
     }
 }
 
-/*========== Footer ==========*//*
+/*========== Footer ==========*/
 footer {
     background-color: #6B705C;
     padding: 20px 0;
@@ -196,7 +196,7 @@ footer div {
     text-align: left;
     padding-left: 180pt;
     font-size: 13pt;
-    background-color: #575a4c; /* Dark Green background *
+    background-color: #575a4c; /* Dark Green background */
 }
 
 .contactusSec p {
@@ -206,7 +206,7 @@ footer div {
 .logoSec {
     width: 33%;
     text-align: right;
-    background-color: #e6e6dab1; /* Light Green background *
+    background-color: #e6e6dab1; /* Light Green background */
     padding-right: 200pt;
     position: relative;
 }
@@ -260,7 +260,7 @@ footer .logoSec::before {
     font-size: 50px;
     position: absolute;
     top: 0;
-    left: -20px; /* the distance from logo *
+    left: -20px; /* the distance from logo */
     height: 100%;
     margin-left: 10px;
 }
@@ -274,7 +274,7 @@ footer {
 footer .contactusSec,
 footer .logoSec{
     flex: 1;
-}*/
+}
 
 
 /*========== HomePage - Doctor ==========*/
@@ -409,36 +409,18 @@ footer .logoSec{
 
 /*========== Prescribe Medication  ==========*/
 
-.pcontainer{
+.pcontainer {
     display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
     height: 100vh;
-}
-.ptitleBackground {
-    flex: 0 0 40%; /* Takes up half of the width */
-    background-image: url("img/medicationleft.png");
-    background-size: cover;
-    position: relative;
-    background-repeat: no-repeat;
-    background-position: center; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%; /* Ensure it spans the full width */
+    gap: 20px; /* Space between the title and the form */
     padding: 20px;
+    box-sizing: border-box; /* Include padding in height and width calculations */
 }
-.pformBackground {
-    flex: 0 0 60%; /* Takes up half of the width */
-    background-image: url("img/medicationright.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    
-}
-
-#PrescribtionTitle{
+#prescribtionTitle{
     font-size: 25pt;
     position: absolute;
     top: 50%;
@@ -450,9 +432,12 @@ footer .logoSec{
     text-align: center;
     margin-bottom: 20px;
 }
-#PrescribtionTitle h1 span{
+#prescribtionTitle h1 span, #AppointmentsTitle h1 span {
     color: white;
     font-size: 60pt;
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
 }
  
 #PatientMedForm{
@@ -469,7 +454,6 @@ footer .logoSec{
     top: 50%;
     right: 7.2%;
     transform: translate(-10%, -50%);
-    
 }
 
 
@@ -507,7 +491,7 @@ footer .logoSec{
     margin-right: 8pt;
 }
 
-#PatientMedForm input[type="submit"] {
+#pSubmit, #specialtySubmit, #bookSubmit {
     background-color: #4caf50;
     color: #fff;
     border: none;
@@ -520,81 +504,72 @@ footer .logoSec{
     width: 100%;
 }
 
-#PatientMedForm input[type="submit"]:hover {
+#pSubmit:hover ,#specialtySubmit:hover, #bookSubmit:hover{
     background-color: #45a049;
 }
 
-/* Responsive adjustments for smaller screens */
-@media (max-width: 1024px) {
-    #PrescribtionTitle {
-        font-size: 20pt;
-        left: 5%;
-        transform: translate(-5%, -50%);
-        max-width: 80%;
-    }
-    #PrescribtionTitle h1 span {
-        font-size: 40pt;
-    }
-    #PatientMedForm {
-        max-width: 300pt;
-        right: 5%;
-        padding: 20pt 15pt;
-    }
-}
 
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    #PrescribtionTitle {
-        font-size: 18pt;
-        left: 5%;
-        transform: translate(-5%, -50%);
-        max-width: 90%;
+    /* Center both elements vertically and horizontally */
+    .pcontainer {
+        display: flex;
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center;
+        justify-content: center; /* Center vertically */
+        height: 100vh; /* Full height for proper centering */
+        gap: 20px;
+        padding: 10px; /* Add padding for smaller screens */
     }
-    #PrescribtionTitle h1 span {
-        font-size: 35pt;
+
+    #prescribtionTitle {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none; /* Remove transform */
+        font-size: 20pt;
+        text-align: center;
+        max-width: 90%; /* Allow wider title */
+        margin-bottom: 20px;
     }
+
     #PatientMedForm {
-        max-width: 280pt;
-        padding: 15pt 10pt;
-        right: 2%;
+        position: relative;
+        top: auto;
+        right: auto;
+        transform: none; /* Remove transform */
+        margin: 0 auto; /* Center horizontally */
+        padding: 20px;
+        width: 90%; /* Ensure it fits smaller screens */
+        max-width: 400px;
     }
 }
-
 
 /*========= AppointmentsBooking ========*/
-#mainContainer {
-    display: flex;
-    justify-content: space-between; 
-    align-items: center; 
-    width: 90%;
-    max-width: 1200px; 
-    margin: auto; 
-    gap: 20px; 
-    padding: 20px 0; 
-}
 
-#AppointmentsTitle {
-    flex: 1;
-    color: white;
-    text-align: left;
-    margin-right: 20px; 
+#AppointmentsTitle hr, #prescribtionTitle hr{
+    border: 2pt solid white;
+    position: absolute;
+    margin-top: 10pt auto ;
+    width:400pt;
+}
+#AppointmentsTitle h1 span {
+    font-size: 4rem;
 }
 
 #AppointmentsTitle h1 {
     font-size: 2.5rem;
     margin: 0;
 }
-
-#AppointmentsTitle h1 span {
-    font-size: 3rem;
-    font-weight: bold;
-    display: block;
-    margin-top: 10px;
-}
-
-#AppointmentsTitle hr {
-    width: 100px;
-    border: 2px solid white;
-    margin-top: 15px;
+#AppointmentsTitle {
+    flex: 1;
+    color: #333;
+    position: relative;
+    text-align: left;
+    font-size: 4rem;
+    margin-right: 20px; 
+    transform: translate(-10%, -50%);
+    margin: 0; 
 }
 
 /* Form Section */
@@ -603,27 +578,15 @@ footer .logoSec{
     background: white;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    max-width: 500px;
+    max-width: 650px;
     width: 100%;
     padding: 2em;
-    margin-left: 20px;
-    box-sizing: border-box; 
+    margin-left: 20px; 
+    box-sizing: border-box; /* Ensure padding is part of the element size */
 }
 
-/* Form Styling */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5em;
-}
-
-label {
-    font-weight: 500;
-    color: #2f353c;
-}
 
 select, input, textarea, button {
-    font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     padding: 0.75em;
     border: 1px solid #dcdfe6;
@@ -637,50 +600,69 @@ select:focus, input:focus, textarea:focus {
     box-shadow: 0 0 5px #A5A58D;
 }
 
-button {
-    border: none;
-    cursor: pointer;
-    font-weight: 500;
-    background-color: #A5A58D;
-    color: white;
-}
-
-button:hover {
-    background-color: #6B705C;
-}
-
 textarea {
     resize: none;
 }
 
-/* Responsive Design */
+#bookingForm, #specialtyForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+#bookingForm label, #specialtyForm label{
+    color: #000000;
+    font-weight: bolder;
+}
+#main-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    width: 90%;
+    max-width: 1200px; 
+    margin: auto; 
+    gap: 20px; 
+    padding: 20px 0;
+    height: 100vh;
+}
+
+/* Form Responsive Design */
 @media (max-width: 1024px) {
-    #mainContainer {
-        flex-direction: column; 
-        gap: 30px; 
-        padding: 20px 0; 
+    #main-container, .pcontainer {
+        flex-direction: column; /* Stack title and form vertically */
+        gap: 30px; /* Add spacing between stacked sections */
+        padding: 20px 0; /* Maintain top and bottom space on smaller screens */
     }
 
-    #AppointmentsTitle {
+    #AppointmentsTitle, .prescribtionTitle , .ptitleBackground{
         text-align: center;
-        margin: 0; 
+        margin: 0; /* Reset margins */
     }
 
-    #AppointmentForms {
-        margin: 0; 
+    #AppointmentForms , #PatientMedForm{
+        margin: 0; /* Reset margins */
     }
+    
 }
 
 @media (max-width: 768px) {
-    #AppointmentsTitle h1 {
-        font-size: 1.5rem;
-    }
-
-    #AppointmentsTitle h1 span {
+    #AppointmentsTitle h1 , #prescribtionTitle h1{
         font-size: 2rem;
+        text-align: center;
     }
 
-    #AppointmentForms {
+    #AppointmentsTitle h1 span , #prescribtionTitle h1 span {
+        font-size: 2rem;
+        
+    }
+
+    #AppointmentForms, #PatientMedForm {
         padding: 1.5em;
     }
+
+    #AppointmentsTitle hr , #prescribtionTitle hr {
+        margin: 20px auto; /* Center horizontally */
+        width: 100%; 
+    }
 }
+
