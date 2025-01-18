@@ -50,7 +50,7 @@ const specialtyToDoctors = {
 function handleSpecialtySubmit(event) {
     event.preventDefault(); 
 
-\    const selectedSpecialty = document.getElementById("specialty").value;
+    const selectedSpecialty = document.getElementById("specialty").value;
 
     if (!selectedSpecialty) {
         alert("Please select a specialty before submitting.");
