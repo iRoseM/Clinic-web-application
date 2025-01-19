@@ -6,6 +6,58 @@ function navToDoctor(event){
     window.location.href="indexDoctor.html";
 }
 
+function confirmPendingAppointments(event) {
+    event.preventDefault();
+    // Get the table containing the appointments
+    const table = document.getElementById("appointmentTable");
+    const rows = table.getElementsByTagName("tr");
+
+    // Loop through all rows except the header
+    for (let i = 1; i < rows.length; i++) {
+        const statusCell = rows[i].getElementsByTagName("td")[6]; // Get the status column
+        if (statusCell.textContent.trim() === "Pending") {
+            // Create a "Confirm" button
+            const confirmButton = document.createElement("input");
+            confirmButton.type = "button";
+            confirmButton.value = "Confirm";
+            confirmButton.id = "docAppointmentsConfirm";
+
+            confirmButton.style.padding = "5px 10px";
+            confirmButton.style.margin = "5px auto"; 
+            confirmButton.style.width= "100%";
+            confirmButton.addEventListener("mouseover", function() {
+                confirmButton.style.borderColor = "white"; // Change color on hover
+            });
+        
+            confirmButton.addEventListener("mouseout", function() {
+                confirmButton.style.borderColor = "grey"; // Change back to black when not hovered
+            });
+            confirmButton.style.boxSizing = "border-box";
+
+            // Replace the text content with the button
+            statusCell.textContent = ""; // Clear existing text
+            statusCell.appendChild(confirmButton); // Append the button
+        }
+    }
+}
+
+function sortPatientsTable(event) {
+    event.preventDefault(event);
+    const table = document.getElementById("patientsTable");
+    const tbody = table.querySelector("tbody");
+    const rows = Array.from(tbody.rows); // Convert rows to an array for sorting
+
+    // Sort rows based on the text content of the first cell (Name column)
+    rows.sort((a, b) => {
+        const nameA = a.cells[0].textContent.trim().toLowerCase();
+        const nameB = b.cells[0].textContent.trim().toLowerCase();
+        return nameA.localeCompare(nameB);
+    });
+
+    // Re-insert sorted rows into the table body
+    rows.forEach(row => tbody.appendChild(row));
+}
+
 
 /*========== Sign up  ==========*/
 

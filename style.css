@@ -357,6 +357,7 @@ footer .logoSec{
     background-color: rgb(239, 238, 235);
     padding: 15pt;
     width: 130pt;
+    height: auto;
 }
 
 .docAppointment th, .docPatients th{
