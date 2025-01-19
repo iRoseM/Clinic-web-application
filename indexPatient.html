@@ -7,7 +7,7 @@
         <link rel="icon" href="img/Logo.png" type="image/x-icon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     </head> 
-    <body> 
+    <body onload="stickyNavbar(event);"> 
 
         <!-- Nav Bar -->
         <header class="header">
@@ -79,29 +79,7 @@
                 </tbody>
             </table>
         </div>
-        <script> 
-            document.addEventListener("DOMContentLoaded", function () {
-                const header = document.querySelector(".header");
-                const hamburger = document.getElementsByClassName("hamburger")[0];
-                const navigation = document.getElementsByClassName("navigation")[0];
-
-                // Sticky header effect
-                window.addEventListener("scroll", function () {
-                    if (window.scrollY > 50) {
-                        header.classList.add("scrolled");
-                    } else {
-                        header.classList.remove("scrolled");
-                    }
-                });
-
-                // Toggle hamburger menu
-                hamburger.addEventListener("click", function () {
-                    navigation.classList.toggle("active");
-                });
-                
-            });
-
-        </script>
+        <script src="script.js"> </script>
     </body>
     <footer>
         <div class="contactusSec">

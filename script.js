@@ -1,4 +1,41 @@
 
+/*========== nav bar  ==========*/
+
+function initStickyHeader() {
+    const header = document.querySelector(".header");
+
+    // Sticky header effect
+    function handleScroll() {
+        if (window.scrollY > 50) {
+            header.classList.add("scrolled");
+        } else {
+            header.classList.remove("scrolled");
+        }
+    }
+
+    window.onscroll = handleScroll;
+}
+
+function initHamburgerMenu() {
+    const hamburger = document.getElementsByClassName("hamburger")[0];
+    const navigation = document.getElementsByClassName("navigation")[0];
+
+    // Toggle hamburger menu
+    function toggleMenu() {
+        navigation.classList.toggle("active");
+    }
+
+    hamburger.onclick = toggleMenu;
+}
+
+function stickyNavbar(event) {
+    event.preventDefault();
+    initStickyHeader();
+    initHamburgerMenu();
+}
+
+
+
 
 /*========== Prescribe Medication  ==========*/
 function navToDoctor(event){
