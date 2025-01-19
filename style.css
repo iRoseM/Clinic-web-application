@@ -400,18 +400,18 @@ footer .logoSec{
 }
 .patBanner h2{
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 9%;
-    font-size: 25pt;
+    font-size: 50pt;
     text-align: left;
 }
 .patBanner p{
     position: absolute;
-    top: 60%;
+    top: 45%;
     left: 9%;
-    font-size: 20pt;
+    font-size: 30pt;
     text-align: left;
-    /* padding-left: 30pt; */
+    
 }
 .BookAppointment{
     padding-top: 20pt;

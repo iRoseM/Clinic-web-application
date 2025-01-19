@@ -9,25 +9,46 @@
     </head>
 
     <body>
+
+        <!-- Nav Bar -->
+        <header class="header">
+            <div class="logo">
+                <a href="indexPatient.html"><img src="img/Logo.png" alt="logo"></a>
+                <span> <a href="indexPatient.html">TheraFlex</a></span>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="navigation">
+              <ul class="nav-links">
+                <li><a href="indexDoctor.html">Home</a></li>
+                <li><a href="#docAppointmentnav">Upcoming Appointments</a></li>
+                <li><a href="#docPatientsnav">Patients</a></li>
+                <li><a href="#contactUsnav">Contact Us</a></li>
+                <li class="logout-mobile"><a href="index.html">Log out</a></li> <!-- Only for mobile -->
+              </ul>
+            </div>
+            <div class="logout">
+              <a href="index.html">Log out</a>
+            </div>
+          </header>
+
+
        
-        <div class="docBanner">
+        <div class="patBanner">
             
             <!-- navbar -->
-         <div class="navbar">
-            <ul>
-                <li><a href="indexDoctor.html"><img src="img/Logo.png" alt="logo"></a></li>
-            </ul>
-         </div>
-
             <img src="img/docBanner.png" alt="DoctorBanner">
-            <p id="logout"><a href="index.html">Log out</a></p>
             <h2>Welcome [name]</h2>
             <div class="docInfo">
                 <p>[Doctor Information]</p>
             </div>
         </div>
 
-        <div class="docAppointment">
+        <div class="docAppointment" id="docAppointmentnav">
             <h2>Upcoming Appointments</h2>
             <table>
                 <tr>
@@ -61,7 +82,7 @@
             </table>
         </div>
 
-        <div class="docPatients">
+        <div class="docPatients" id="docPatientsnav">
             <h2>Your Patients</h2>
             <table>
                 <tr>
@@ -87,7 +108,7 @@
             </table>
         </div>
 
-        <footer>
+        <footer id="contactUsnav">
             <div class="contactusSec">
                 <h4>Contact Us</h4>
                 <p>Email: info@TheraFlex.com</p>
