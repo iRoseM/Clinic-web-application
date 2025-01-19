@@ -63,11 +63,11 @@ function confirmPendingAppointments(event) {
             confirmButton.style.margin = "5px auto"; 
             confirmButton.style.width= "100%";
             confirmButton.addEventListener("mouseover", function() {
-                confirmButton.style.borderColor = "white"; // Change color on hover
+                confirmButton.style.backgroundColor = "white"; // Change color on hover
             });
         
             confirmButton.addEventListener("mouseout", function() {
-                confirmButton.style.borderColor = "grey"; // Change back to black when not hovered
+                confirmButton.style.backgroundColor = "lightGrey"; // Change back to black when not hovered
             });
             confirmButton.style.boxSizing = "border-box";
 
@@ -75,6 +75,41 @@ function confirmPendingAppointments(event) {
             statusCell.textContent = ""; // Clear existing text
             statusCell.appendChild(confirmButton); // Append the button
         }
+    }
+
+/*========== Home - Doctor (chronological order)  ==========*/
+
+function sortAppointments(event) {
+        event.preventDefault();
+        const table = document.getElementById('appointmentTable');
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+
+        // Helper function to parse Date and Time
+        function parseDateTime(date, time) {
+            const [day, month, year] = date.split('/').map(Number);
+            const timeParts = time.match(/(\d+):?(\d+)?\s?(AM|PM)/i);
+            let hours = parseInt(timeParts[1]);
+            const minutes = parseInt(timeParts[2]) || 0;
+            const isPM = timeParts[3].toUpperCase() === 'PM';
+            if (isPM && hours !== 12) hours += 12; // Convert PM to 24-hour format
+            if (!isPM && hours === 12) hours = 0; // Handle 12 AM as midnight
+            return new Date(year, month - 1, day, hours, minutes);
+        }
+
+        // Sort rows by Date and Time
+        rows.sort((rowA, rowB) => {
+            const dateA = rowA.children[0].textContent.trim();
+            const timeA = rowA.children[1].textContent.trim();
+            const dateB = rowB.children[0].textContent.trim();
+            const timeB = rowB.children[1].textContent.trim();
+
+            return parseDateTime(dateA, timeA) - parseDateTime(dateB, timeB);
+        });
+
+        // Clear and re-append sorted rows
+        tbody.innerHTML = '';
+        rows.forEach(row => tbody.appendChild(row));
     }
 }
 
@@ -179,4 +214,42 @@ function handleBookingSubmit(event) {
     console.log("Reason:", reason);
 
     window.location.href = "/patient-homepage.html"; 
+}
+
+
+/*========== Home - Patient (chronological order)  ==========*/
+
+function sortPappointments(event) {
+    event.preventDefault();
+    // Get the table body where rows will be updated
+    const tableBody = document.querySelector(".patAppointment tbody");
+
+    // Get all rows from the table
+    const rows = Array.from(tableBody.querySelectorAll("tr"));
+
+    // Helper function to parse date and time into a comparable format
+    function parseDateTime(date, time) {
+        const [day, month, year] = date.split("/").map(Number);
+        const [hour, period] = time.split(/(AM|PM)/); // Split time into hours and period (AM/PM)
+        let [hours, minutes] = hour.split(":").map(Number); // Handle "HH:MM" format
+        if (period === "PM" && hours !== 12) hours += 12; // Convert PM to 24-hour format
+        if (period === "AM" && hours === 12) hours = 0;   // Convert midnight to 00
+        return new Date(year, month - 1, day, hours, minutes || 0); // Return a Date object
+    }
+
+    // Sort rows based on date and time
+    rows.sort((rowA, rowB) => {
+        const dateA = rowA.children[1].textContent.trim(); // Get date from second cell
+        const timeA = rowA.children[0].textContent.trim(); // Get time from first cell
+        const dateB = rowB.children[1].textContent.trim();
+        const timeB = rowB.children[0].textContent.trim();
+        
+        const dateTimeA = parseDateTime(dateA, timeA);
+        const dateTimeB = parseDateTime(dateB, timeB);
+        return dateTimeA - dateTimeB; // Sort ascending
+    });
+
+    // Clear the table body and append sorted rows
+    tableBody.innerHTML = "";
+    rows.forEach(row => tableBody.appendChild(row));
 }
