@@ -693,20 +693,20 @@ footer .logoSec{
 /*========= AppointmentsBooking ========*/
 #main-container {
     display: flex;
-    flex-wrap: wrap; 
+    flex-wrap: wrap; /* Allow content to wrap on smaller screens */
     justify-content: space-between;
-    align-items: stretch; 
+    align-items: stretch; /* Align both title and form to stretch equally */
     width: 90%;
     max-width: 1200px;
     margin: auto;
-    height: auto; 
+    height: auto; /* Allow container to adjust height dynamically */
     padding: 20px;
     box-sizing: border-box;
-    gap: 20px; 
+    gap: 20px; /* Add gap between elements */
 }
 
 #AppointmentsTitle {
-    flex: 1; 
+    flex: 1; /* Take up available space */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -715,15 +715,14 @@ footer .logoSec{
     font-size: 1.8rem;
     padding: 10px 20px;
     color: #333;
-    left: 0;
     box-sizing: border-box;
-    min-width: 300px; 
+    min-width: 300px; /* Ensure it doesn't shrink too much */
 }
 
 #AppointmentsTitle h1 {
     font-size: 2rem;
     margin: 0;
-    word-wrap: break-word; 
+    word-wrap: break-word; /* Ensure text wraps properly */
 }
 
 #AppointmentsTitle h1 span {
@@ -732,7 +731,7 @@ footer .logoSec{
 
 #AppointmentsTitle hr {
     width: 80%;
-    border: 2px solid #ddd;
+    border: 1px solid #ddd;
     margin: 15px 0;
 }
 
@@ -741,13 +740,13 @@ footer .logoSec{
     background: white;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    max-width: 600px;
+    max-width: 600px; /* Prevent form from growing too wide */
     width: 100%;
     padding: 20px;
     box-sizing: border-box;
-    height: auto; 
+    height: auto; /* Automatically adjust height */
     overflow: hidden;
-    min-width: 300px; 
+    min-width: 300px; /* Ensure the form doesn't shrink too much */
 }
 
 select, input, textarea, button {
@@ -757,7 +756,7 @@ select, input, textarea, button {
     border-radius: 5px;
     outline: none;
     transition: 0.3s;
-    width: 100%; 
+    width: 100%; /* Full width for consistency */
     margin-bottom: 15px;
     box-sizing: border-box;
 }
@@ -785,12 +784,12 @@ button:hover {
 /* Responsive adjustments */
 @media (max-width: 1024px) {
     #main-container {
-        flex-direction: column; 
+        flex-direction: column; /* Stack elements vertically */
         gap: 20px;
     }
 
     #AppointmentsTitle {
-        text-align: center; 
+        text-align: center; /* Center-align title */
     }
 }
 
