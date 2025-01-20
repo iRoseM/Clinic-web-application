@@ -372,7 +372,7 @@ footer .logoSec{
     margin: 0 auto;
     border-collapse: separate;
     padding: 0pt 30pt;
-    border-spacing: 0 15px;
+    border-spacing: 0 5px;
 }
 
 .docAppointment th, .docPatients th {
@@ -399,7 +399,6 @@ footer .logoSec{
 .docAppointment td, .docPatients td {
     padding: 15px 20px;
     text-align: left;
-    border-top: 1px solid #f0f0f0; 
 }
 
 .docAppointment td:last-child, .docPatients td:last-child {
