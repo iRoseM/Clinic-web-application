@@ -63,11 +63,14 @@ function confirmPendingAppointments(event) {
             confirmButton.style.margin = "5px auto"; 
             confirmButton.style.width= "100%";
             confirmButton.addEventListener("mouseover", function() {
-                confirmButton.style.backgroundColor = "white"; // Change color on hover
+                confirmButton.style.backgroundColor = "#45b395"; // Change color on hover
+                confirmButton.style.color= "white";
+
             });
         
             confirmButton.addEventListener("mouseout", function() {
-                confirmButton.style.backgroundColor = "lightGrey"; // Change back to black when not hovered
+                confirmButton.style.backgroundColor = "#4ecca3"; // Change back to black when not hovered
+                confirmButton.style.color= "white";
             });
             confirmButton.style.boxSizing = "border-box";
 
