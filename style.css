@@ -360,26 +360,79 @@ footer .logoSec{
 }
 
 .docAppointment th, td, tr, .docPatients th, td, tr{
-    border: solid black;
+    border: solid #2c2c2c;
     background-color: rgb(239, 238, 235);
     padding: 15pt;
     width: 130pt;
     height: auto;
 }
 
-.docAppointment th, .docPatients th{
-    background-color: #cdcdc3;
+.docAppointment table, .docPatients table {
+    width: 90%;
+    margin: 0 auto;
+    border-collapse: separate;
+    padding: 0pt 30pt;
+    border-spacing: 0 5px;
 }
 
-.docAppointment h2, .docPatients h2{
-    padding-bottom: 20pt;
-    padding-left: 30pt;
-    font-size: 20pt;
+.docAppointment th, .docPatients th {
+    background-image: url('img/th1.png');
+    background-size: cover;
+    background-position: center;
+    background-color: #f5f5f5;
+    color: white;
+    text-align: center;
+    padding: 10px 15px;
+    border-bottom: 2px solid #ccc;
 }
-.docAppointment table, .docPatients table{
-    padding-left: 30pt;
-    padding-right: 30pt;
+
+.docAppointment tbody tr, .docPatients tbody tr {
+    background: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
 }
+
+.docAppointment tbody tr:hover, .docPatients tbody tr:hover {
+    transform: scale(1.02);
+}
+
+.docAppointment td, .docPatients td {
+    padding: 15px 20px;
+    text-align: left;
+}
+
+.docAppointment td:last-child, .docPatients td:last-child {
+    text-align: center;
+}
+
+.docAppointment tbody tr a, .docPatients tbody tr a {
+    background-color: #4ecca3;
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.docAppointment tbody tr a:hover, .docPatients tbody tr a:hover {
+    background-color: #45b395;
+}
+
+.docAppointment h2, .docPatients h2 {
+    text-align: center;
+    font-size: 26pt;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(to right, #6B705C, #2c2c2c); -webkit-background-clip: text; /* Makes the gradient apply to text only */
+    -webkit-text-fill-color: transparent; /* Makes text transparent to show gradient */
+    border-bottom: 4px solid #2c2c2c; /* Adds a decorative underline */
+    padding-bottom: 10px;
+}
+
 .docAppointment{
     padding: 50pt 30pt;
 }
@@ -556,10 +609,10 @@ footer .logoSec{
 .pcontainer {
     display: flex;
     flex-direction: column; /* Stack elements vertically */
-    align-items: center; /* Center horizontally */
-    justify-content: center; /* Center vertically */
+    align-items: center;
+    justify-content: center; 
     height: 100vh;
-    width: 100%; /* Ensure it spans the full width */
+    width: 100%; 
     gap: 20px; /* Space between the title and the form */
     padding: 20px;
     box-sizing: border-box; /* Include padding in height and width calculations */

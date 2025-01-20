@@ -36,23 +36,23 @@
                     <h1>Appointment Booking</h1>
                     <br>
                     <!--First Form-->
-                    <form id="specialtyForm" method="POST">
+                    <form id="specialtyForm" onsubmit="handleSpecialtySubmit(event)">
                         <label for="specialty">Select Specialty:</label>
-                        
-                        <select name="specialty" required>
-                            <option value="-">--Choose a Specialty--</option>
+                        <select name="specialty" id="specialty" required>
+                            <option value="">--Choose a Specialty--</option>
                             <option value="Pediatric">Pediatric</option>
                             <option value="Chronic Pain">Chronic Pain</option>
-                            <option value="--">--</option>
+                            <option value="Cardiology">Cardiology</option>
                         </select>
-                        <button type="button" id="specialtySubmit">Submit</button>
+                        <button type="submit" id="specialtySubmit">Submit</button>
+    
                     </form>
                     <br><hr><br>
                     <!-- Second Form -->
-                    <form id="bookingForm" method="POST">
+                    <form id="bookingForm" onsubmit="handleBookingSubmit(event)">
                         <label for="doctor">Select Doctor:</label>
-                        <select name="doctor" required>
-                            <option>--Choose a Doctor--</option>
+                        <select name="doctor" id="doctor" required>
+                            <option value="">--Choose a Doctor--</option>
                             <option value="xx">Doctor</option>
 
                             <!-- A drop-down list to display the doctors according to the selected specialty from the first form -->

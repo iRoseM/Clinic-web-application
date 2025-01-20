@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
 
-    <body onload="confirmPendingAppointments(event); sortPatientsTable(event); stickyNavbar(event);">
+    <body onload="confirmPendingAppointments(event); sortPatientsTable(event); stickyNavbar(event); sortAppointments(event);">
 
         <!-- Nav Bar -->
         <header class="header">
@@ -51,34 +51,38 @@
         <div class="docAppointment" id="docAppointmentnav">
             <h2>Upcoming Appointments</h2>
             <table id="appointmentTable">
-                <tr>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Patient's Name</th>
-                    <th>Age</th>
-                    <th>Gender</th>
-                    <th>Reason for visit</th>
-                    <th>Status</th>
-                </tr>
-                <tr>
-                    <td>23/2/2025</td>
-                    <td>11 AM</td>
-                    <td>Nota Saad</td>
-                    <td>15</td>
-                    <td>Female</td>
-                    <td>Headache</td>
-                    <td>Pending</td>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Patient's Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Reason for visit</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>23/2/2025</td>
+                        <td>11 AM</td>
+                        <td>Nota Saad</td>
+                        <td>15</td>
+                        <td>Female</td>
+                        <td>Headache</td>
+                        <td>Pending</td>
 
-                </tr>
-                <tr>
-                    <td>16/7/2025</td>
-                    <td>5 PM</td>
-                    <td>Majed Ahmad</td>
-                    <td>45</td>
-                    <td>Male</td>
-                    <td>Back pain</td>
-                    <td>Confirmed</td>
-                </tr>
+                    </tr>
+                    <tr>
+                        <td>16/7/2025</td>
+                        <td>5 PM</td>
+                        <td>Majed Ahmad</td>
+                        <td>45</td>
+                        <td>Male</td>
+                        <td>Back pain</td>
+                        <td>Confirmed</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
 
