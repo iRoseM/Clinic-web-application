@@ -163,6 +163,25 @@ function redirectToHome(event, role) {
 }
 
 
+
+/*============= Log in ==============*/ 
+
+
+document.getElementById("login-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const userRole = document.querySelector('input[name="role"]:checked').value;
+
+    if (userRole === "patient") {
+        window.location.href = "indexPatient.html";
+    } else if (userRole === "doctor") {
+        window.location.href = "indexDoctor.html";
+    } else {
+        alert("Please select a valid role.");
+    }
+});
+
+
 /*========== Booking Appointment  ==========*/
 
 const specialtyToDoctors = {
