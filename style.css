@@ -359,7 +359,7 @@ footer .logoSec{
     padding: 10pt 0pt 10pt 0pt;
 }
 
-.docAppointment th, td, tr, .docPatients th, td, tr{
+.docAppointment th, td, tr, .docPatients th, td, tr, .patAppointment th, td, tr{
     border: solid #2c2c2c;
     background-color: rgb(239, 238, 235);
     padding: 15pt;
@@ -367,15 +367,16 @@ footer .logoSec{
     height: auto;
 }
 
-.docAppointment table, .docPatients table {
+.docAppointment table, .docPatients table, .patAppointment table {
     width: 90%;
     margin: 0 auto;
+    font-weight: bold;
     border-collapse: separate;
     padding: 0pt 30pt;
     border-spacing: 0 5px;
 }
 
-.docAppointment th, .docPatients th {
+.docAppointment th, .docPatients th , .patAppointment th{
     background-image: url('img/th1.png');
     background-size: cover;
     background-position: center;
@@ -386,26 +387,26 @@ footer .logoSec{
     border-bottom: 2px solid #ccc;
 }
 
-.docAppointment tbody tr, .docPatients tbody tr {
+.docAppointment tbody tr, .docPatients tbody tr, .patAppointment tbody tr {
     background: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease-in-out;
 }
 
-.docAppointment tbody tr:hover, .docPatients tbody tr:hover {
+.docAppointment tbody tr:hover, .docPatients tbody tr:hover, .patAppointment tbody tr:hover {
     transform: scale(1.02);
 }
 
-.docAppointment td, .docPatients td {
+.docAppointment td, .docPatients td , .patAppointment td{
     padding: 15px 20px;
     text-align: left;
 }
 
-.docAppointment td:last-child, .docPatients td:last-child {
+.docAppointment td:last-child, .docPatients td:last-child, .patAppointment td:last-child {
     text-align: center;
 }
 
-.docAppointment tbody tr a, .docPatients tbody tr a {
+.docAppointment tbody tr a, .docPatients tbody tr a, .patAppointment tr a, .BookAppointment a {
     background-color: #4ecca3;
     color: #fff;
     text-decoration: none;
@@ -415,11 +416,26 @@ footer .logoSec{
     font-weight: bold;
 }
 
-.docAppointment tbody tr a:hover, .docPatients tbody tr a:hover {
+.patAppointment tbody tr a{
+    background-color: rgb(209, 11, 11);
+}
+
+.BookAppointment a{
+    background-color:#333;
+}
+
+.docAppointment tbody tr a:hover, .docPatients tbody tr a:hover , .patAppointment tbody tr a:hover, .BookAppointment a:hover{
     background-color: #45b395;
 }
 
-.docAppointment h2, .docPatients h2 {
+.patAppointment tbody tr a:hover{
+    background-color: rgb(178, 18, 18);
+}
+
+.BookAppointment a:hover{
+    background-color:#555;
+}
+.docAppointment h2, .docPatients h2, .patAppointment h2 {
     text-align: center;
     font-size: 26pt;
     font-weight: bold;
@@ -477,12 +493,14 @@ footer .logoSec{
 }
 .BookAppointment{
     padding-top: 20pt;
+    padding-left: 80%;
+
 }
-.BookAppointment p{
+/* .BookAppointment p{
     display: block;
-}
+} */
 .BookAppointment a{
-    padding-left: 84%;
+    padding: 3% 5%;
 }
 .patAppointment {
     padding: 40pt 30pt;
@@ -490,24 +508,23 @@ footer .logoSec{
     background-color:#dbdbd1;
     background: linear-gradient(to bottom, #fffffee9, #cdcdc3);
 }
-.patAppointment table {
-    padding-left: 30pt;
-    padding-right: 30pt; 
-}
 
-.patAppointment th, td, tr{
+/* .patAppointment th, td, tr{
     border: solid black;
     background-color: rgb(239, 238, 235);
-    padding: 15pt;
+    padding: 10pt;
     width: 130pt;
-}
+    height:aut;
+} */
 
-.patAppointment th{
+/* .patAppointment th{
     background-color: #cdcdc3;
-}
+} */
 
 .patAppointment img {
-    width: 100pt;
+    width: 80pt;
+    padding-left: 30pt;
+    padding-right: 30pt;
 }
 
 /*========== Responsive Styles ==========*/

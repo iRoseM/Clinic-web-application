@@ -9,24 +9,40 @@
         .login-container form {
             background-color: rgb(255, 255, 255);
             padding: 3rem;
-            border-radius: 10px; 
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+            width: 90%;
+            max-width: 1000px; /* Ensure it doesn’t become too large on wide screens */
+            margin: 0 auto;
 
         }
-
         .login-container h1 {
             margin-bottom: 4rem;
             font-size: 1.8rem;
             color: #22372d;
+            text-align: center;
+            font-weight: bold;
         }
 
         .login-container input,
         .login-container button {
             width: 100%;
             padding: 0.8rem;
-            margin-bottom: 1rem;
+            margin: 1rem 0; /* Equal margin on top and bottom, none on sides */
             font-size: 1rem;
             border: 1px solid #ccc;
-            border-radius: 25px; 
+            border-radius: 20px;
+            transition: all 0.3s ease-in-out;
+            box-sizing: border-box; 
+        
+        }
+        .login-container button{
+            padding-bottom: 10pt;
+        }
+        .login-container input:focus {
+            outline: none;
+            border-color: #22372d; /* Highlight input focus */
+            box-shadow: 0 0 5px rgba(34, 55, 45, 0.4); /* Add subtle glow */
         }
 
         .login-container button {
@@ -34,7 +50,11 @@
             color: white;
             border: none;
             font-weight: bold;
-            margin-left: 0.7em; 
+            padding: 0.8rem;
+            margin: 1rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            
         }
 
         .login-container button:hover {
@@ -51,10 +71,12 @@
             color: #22372d;
             font-weight: bold;
             text-decoration: none;
+            transition: all 0.2s ease-in-out;
         }
 
         .login-container .signup-text a:hover {
             text-decoration: underline;
+            color: #4ecca3;
         }
 
         header {
@@ -88,7 +110,9 @@
             color: #fff;
             font-size: 1.5rem;
         }
-
+        .signup-text{
+            padding-bottom: 20pt;
+        }
         nav .signup-text a {
             color: #333;
             text-decoration: underline;
@@ -109,20 +133,32 @@
             margin-bottom: 1rem;
             text-align: left;
             display: flex;
-            flex-direction: column; 
-            align-items: flex-start; 
-        }
+            justify-content: center;
+            align-items: center; 
 
-        .role-group label {
+        } 
+
+        .role-group ul{
             font-size: 1rem;
             color: #333;
-            display: inline-flex;
+            /* display: flex;
+            align-items: center; */
+            list-style: none; 
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 10%;
+        }
+        .role-group ul li{
+            display: flex;
             align-items: center;
-            margin-right: 0.5rem; 
+            font-size: 1.2rem;
+            font-weight: bold;
+            
         }
 
         .role-group input[type="radio"] {
-            margin-right: 0.5rem; 
+            margin: 0.5rem; 
         }
 
         @media (max-width: 1024px) {
@@ -163,12 +199,10 @@
                     <h1 style="margin-bottom: 0.7em;">Log In</h1>
                     <p style="color: #333; margin-bottom: 0.9em;">Log in to your account</p>
                     <div class="role-group">
-                        <label>
-                            <input type="radio" name="role" value="patient" required> Patient
-                        </label>
-                        <label>
-                            <input type="radio" name="role" value="doctor" required> Doctor
-                        </label>
+                        <ul>
+                            <li><input type="radio" name="role" value="patient" required> Patient</li>
+                            <li><input type="radio" name="role" value="doctor" required> Doctor</li>
+                        </ul>
                     </div>
                     <input type="email" id="email" placeholder="Email Address" required>
                     <input type="password" id="password" placeholder="Password" required>
