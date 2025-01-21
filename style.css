@@ -829,7 +829,7 @@ textarea {
     margin: auto; 
     gap: 20px; 
     padding: 20px 0;
-    height: 100vh;
+    height: auto;
 }
 
 /* Form Responsive Design */
