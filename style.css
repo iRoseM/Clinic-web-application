@@ -374,6 +374,7 @@ footer .logoSec{
     border-collapse: separate;
     padding: 0pt 30pt;
     border-spacing: 0 5px;
+    
 }
 
 .docAppointment th, .docPatients th , .patAppointment th{
@@ -385,12 +386,14 @@ footer .logoSec{
     text-align: center;
     padding: 10px 15px;
     border-bottom: 2px solid #ccc;
+    
 }
 
 .docAppointment tbody tr, .docPatients tbody tr, .patAppointment tbody tr {
     background: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease-in-out;
+    
 }
 
 .docAppointment tbody tr:hover, .docPatients tbody tr:hover, .patAppointment tbody tr:hover {
@@ -399,7 +402,7 @@ footer .logoSec{
 
 .docAppointment td, .docPatients td , .patAppointment td{
     padding: 15px 20px;
-    text-align: left;
+    text-align: center;
 }
 
 .docAppointment td:last-child, .docPatients td:last-child, .patAppointment td:last-child {
