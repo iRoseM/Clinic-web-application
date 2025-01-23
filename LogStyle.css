@@ -1,6 +1,5 @@
 body {
     font-family:   sans-serif;
-    background-image: url("img/footer.jpg");
     background-color: #dae7e2;
     overflow: hidden;
     margin: 0; 
@@ -15,9 +14,8 @@ body {
 }
 
 .image-container img {
-    width: 100%;
+    width: 180%;
     height: 100%; 
     object-fit: cover; 
-    opacity: 0.4;
-     background-size: cover;
+    background-size: cover;
 }
