@@ -100,7 +100,7 @@
   }
 
   .navigation {
-    padding-left: 300pt ;
+    padding-left: 250pt ;
     display:flex;
 }
   .nav-links {
@@ -121,7 +121,7 @@
     color:#575a4c;
     font-size: 16px;
     font-weight: bold;
-
+    transition: color 0.3s ease; /* Smooth transition for color */
   }
   
   .nav-links a:hover {
@@ -129,16 +129,14 @@
   }
   
   .logout {
-    padding: 20pt;
+    padding-top: 20pt;
   }
   
   .logout a {
-    text-decoration: underline;
-    color:#575a4c;
-    font-size: 16px;
-    font-weight: bold;
-
+    color:white; 
+    
   }
+  
   .hamburger {
     display: none;
     flex-direction: column;
@@ -154,6 +152,36 @@
     background-color: #FFE8D6;
     transition: all 0.3s ease;
 }
+
+.icon-container {
+    padding-right: 10pt;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.icon {
+    width: 18pt;
+    height: auto;
+    color: #575a4c; /* Default stroke color */
+    transition: color 0.3s ease; /* Smooth transition for stroke color */
+}
+
+.icon:hover {
+    color:#000000;
+}
+
+.header.scrolled .icon {
+    color: white; /* Change the icon's color */
+}
+
+
+
+
 
 /* Mobile-Specific Styles */
 @media (max-width: 768px) {
@@ -325,8 +353,10 @@ footer .logoSec{
 }
 
 
+
+
 /*========== HomePage - Doctor ==========*/
-.docBanner{
+/* .docBanner{
     position: relative;
     display: inline-block;
     width: 100%;
@@ -349,39 +379,65 @@ footer .logoSec{
     left: 9%;
     font-size: 20pt;
     text-align: left;
-    /* padding-left: 30pt; */
-}
-#logout{
+} */
+
+/* #logout{
     position: absolute;
     top: 0%;
     left: 93%;
     font-size: 16pt;
     padding: 10pt 0pt 10pt 0pt;
+} */
+
+/* Pop-up Card Styles */
+.popup-card {
+    position: absolute;
+    top: 80px; /* Space below the icon */
+    right: 20px;
+    width: 250px;
+    padding: 20pt;
+    background-color: rgba(87, 90, 76, 0.678);
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(249, 255, 245, 0.475);
+    display: none; /* Initially hidden */
+    z-index: 1000;
+}
+/* Add the arrow to the right edge */
+.popup-card::after {
+    content: "";
+    position: absolute;
+    top: -26.5px; /* Position arrow above the popup */
+    right: 7px; /* Align arrow with the icon */
+    border-width: 10pt; /* Size of the arrow */
+    border-style: solid;
+    border-color: transparent transparent rgba(87, 90, 76, 0.678) transparent; /* Arrow color */
+    transition: opacity 0.3s ease; /* Smooth arrow hiding */
 }
 
-/* Card Container */
-.card-container {
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
-    z-index: 10;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%; /* Take full width */
-    height: 100%; /* Take full height */
+/* Hide the arrow when scrolled */
+.popup-card.no-arrow::after {
+    opacity: 0; /* Hide the arrow */
 }
 
-/* Card */
-.doctor-card {
-    width: 550px; /* Set fixed width for the card */
-    padding: 20px;
-    background-color: #ffffff; /* Card background */
-    border: 1px solid #ccc; /* Border for the card */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    text-align: center; /* Center text inside the card */
+.popup-content {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: white;
+    padding-left: 10pt;
+    padding-top: 10pt;
+}
+
+.popup-content h3 {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 10pt;
+}
+
+.popup-content p {
+    text-align: center;
+    margin: 5px 0;
 }
 
 /* Circle Image */
@@ -391,7 +447,7 @@ footer .logoSec{
     border-radius: 50%; /* Makes the container circular */
     overflow: hidden; /* Ensures the image stays within the circle */
     margin: 0 auto 15px; /* Center the image and add spacing below */
-    border: 2px solid #ccc; /* Optional border for the circle */
+    border: 1px solid #ccc; /* Optional border for the circle */
 }
 
 /* Image Inside the Circle */
@@ -400,24 +456,6 @@ footer .logoSec{
     height: 100%; /* Fill the circle height */
     object-fit: cover; /* Maintain aspect ratio, crop if necessary */
 }
-
-/* Doctor's Name */
-.doctor-name {
-    font-size: 20px; /* Larger font size */
-    font-weight: bold;
-    margin: 0pt 0pt 20pt 15pt ; /* Space above and below */
-    color: #333;
-}
-
-/* Doctor Info Paragraphs */
-.doctor-info {
-    font-size: 18px;
-    color: #555;
-    margin: 10px 0; /* Space between paragraphs */
-    margin-right: 200pt;
-}
-
-
 
 .docAppointment th, td, tr, .docPatients th, td, tr, .patAppointment th, td, tr{
     border: solid #2c2c2c;
@@ -469,7 +507,7 @@ footer .logoSec{
     text-align: center;
 }
 
-.docAppointment tbody tr a, .docPatients tbody tr a, .patAppointment tr a, .BookAppointment a {
+.docAppointment tbody tr a, .docPatients tbody tr a, .patAppointment tr a {
     background-color: #4ecca3;
     color: #fff;
     text-decoration: none;
@@ -483,11 +521,9 @@ footer .logoSec{
     background-color: rgb(209, 11, 11);
 }
 
-.BookAppointment a{
-    background-color:#333;
-}
 
-.docAppointment tbody tr a:hover, .docPatients tbody tr a:hover , .patAppointment tbody tr a:hover, .BookAppointment a:hover{
+
+.docAppointment tbody tr a:hover, .docPatients tbody tr a:hover , .patAppointment tbody tr a:hover{
     background-color: #45b395;
 }
 
@@ -495,9 +531,7 @@ footer .logoSec{
     background-color: rgb(178, 18, 18);
 }
 
-.BookAppointment a:hover{
-    background-color:#555;
-}
+
 .docAppointment h2, .docPatients h2, .patAppointment h2 {
     text-align: center;
     font-size: 26pt;
@@ -532,14 +566,14 @@ footer .logoSec{
     display: inline-block;
     width: 100%;
     overflow: hidden;
-    padding-bottom: 220pt;
+    padding-bottom: 20pt;
 
 }
 
 .patBanner img{
     width: 100%;
     max-width: 100%;
-    height: 250pt;
+    height: 450pt;
     opacity: 100%;
     object-fit:cover
 }
@@ -561,58 +595,25 @@ footer .logoSec{
     
 }
 
-/* Patient Card */
-.patient-card {
-    width: 550px; /* Same width as the doctor card */
-    padding: 40px;
-    background-color: #ffffff; /* Card background */
-    border: 1px solid #ccc; /* Border for the card */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    text-align: center; /* Center text inside the card */
+.BookAppointment {
+    background-color: transparent;
+    display:inline;
+    padding-left: 900pt;
 }
-
-/* Patient Name */
-.patient-name {
-    font-size: 20px; /* Larger font size */
-    font-weight: bold;
-    margin: 0pt 0pt 20pt 15pt ; /* Space above and below */
-    color: #333;
-}
-
-/* Patient Info Paragraphs */
-.patient-info {
-    font-size: 18px;
-    color: #555;
-    margin: 10px 0; /* Space between paragraphs */
-    margin-right: 220pt;
-}
-/* Doctor's Name */
-.doctor-name {
-    font-size: 20px; /* Larger font size */
-    font-weight: bold;
-    margin: 0pt 0pt 20pt 15pt ; /* Space above and below */
-    color: #333;
-}
-
-/* Doctor Info Paragraphs */
-.doctor-info {
-    font-size: 18px;
-    color: #555;
-    margin: 10px 0; /* Space between paragraphs */
-    margin-right: 200pt;
-}
-.BookAppointment{
-    padding-top: 20pt;
-    padding-left: 80%;
-
-}
-/* .BookAppointment p{
-    display: block;
-} */
 .BookAppointment a{
-    padding: 3% 5%;
+    background-color:#333;
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
 }
+
+.BookAppointment a:hover{
+    background-color:#555;
+}
+
 .patAppointment {
     padding: 40pt 30pt;
     padding-bottom: 200pt;

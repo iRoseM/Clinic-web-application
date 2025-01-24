@@ -34,9 +34,6 @@ function stickyNavbar(event) {
     initHamburgerMenu();
 }
 
-
-
-
 /*========== Prescribe Medication  ==========*/
 function navToDoctor(event){
     event.preventDefault();
@@ -132,64 +129,6 @@ function sortPatientsTable(event) {
     // Re-insert sorted rows into the table body
     rows.forEach(row => tbody.appendChild(row));
 }
-
-// Function to initialize the application (To hande the card info displaying)
-function initApp() {
-    console.log("Application initialized");
-    // Additional initialization logic if needed
-}
-
-/*========== Update Cards with Registration Data ==========*/
-function redirectToHome(event, type) {
-    event.preventDefault(); // Prevent form submission
-    console.log("Redirect function triggered for:", type); //debuging
-
-
-    if (type === "patient") {
-        // Patient Form Data
-        const firstName = document.getElementById("first-name").value;
-        const lastName = document.getElementById("last-name").value;
-        const id = document.getElementById("id").value;
-        const dob = document.getElementById("dob").value;
-        const email = document.getElementById("email").value;
-
-        // Update Patient Card
-        document.querySelector(".patient-name").textContent = `${firstName} ${lastName}`;
-        document.querySelector(".patient-info:nth-of-type(1)").textContent = `ID: ${id}`;
-        document.querySelector(".patient-info:nth-of-type(2)").textContent = `Date of Birth: ${dob}`;
-        document.querySelector(".patient-info:nth-of-type(3)").textContent = `Email: ${email}`;
-    } else if (type === "doctor") {
-        // Doctor Form Data
-        const firstName = document.getElementById("doctor-first-name").value;
-        const lastName = document.getElementById("doctor-last-name").value;
-        const id = document.getElementById("id").value;
-        const speciality = document.getElementById("speciality").value;
-        const email = document.getElementById("email").value;
-
-        // Get and Read Uploaded Photo
-        const photoInput = document.getElementById("photo");
-        const photoFile = photoInput.files[0];
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            // Set the image source to the file data
-            document.querySelector(".doctor-image img").src = e.target.result;
-        };
-        if (photoFile) {
-            reader.readAsDataURL(photoFile); // Read image file as base64 data
-        }
-
-        // Update Doctor Card
-        document.querySelector(".doctor-name").textContent = `${firstName} ${lastName}`;
-        document.querySelector(".doctor-info:nth-of-type(1)").textContent = `ID: ${id}`;
-        document.querySelector(".doctor-info:nth-of-type(2)").textContent = `Speciality: ${speciality}`;
-        document.querySelector(".doctor-info:nth-of-type(3)").textContent = `Email: ${email}`;
-    }
-
-    // Hide the Form and Show the Card
-    document.getElementById(`${type}-form`).style.display = "none";
-    document.querySelector(`.${type}-card`).style.display = "block";
-}
-
 
 /*========== Sign up  ==========*/
 
