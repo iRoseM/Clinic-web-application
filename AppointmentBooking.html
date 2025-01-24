@@ -7,34 +7,31 @@
         <link rel="stylesheet" href="style.css">
         <style>
             body {
-    margin: 0;
-    background: url('img/appointment2.png') no-repeat center center fixed;
-    background-size: cover;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 20px;
-    box-sizing: border-box;
-}
-
+                margin: 0;
+                background: url('img/appointment2.png') no-repeat center center fixed;
+                background-size: cover;
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 40px 20px;
+                box-sizing: border-box;
+            }
         </style>
         
     </head>
 
     <body>
-        <div id="main-container">
+        <div class="main-container">
 
                 <div id="AppointmentsTitle">
-                    <div class="center-wrapper">
-                        <h1>Schedule Your <span>Appointment</span></h1>
-                        <hr>
-                    </div>
+                    <h1>Schedule Your <span>Appointment</span></h1>
+                    <hr>
                 </div>
 
-                <div id="AppointmentForms" >
+                <div class="Formdiv">
 
-                    <h1>Appointment Booking</h1>
+                    <h1 class="FormTitle">Appointment Booking</h1>
                     <br>
                     <!--First Form-->
                     <form id="specialtyForm" onsubmit="handleSpecialtySubmit(event)">
