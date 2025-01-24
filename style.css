@@ -359,6 +359,66 @@ footer .logoSec{
     padding: 10pt 0pt 10pt 0pt;
 }
 
+/* Card Container */
+.card-container {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Take full width */
+    height: 100%; /* Take full height */
+}
+
+/* Card */
+.doctor-card {
+    width: 550px; /* Set fixed width for the card */
+    padding: 20px;
+    background-color: #ffffff; /* Card background */
+    border: 1px solid #ccc; /* Border for the card */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    text-align: center; /* Center text inside the card */
+}
+
+/* Circle Image */
+.doctor-image {
+    width: 120px; /* Circle width */
+    height: 120px; /* Circle height */
+    border-radius: 50%; /* Makes the container circular */
+    overflow: hidden; /* Ensures the image stays within the circle */
+    margin: 0 auto 15px; /* Center the image and add spacing below */
+    border: 2px solid #ccc; /* Optional border for the circle */
+}
+
+/* Image Inside the Circle */
+.doctor-image img {
+    width: 100%; /* Fill the circle width */
+    height: 100%; /* Fill the circle height */
+    object-fit: cover; /* Maintain aspect ratio, crop if necessary */
+}
+
+/* Doctor's Name */
+.doctor-name {
+    font-size: 20px; /* Larger font size */
+    font-weight: bold;
+    margin: 0pt 0pt 20pt 15pt ; /* Space above and below */
+    color: #333;
+}
+
+/* Doctor Info Paragraphs */
+.doctor-info {
+    font-size: 18px;
+    color: #555;
+    margin: 10px 0; /* Space between paragraphs */
+    margin-right: 200pt;
+}
+
+
+
 .docAppointment th, td, tr, .docPatients th, td, tr, .patAppointment th, td, tr{
     border: solid #2c2c2c;
     background-color: rgb(239, 238, 235);
@@ -374,6 +434,7 @@ footer .logoSec{
     border-collapse: separate;
     padding: 0pt 30pt;
     border-spacing: 0 5px;
+    
 }
 
 .docAppointment th, .docPatients th , .patAppointment th{
@@ -385,12 +446,14 @@ footer .logoSec{
     text-align: center;
     padding: 10px 15px;
     border-bottom: 2px solid #ccc;
+    
 }
 
 .docAppointment tbody tr, .docPatients tbody tr, .patAppointment tbody tr {
     background: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease-in-out;
+    
 }
 
 .docAppointment tbody tr:hover, .docPatients tbody tr:hover, .patAppointment tbody tr:hover {
@@ -399,7 +462,7 @@ footer .logoSec{
 
 .docAppointment td, .docPatients td , .patAppointment td{
     padding: 15px 20px;
-    text-align: left;
+    text-align: center;
 }
 
 .docAppointment td:last-child, .docPatients td:last-child, .patAppointment td:last-child {
@@ -468,14 +531,19 @@ footer .logoSec{
     position: relative;
     display: inline-block;
     width: 100%;
+    overflow: hidden;
+    padding-bottom: 220pt;
+
 }
+
 .patBanner img{
     width: 100%;
     max-width: 100%;
-    /* height: 600pt; */
-    max-height: 900pt;
+    height: 250pt;
     opacity: 100%;
+    object-fit:cover
 }
+
 .patBanner h2{
     position: absolute;
     top: 30%;
@@ -483,6 +551,7 @@ footer .logoSec{
     font-size: 50pt;
     text-align: left;
 }
+
 .patBanner p{
     position: absolute;
     top: 45%;
@@ -490,6 +559,48 @@ footer .logoSec{
     font-size: 30pt;
     text-align: left;
     
+}
+
+/* Patient Card */
+.patient-card {
+    width: 550px; /* Same width as the doctor card */
+    padding: 40px;
+    background-color: #ffffff; /* Card background */
+    border: 1px solid #ccc; /* Border for the card */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    text-align: center; /* Center text inside the card */
+}
+
+/* Patient Name */
+.patient-name {
+    font-size: 20px; /* Larger font size */
+    font-weight: bold;
+    margin: 0pt 0pt 20pt 15pt ; /* Space above and below */
+    color: #333;
+}
+
+/* Patient Info Paragraphs */
+.patient-info {
+    font-size: 18px;
+    color: #555;
+    margin: 10px 0; /* Space between paragraphs */
+    margin-right: 220pt;
+}
+/* Doctor's Name */
+.doctor-name {
+    font-size: 20px; /* Larger font size */
+    font-weight: bold;
+    margin: 0pt 0pt 20pt 15pt ; /* Space above and below */
+    color: #333;
+}
+
+/* Doctor Info Paragraphs */
+.doctor-info {
+    font-size: 18px;
+    color: #555;
+    margin: 10px 0; /* Space between paragraphs */
+    margin-right: 200pt;
 }
 .BookAppointment{
     padding-top: 20pt;
