@@ -3,38 +3,38 @@
     <head>
         <meta charset="utf-8">
         <title>TheraFlex - Medication</title>
-        <link rel="stylesheet" href="style.css">
         <link rel="icon" href="img/Logo.png" type="image/x-icon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <style>
-            /* Body Styling */
-             body {
-                 margin: 0;
-                 background: url('img/medication.png') no-repeat center center fixed;
-                 background-size: cover;
-                 min-height: 100vh;
-                 display: flex;
-                 justify-content: center;
-                 align-items: center;
-                 padding: 40px 20px;
-                 box-sizing: border-box; /* Ensure padding is part of the element size */
-             }
- 
+            /* General Body Styling */
+body {
+    margin: 0;
+    background: url('img/medication.png') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+
          </style>
     </head>
 
     <body>
             
-        <div class="pcontainer">
+        <div class="main-container">
                 <div id="prescribtionTitle">
                     <h1>Patient's Medication <span>Prescribtion</span></h1>
                     <hr>
                 </div>
 
-            <div class="pformBackground">
+            <div class="Formdiv">
+                <h1 class="FormTitle">Patient's Medications</h1>
                 <form action="x" method="post" id="PatientMedForm">
-                    <h1 class="title">Patient's Medications</h1>
                     <label>Patient's Name: <input type="text" name="pName"></label>
                     <label>Age: <input type="number" name="pAge"></label>
 
