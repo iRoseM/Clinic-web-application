@@ -34,9 +34,6 @@ function stickyNavbar(event) {
     initHamburgerMenu();
 }
 
-
-
-
 /*========== Prescribe Medication  ==========*/
 function navToDoctor(event){
     event.preventDefault();
@@ -132,7 +129,6 @@ function sortPatientsTable(event) {
     // Re-insert sorted rows into the table body
     rows.forEach(row => tbody.appendChild(row));
 }
-
 
 /*========== Sign up  ==========*/
 
