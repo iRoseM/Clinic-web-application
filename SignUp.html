@@ -11,73 +11,87 @@
     <style>
 
 
-        h1 {
-            margin-bottom: 1rem;
-            font-size: 2rem;
-            line-height: 1.4;
-            margin-top: 2rem;
-            color: #333;
-        }
+h1 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    line-height: 1.4;
+    margin-top: 2rem;
+    color: #333;
+}
 
-        input, select, button {
-            width: 100%;
-            padding: 0.5rem;
-            font-size: 0.85rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+input, select {
+    width: 100%;
+    padding: 0.5rem 0;
+    font-size: 0.85rem;
+    border: none;
+    border-bottom: 1px solid #22372d;
+    border-radius: 0;
+    background: transparent;
+    transition: border-color 0.3s ease-in-out;
+    margin-bottom: 1rem;
+}
 
-        button {
-            background-color: #22372d;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            margin-top: 10px;
-        }
+input:focus, select:focus {
+    outline: none;
+    border-bottom: 3px solid #22372d;
+}
 
-        button:hover {
-            background-color: #555;
-        }
+button {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 0.9rem;
+    text-align: center;
+    background-color: #22372d;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: transform 0.2s, background-color 0.3s;
+}
 
-        label {
-            font-size: 0.9rem;
-            margin-bottom: 0.4rem;
-            display: block;
-            color: #333;
-        }
+button:hover {
+    background-color: #555;
+    transform: translateY(-3px);
+}
 
-      
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
+label {
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+    display: block;
+    color: #333;
+}
 
-        .role-selection, .form-container {
-            background-color: #ffffff;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            display: none;
-        }
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
 
-        .role-selection {
-            display: block;
-            color: #22372d;
-        }
+.role-selection, .form-container {
+    background-color: rgb(255, 255, 255, 0.6);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    display: none;
+}
 
-       
+.role-selection {
+    display: block;
+    color: #22372d;
+}
 
-        header {
+header {
     position: absolute;
-    bottom: 0%;
-    left: 80%;
+    top: 0%;
+    bottom: 10%;
+    left: 90%;
     color: white;
     background-color: rgba(159, 183, 175, 0);
     padding: 2rem;
@@ -85,60 +99,52 @@
     z-index: 1;
     max-width: 40em;
     width: 100%;
-    
 }
 
-        .form-container form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-        form button, 
-        form input[type="submit"] {
-            margin-top: 0.8rem;
-            width: auto;
-            padding: 0.5rem 2rem;
-            font-size: 0.9rem;
-            text-align: center;
-            display: block;
-        }
+form button, 
+form input[type="submit"] {
+    margin-top: 0.8rem;
+    width: auto;
+    padding: 0.5rem 2rem;
+    font-size: 0.9rem;
+    text-align: center;
+    display: block;
+}
 
-        .form-container label,
-        .form-container input,
-        .form-container select {
-            width: 100%;
-            margin-bottom: 0.6rem;
-        }
+.form-container label,
+.form-container input,
+.form-container select {
+    width: 100%;
+    margin-bottom: 0.6rem;
+}
 
-        .form-container label {
-            font-size: 0.9rem;
-            text-align: left;
-        }
+.form-container label {
+    font-size: 0.9rem;
+    text-align: left;
+}
 
-        form button {
-            margin-top: 0.8rem;
-            width: 100%;
-            padding: 0.5rem;
-            font-size: 0.9rem;
-            text-align: center;
-        }
+h1.title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
 
-        h1.title {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
+input[type="radio"] {
+    margin-right: 0.5rem;
+}
 
-        input[type="radio"] {
-            margin-right: 0.5rem;
-        }
+label {
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+    display: inline-block;
+    color: #333;
+}
 
-        label {
-            font-size: 0.9rem;
-            margin-bottom: 0.4rem;
-            display: inline-block;
-            color: #333;
-        }
 
  @media (max-width: 1024px) {
 
