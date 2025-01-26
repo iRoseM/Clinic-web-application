@@ -733,83 +733,20 @@ footer .logoSec{
 }
 
 /*========== Prescribe Medication  ==========*/
- 
-
-
-#pSubmit:hover, 
-#specialtySubmit:hover, 
-#bookSubmit:hover {
-    background-color: #3e8e41; /* Darker green for hover effect */
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    /* Center both elements vertically and horizontally */
-    .pcontainer {
-        display: flex;
-        flex-direction: column; /* Stack elements vertically */
-        align-items: center;
-        justify-content: center; /* Center vertically */
-        height: 100vh; /* Full height for proper centering */
-        gap: 20px;
-        padding: 10px; /* Add padding for smaller screens */
-    }
-
-    #prescribtionTitle {
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: none; /* Remove transform */
-        font-size: 20pt;
-        text-align: center;
-        max-width: 90%; /* Allow wider title */
-        margin-bottom: 20px;
-    }
-
-    #PatientMedForm {
-        position: relative;
-        top: auto;
-        right: auto;
-        transform: none; /* Remove transform */
-        margin: 0 auto; /* Center horizontally */
-        padding: 20px;
-        width: 90%; /* Ensure it fits smaller screens */
-        max-width: 400px;
-    }
-}
-
-
 /*========= AppointmentsBooking ========*/
 
-
-/*
-#AppointmentsTitle h1 span {
-    font-size: 4rem;
-}
-*/
-
-/* Form Section */
-
-
-select, input, textarea, button {
-    font-size: 1rem;
-    padding: 0.75em;
-    border: 1px solid #dcdfe6;
-    border-radius: 5px;
-    outline: none;
-    transition: 0.3s;
-}
-
-select:focus, input:focus, textarea:focus {
-    border-color: #B7B7A4;
-    box-shadow: 0 0 5px #A5A58D;
-}
-
-textarea {
+.Formdiv textarea {
     resize: none;
 }
 
 
+
+.Formdiv select:focus, 
+.Formdiv input:focus, 
+.Formdiv textarea:focus {
+    border-color: #7fb380;
+    box-shadow: 0 0 5px #84ab85;
+}
 
 
 /* ======== FORMS PAGES ========*/
@@ -877,24 +814,26 @@ textarea {
     color: #000;
 }
 
-#PatientMedForm label, #bookingForm label, #specialtyForm label {
+.Formdiv label {
     display: block;
     font-weight: bold;
     font-size: large;
-    margin-bottom: 10px;
+    margin: 10px;
     color: #000;
 }
 
-#bookingForm, #specialtyForm,#PatientMedForm{
+#bookingForm, 
+#specialtyForm,
+#PatientMedForm{
     display: flex;
     flex-direction: column;
-    gap: 1.5em;
 }
 
 #PatientMedForm input[type="text"],
-#PatientMedForm input[type="number"] 
-textarea,
-select {
+#PatientMedForm input[type="number"],
+#bookingForm input,
+textarea, select {
+    display: block;
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -906,14 +845,9 @@ select {
 
 #PatientMedForm input[type="radio"],
 #PatientMedForm input[type="checkbox"] {
-    margin: 0 10px 0 0;
-}
-/*
-input[type="radio"],
-input[type="checkbox"] {
     margin-right: 10px;
 }
-*/
+
 
 #PatientMedForm ul {
     list-style: none;
@@ -925,6 +859,7 @@ input[type="checkbox"] {
 
 #PatientMedForm ul li {
     margin-bottom: 10px;
+    margin-left: 20px;
 
 }
 

@@ -241,7 +241,6 @@ document.getElementById("login-form").addEventListener("submit", function(event)
     }
 });
 
-
 /*========== Booking Appointment  ==========*/
 
 const specialtyToDoctors = {
@@ -271,7 +270,7 @@ function handleSpecialtySubmit(event) {
         });
     }
 
-    document.getElementById("bookingFormSection").style.display = "block";
+    document.getElementById("bookingForm").style.display = "block";
 }
 
 function handleBookingSubmit(event) {

@@ -47,11 +47,10 @@
                     </form>
                     <br><hr><br>
                     <!-- Second Form -->
-                    <form id="bookingForm" onsubmit="handleBookingSubmit(event)">
+                    <form id="bookingForm" onsubmit="handleBookingSubmit(event)" style="display: none;">
                         <label for="doctor">Select Doctor:</label>
                         <select name="doctor" id="doctor" required>
                             <option value="">--Choose a Doctor--</option>
-                            <option value="xx">Doctor</option>
 
                             <!-- A drop-down list to display the doctors according to the selected specialty from the first form -->
                         </select>
@@ -69,6 +68,9 @@
                     </form>
                 </div>
         </div>
-    <script src="script.js"></script>
+    <script src="script.js">
+        
+    </script>
+
     </body>
 </html>
