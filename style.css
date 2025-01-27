@@ -596,18 +596,16 @@ footer .logoSec{
 }
 
 .BookAppointment {
-
     display: block; /* Ensure it spans the full width */
-    text-align: center; /* Center-align the content */
-    margin-top: 40px; /* Add some spacing above the element */
-    background: linear-gradient(to right, #6B705C, #2c2c2c); -webkit-background-clip: text; /* Makes the gradient apply to text only */
+    text-align: center; 
+    margin-top: 40px; 
 }
 
 .BookAppointment a {
     background-color: #333;
     color: #fff;
     text-decoration: none;
-    padding: 10px 50px;
+    padding: 10px 70px;
     border-radius: 5px;
     font-size: 14px;
     font-weight: bold;
@@ -624,17 +622,6 @@ footer .logoSec{
     background: linear-gradient(to bottom, #fffffee9, #cdcdc3);
 }
 
-/* .patAppointment th, td, tr{
-    border: solid black;
-    background-color: rgb(239, 238, 235);
-    padding: 10pt;
-    width: 130pt;
-    height:aut;
-} */
-
-/* .patAppointment th{
-    background-color: #cdcdc3;
-} */
 
 .patAppointment img {
     width: 80pt;
@@ -651,17 +638,17 @@ footer .logoSec{
     }
 
     .patBanner h2 {
-        font-size: 22pt; /* Adjust heading font size */
+        font-size: 22pt;
         top: 45%;
     }
 
     .patBanner p {
-        font-size: 18pt; /* Adjust paragraph font size */
+        font-size: 18pt; 
         top: 55%;
     }
 
     .patAppointment table {
-        font-size: 14px; /* Adjust table font size */
+        font-size: 14px;
     }
 
     .patAppointment th, .patAppointment td {
@@ -676,11 +663,11 @@ footer .logoSec{
 /* Mobile (<=768px) */
 @media (max-width: 768px) {
     .patBanner img {
-        height: 300pt; /* Further reduce banner height */
+        height: 300pt; 
     }
 
     .patBanner h2 {
-        font-size: 18pt; /* Smaller font size */
+        font-size: 18pt; 
         top: 40%;
     }
 
@@ -694,12 +681,12 @@ footer .logoSec{
     }
 
     .patAppointment th, .patAppointment td {
-        padding: 8px; /* Reduce cell padding */
-        width: auto; /* Allow table to resize */
+        padding: 8px; 
+        width: auto;
     }
 
     .patAppointment img {
-        width: 80px; /* Adjust image size in the table */
+        width: 80px; 
     }
 
     .BookAppointment a {
@@ -710,12 +697,12 @@ footer .logoSec{
 /* Extra Small Screens (<=480px) */
 @media (max-width: 480px) {
     .patBanner h2 {
-        font-size: 16pt; /* Smaller heading */
+        font-size: 16pt; 
         top: 35%;
     }
 
     .patBanner p {
-        font-size: 14pt; /* Smaller paragraph text */
+        font-size: 14pt;
         top: 45%;
     }
 
@@ -724,11 +711,11 @@ footer .logoSec{
     }
 
     .patAppointment img {
-        width: 60px; /* Further reduce image size */
+        width: 60px; 
     }
 
     .BookAppointment a {
-        padding-left: 50%; /* Adjust alignment further */
+        padding-left: 50%; 
     }
 
     .patAppointment table {
@@ -737,7 +724,6 @@ footer .logoSec{
 }
 
 /*========== Prescribe Medication  ==========*/
-/*========= AppointmentsBooking ========*/
 
 .Formdiv textarea {
     resize: none;
