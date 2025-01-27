@@ -596,22 +596,25 @@ footer .logoSec{
 }
 
 .BookAppointment {
-    background-color: transparent;
-    display:inline;
-    padding-left: 900pt;
+
+    display: block; /* Ensure it spans the full width */
+    text-align: center; /* Center-align the content */
+    margin-top: 40px; /* Add some spacing above the element */
+    background: linear-gradient(to right, #6B705C, #2c2c2c); -webkit-background-clip: text; /* Makes the gradient apply to text only */
 }
-.BookAppointment a{
-    background-color:#333;
+
+.BookAppointment a {
+    background-color: #333;
     color: #fff;
     text-decoration: none;
-    padding: 8px 15px;
+    padding: 10px 50px;
     border-radius: 5px;
     font-size: 14px;
     font-weight: bold;
 }
 
-.BookAppointment a:hover{
-    background-color:#555;
+.BookAppointment a:hover {
+    background-color: #555;
 }
 
 .patAppointment {
