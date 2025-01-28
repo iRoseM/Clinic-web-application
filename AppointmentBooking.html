@@ -37,8 +37,8 @@
                     <form id="specialtyForm" onsubmit="handleSpecialtySubmit(event)">
                         <label for="specialty">Select Specialty:</label>
                         <select name="specialty" id="specialty" required>
-                            <option value="">--Choose a Specialty--</option>
-                            <option value="Pediatric">Pediatric</option>
+                            <option value="x">--Choose a Specialty--</option>
+                            <option value="Pediatric" selected>Pediatric</option>
                             <option value="Chronic Pain">Chronic Pain</option>
                             <option value="Cardiology">Cardiology</option>
                         </select>
@@ -50,7 +50,8 @@
                     <form id="bookingForm" onsubmit="handleBookingSubmit(event)" style=" display: none;">
                         <label for="doctor">Select Doctor:</label>
                         <select name="doctor" id="doctor" required>
-                            <option value="">--Choose a Doctor--</option>
+                            <option value="xx">--Choose a Doctor--</option>
+                            
 
                             <!-- A drop-down list to display the doctors according to the selected specialty from the first form -->
                         </select>
@@ -62,7 +63,7 @@
                         <input type="time" id="time" name="time" required>
                         
                         <label for="reason">Reason for Visit:</label>
-                        <textarea id="reason" name="reason" rows="4" placeholder="Describe the reason for your visit..." required></textarea>
+                        <textarea id="reason" name="reason" rows="4" placeholder="Describe the reason for your visit..." required>Having severe pain.</textarea>
                         
                         <button type="submit" id="bookSubmit">Book Appointment</button>
                     </form>

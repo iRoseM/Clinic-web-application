@@ -252,13 +252,13 @@ header {
     <h1>Patient Sign-Up</h1>
     <form onsubmit="redirectToHome(event, 'patient')">
         <label for="first-name">First Name</label>
-        <input type="text" id="first-name" required>
+        <input type="text" id="first-name" required value="sara">
 
         <label for="last-name">Last Name</label>
-        <input type="text" id="last-name" required>
+        <input type="text" id="last-name" required value="khaled">
 
         <label for="id">ID</label>
-        <input type="text" id="id" required>
+        <input type="text" id="id" required value="3333">
 
         <label>Gender</label>
         <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
@@ -267,7 +267,7 @@ header {
                 Male
             </label>
             <label>
-                <input type="radio" name="gender" value="female" required>
+                <input type="radio" name="gender" value="female" required checked>
                 Female
             </label>
         </div>
@@ -276,10 +276,10 @@ header {
         <input type="date" id="dob" required>
 
         <label for="email">Email Address</label>
-        <input type="email" id="email" required>
+        <input type="email" id="email" required value="sara@gmail.com">
 
         <label for="password">Password</label>
-        <input type="password" id="password" required>
+        <input type="password" id="password" required value="123">
 
         <button type="submit">Sign Up</button>
     </form>
@@ -291,25 +291,25 @@ header {
                         <h1>Doctor Sign-Up</h1>
                         <form onsubmit="redirectToHome(event, 'doctor')">
                             <label for="doctor-first-name">First Name</label>
-                            <input type="text" id="doctor-first-name" required>
+                            <input type="text" id="doctor-first-name" required value="sara">
                             <label for="doctor-last-name">Last Name</label>
-                            <input type="text" id="doctor-last-name" required>
+                            <input type="text" id="doctor-last-name" required value="ahmed">
                             <label for="id">ID</label>
-                            <input type="text" id="id" required>
+                            <input type="text" id="id" required value="222222">
                             <label for="photo">Photo</label>
                             <input type="file" id="photo" accept="image/*" required>
                             <label for="speciality">Speciality</label>
                             <select id="speciality" required>
-                                <option value="">Select Speciality</option>
+                                <option value="xxx">Select Speciality</option>
                                 <option value="cardiology">Cardiology</option>
                                 <option value="neurology">Neurology</option>
                                 <option value="orthopedics">Orthopedics</option>
-                                <option value="pediatrics">Pediatrics</option>
+                                <option value="pediatrics" selected>Pediatrics</option>
                             </select>
                             <label for="email">Email Address</label>
-                            <input type="email" id="email" required>
+                            <input type="email" id="email" required value="sara@gmail.com">
                             <label for="password">Password</label>
-                            <input type="password" id="password" required>
+                            <input type="password" id="password" required value="123">
                             <button type="submit">Sign Up</button>
                         </form>
                     </div>
