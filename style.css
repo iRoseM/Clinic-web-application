@@ -251,108 +251,83 @@
     }
 }
 
+
+
+
 /*========== Footer ==========*/
-footer {
+#Footer {
     background-color: #6B705C;
-    padding: 20px 0;
-    font-family: Arial, sans-serif;
-    width: 100%;
-    height: 160pt;
+    text-align: center;
+    padding: 20px 40px; 
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
+    align-items: center;
+    color: #c1c1b3;
+}
+
+.firstSec {
+    text-align: left; 
+    flex: 1; 
+}
+
+.firstSec h4 {
+    font-size: 20px;
+    color: #ffffff;
+    margin-bottom: 5px;
+}
+
+.firstSec p {
+    font-size: 14px;
+    color: #c1c1b3;
+}
+
+.contactInfo {
+    display: flex;
+    gap: 30px; 
     align-items: center;
 }
 
-footer div {
-    padding: 10px;
+.FooterLocation,
+.FooterPhone,
+.FooterEmail {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 14px;
+    gap: 6px; 
+    margin: 10px;
 }
-.contactusSec {
+
+.FooterLocation img,
+.FooterPhone img,
+.FooterEmail img {
+    width: 18px; 
+    height: 18px;
+    margin: 0;
+    vertical-align: middle;
+}
+
+.FooterLocation p,
+.FooterPhone p,
+.FooterEmail p {
+    margin: 0;
+    font-size: 14px;
     color: #c1c1b3;
-    width: 33%;
-    text-align: left;
-    padding-left: 180pt;
-    font-size: 13pt;
-    background-color: #575a4c; /* Dark Green background */
-}
-
-.contactusSec p {
-    padding: 3pt 0pt 3pt 10pt;
-}
-
-.logoSec {
-    width: 33%;
-    text-align: right;
-    background-color: #e6e6dab1; /* Light Green background */
-    padding-right: 200pt;
-    position: relative;
-}
-
-.logoSec img {
-    max-width: 200px;
-    padding-right: 150pt;
+    display: flex;
+    align-items: center; 
 }
 
 .copyrightSec {
-    color: white;
+    background-color: #626754; 
     text-align: center;
-    flex: 1;
-    background-color: #626754;
+    padding: 10px;
+    color: #A5A58D; 
 }
 
-.copyrightSec p{
-    padding: 10pt;
-    color: #A5A58D;
-}
-
-footer .contactusSec h4,
-footer .logoSec h4,
-footer .copyrightSec p {
+.copyrightSec p {
     margin: 0;
-}
-
-footer .contactusSec p,
-footer .copyrightSec p {
     font-size: 14px;
-    line-height: 1.5;
 }
-
-footer .logoSec a {
-    display: inline-block;
-}
-
-footer .logoSec img {
-    display: block;
-    margin: 0 auto;
-}
-
-footer .contactusSec h4,
-footer .copyrightSec p {
-    margin-bottom: 8px;
-}
-
-footer .logoSec::before {
-    content: "|";
-    color: #484a3e;
-    font-size: 50px;
-    position: absolute;
-    top: 0;
-    left: -20px; /* the distance from logo */
-    height: 100%;
-    margin-left: 10px;
-}
-
-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-footer .contactusSec,
-footer .logoSec{
-    flex: 1;
-}
-
-
 
 
 /*========== HomePage - Doctor ==========*/
