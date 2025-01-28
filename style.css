@@ -265,6 +265,12 @@
     color: #c1c1b3;
 }
 
+#Footer .footerlogo {
+    width: auto; 
+    height: 75px; 
+    margin-right: 10px; 
+}
+
 .firstSec {
     text-align: left; 
     flex: 1; 
