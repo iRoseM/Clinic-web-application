@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,7 +38,7 @@
                     <form id="specialtyForm" onsubmit="handleSpecialtySubmit(event)">
                         <label for="specialty">Select Specialty:</label>
                         <select name="specialty" id="specialty" required>
-                            <option value="x">--Choose a Specialty--</option>
+                            <option value="">--Choose a Specialty--</option>
                             <option value="Pediatric" selected>Pediatric</option>
                             <option value="Chronic Pain">Chronic Pain</option>
                             <option value="Cardiology">Cardiology</option>
@@ -50,7 +51,7 @@
                     <form id="bookingForm" onsubmit="handleBookingSubmit(event)" style=" display: none;">
                         <label for="doctor">Select Doctor:</label>
                         <select name="doctor" id="doctor" required>
-                            <option value="xx">--Choose a Doctor--</option>
+                            <option value="">--Choose a Doctor--</option>
                             
 
                             <!-- A drop-down list to display the doctors according to the selected specialty from the first form -->

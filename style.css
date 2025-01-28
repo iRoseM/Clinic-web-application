@@ -761,7 +761,7 @@
 #AppointmentsTitle hr, #prescribtionTitle hr{
     border: 2pt solid white;
     position: absolute;
-    margin-top: 10pt auto ;
+    margin: 10pt auto;
     width:400pt;
 }
 

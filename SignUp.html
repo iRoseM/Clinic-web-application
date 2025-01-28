@@ -251,14 +251,14 @@ header {
 <div class="form-container" id="patient-form">
     <h1>Patient Sign-Up</h1>
     <form onsubmit="redirectToHome(event, 'patient')">
-        <label for="first-name">First Name</label>
-        <input type="text" id="first-name" required value="sara">
+        <label for="psignfirst-name">First Name</label>
+        <input type="text" id="psignfirst-name" required value="sara">
 
-        <label for="last-name">Last Name</label>
-        <input type="text" id="last-name" required value="khaled">
+        <label for="psignlast-name">Last Name</label>
+        <input type="text" id="psignlast-name" required value="khaled">
 
-        <label for="id">ID</label>
-        <input type="text" id="id" required value="3333">
+        <label for="psignid">ID</label>
+        <input type="text" id="psignid" required value="3333">
 
         <label>Gender</label>
         <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
@@ -272,14 +272,14 @@ header {
             </label>
         </div>
 
-        <label for="dob">Date of Birth</label>
-        <input type="date" id="dob" required>
+        <label for="psigndob">Date of Birth</label>
+        <input type="date" id="psigndob" required>
 
-        <label for="email">Email Address</label>
-        <input type="email" id="email" required value="sara@gmail.com">
+        <label for="psignemail">Email Address</label>
+        <input type="email" id="psignemail" required value="sara@gmail.com">
 
-        <label for="password">Password</label>
-        <input type="password" id="password" required value="123">
+        <label for="psignpassword">Password</label>
+        <input type="password" id="psignpassword" required value="123">
 
         <button type="submit">Sign Up</button>
     </form>
@@ -294,22 +294,22 @@ header {
                             <input type="text" id="doctor-first-name" required value="sara">
                             <label for="doctor-last-name">Last Name</label>
                             <input type="text" id="doctor-last-name" required value="ahmed">
-                            <label for="id">ID</label>
-                            <input type="text" id="id" required value="222222">
+                            <label for="docsignid">ID</label>
+                            <input type="text" id="docsignid" required value="222222">
                             <label for="photo">Photo</label>
                             <input type="file" id="photo" accept="image/*" required>
-                            <label for="speciality">Speciality</label>
-                            <select id="speciality" required>
-                                <option value="xxx">Select Speciality</option>
+                            <label for="docsignSpeciality">Speciality</label>
+                            <select id="docsignSpeciality" required>
+                                <option value="">Select Speciality</option>
                                 <option value="cardiology">Cardiology</option>
                                 <option value="neurology">Neurology</option>
                                 <option value="orthopedics">Orthopedics</option>
                                 <option value="pediatrics" selected>Pediatrics</option>
                             </select>
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" required value="sara@gmail.com">
-                            <label for="password">Password</label>
-                            <input type="password" id="password" required value="123">
+                            <label for="docsignEmail">Email Address</label>
+                            <input type="email" id="docsignEmail" required value="sara@gmail.com">
+                            <label for="docsignPassword">Password</label>
+                            <input type="password" id="docsignPassword" required value="123">
                             <button type="submit">Sign Up</button>
                         </form>
                     </div>
