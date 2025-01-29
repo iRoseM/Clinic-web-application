@@ -255,7 +255,7 @@
 
 
 /*========== Footer ==========*/
-#Footer {
+#contactUsnav {
     background-color: #6B705C;
     text-align: center;
     padding: 20px 40px; 
@@ -265,7 +265,7 @@
     color: #c1c1b3;
 }
 
-#Footer .footerlogo {
+#contactUsnav .footerlogo {
     width: auto; 
     height: 75px; 
     margin-right: 10px; 
