@@ -260,69 +260,72 @@ header {
                         <button onclick="showForm()">Continue</button>
                     </div>
 
-<!-- Patient Form -->
-<div class="form-container" id="patient-form">
-    <h1>Patient Sign-Up</h1>
-    <form onsubmit="redirectToHome(event, 'patient')">
-        <label for="psignfirst-name">First Name</label>
-        <input type="text" id="psignfirst-name" required value="sara">
-
-        <label for="psignlast-name">Last Name</label>
-        <input type="text" id="psignlast-name" required value="khaled">
-
-        <label for="psignid">ID</label>
-        <input type="text" id="psignid" required value="3333">
-
-        <label>Gender</label>
-        <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
-            <label>
-                <input type="radio" name="gender" value="male" required>
-                Male
-            </label>
-            <label>
-                <input type="radio" name="gender" value="female" required checked>
-                Female
-            </label>
-        </div>
-
-        <label for="psigndob">Date of Birth</label>
-        <input type="date" id="psigndob" required>
-
-        <label for="psignemail">Email Address</label>
-        <input type="email" id="psignemail" required value="sara@gmail.com">
-
-        <label for="psignpassword">Password</label>
-        <input type="password" id="psignpassword" required value="123">
-
-        <button type="submit">Sign Up</button>
-    </form>
-</div>
+                    <!-- Patient Form -->
+                    <div class="form-container" id="patient-form">
+                        <h1>Patient Sign-Up</h1>
+                        <form action="signUpPhp.php" method="POST">
+                            <input type="hidden" name="userType" value="patient">
+                            
+                            <label for="psignfirst-name">First Name</label>
+                            <input type="text" name="firstName" required>
+                        
+                            <label for="psignlast-name">Last Name</label>
+                            <input type="text" name="lastName" required>
+                        
+                            <label for="psignid">ID</label>
+                            <input type="text" name="id" required>
+                        
+                            <label>Gender</label>
+                            <input type="radio" name="gender" value="male" required> Male
+                            <input type="radio" name="gender" value="female" required> Female
+                        
+                            <label for="psigndob">Date of Birth</label>
+                            <input type="date" name="dob" required>
+                        
+                            <label for="psignemail">Email Address</label>
+                            <input type="email" name="email" required>
+                        
+                            <label for="psignpassword">Password</label>
+                            <input type="password" name="password" required>
+                        
+                            <button type="submit">Sign Up</button>
+                        </form>
+                    </div>
 
 
                     <!-- Doctor Form -->
                     <div class="form-container" id="doctor-form">
                         <h1>Doctor Sign-Up</h1>
-                        <form onsubmit="redirectToHome(event, 'doctor')">
+                        <form action="signUpPhp.php" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name="userType" value="doctor">
+                        
                             <label for="doctor-first-name">First Name</label>
-                            <input type="text" id="doctor-first-name" required value="sara">
+                            <input type="text" name="firstName" required>
+                        
                             <label for="doctor-last-name">Last Name</label>
-                            <input type="text" id="doctor-last-name" required value="ahmed">
+                            <input type="text" name="lastName" required>
+                        
                             <label for="docsignid">ID</label>
-                            <input type="text" id="docsignid" required value="222222">
+                            <input type="text" name="id" required>
+                        
                             <label for="photo">Photo</label>
-                            <input type="file" id="photo" accept="image/*" required>
+                            <input type="file" name="photo" accept="image/*" required>
+                        
                             <label for="docsignSpeciality">Speciality</label>
-                            <select id="docsignSpeciality" required>
+                            <select name="speciality" required>
                                 <option value="">Select Speciality</option>
                                 <option value="cardiology">Cardiology</option>
                                 <option value="neurology">Neurology</option>
                                 <option value="orthopedics">Orthopedics</option>
-                                <option value="pediatrics" selected>Pediatrics</option>
+                                <option value="pediatrics">Pediatrics</option>
                             </select>
+                        
                             <label for="docsignEmail">Email Address</label>
-                            <input type="email" id="docsignEmail" required value="sara@gmail.com">
+                            <input type="email" name="email" required>
+                        
                             <label for="docsignPassword">Password</label>
-                            <input type="password" id="docsignPassword" required value="123">
+                            <input type="password" name="password" required>
+                        
                             <button type="submit">Sign Up</button>
                         </form>
                     </div>
