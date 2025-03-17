@@ -288,7 +288,7 @@ header {
                             <label for="psignpassword">Password</label>
                             <input type="password" name="password" required>
                         
-                            <button type="submit">Sign Up</button>
+                            <button type="submit" name="register">Sign Up</button>
                         </form>
                     </div>
 
