@@ -1,11 +1,6 @@
 <?php
-// 1️⃣ Connect to the database using MySQLi
-$conn = new mysqli("localhost", "root", "", "theraflix");
+include 'db_connection.php';
 
-// Check if the connection is successful
-if ($conn->connect_error) {
-    die("Database connection failed: " . $conn->connect_error);
-}
 
 // 2️⃣ Define doctors and their image paths
 $doctors = [
