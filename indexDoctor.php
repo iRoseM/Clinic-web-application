@@ -1,6 +1,56 @@
 <?php
+error_reporting(E_ALL); 
+ini_set('log_errors','1'); 
+ini_set('display_errors','1'); 
+
+session_start();
 include 'db_connection.php';
+// Temporary Doctor ID (for testing)
+$doctor_id = 6;
+
+// Fetch doctor information
+$query = "SELECT firstName, lastName, emailAddress, SpecialityID, uniqueFileName  FROM Doctor WHERE id = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $doctor_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$doctor = $result->fetch_assoc();
+
+// Get speciality name
+$query = "SELECT speciality FROM Speciality WHERE id = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $doctor['SpecialityID']);
+$stmt->execute();
+$speciality_result = $stmt->get_result();
+$speciality = $speciality_result->fetch_assoc();
+
+// Fetch upcoming appointments
+$query = "SELECT a.id, a.date, a.time, p.firstName, p.lastName, p.Gender, p.DoB, a.reason, a.status 
+          FROM Appointment a 
+          JOIN Patient p ON a.PatientID = p.id 
+          WHERE a.DoctorID = ? AND (a.status = 'Pending' OR a.status = 'Confirmed') 
+          ORDER BY a.date, a.time";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $doctor_id);
+$stmt->execute();
+$appointments = $stmt->get_result();
+
+// Fetch past patients (ONLY "Done" appointments)
+$query = "SELECT DISTINCT p.id, p.firstName, p.lastName, p.Gender, p.DoB, 
+                 IFNULL(GROUP_CONCAT(DISTINCT m.MedicationName SEPARATOR ', '), 'N/A') AS Medications 
+          FROM Appointment a
+          JOIN Patient p ON a.PatientID = p.id 
+          LEFT JOIN Prescription pr ON a.id = pr.AppointmentID
+          LEFT JOIN Medication m ON pr.MedicationID = m.id
+          WHERE a.DoctorID = ? AND a.status = 'Done'
+          GROUP BY p.id
+          ORDER BY p.lastName, p.firstName";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $doctor_id);
+$stmt->execute();
+$patients = $stmt->get_result();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -16,7 +66,7 @@ include 'db_connection.php';
         <!-- Nav Bar -->
         <header class="header">
             <div class="logo">
-                <a href="indexDoctor.html"><img src="img/Logo.png" alt="logo"></a>
+                <a href="indexDoctor.php"><img src="img/Logo.png" alt="logo"></a>
                 <span> <a href="indexPatient.html">TheraFlex</a></span>
             </div>
             <div class="hamburger" id="hamburger">
@@ -45,13 +95,15 @@ include 'db_connection.php';
 
             <div class="popup-card" id="popupCard">
                     <div class="popup-content">
+
                         <div class="doctor-image">
-                            <img src="img/femaleDoc.jpg" alt="Doctor's Picture">
+
+                            <img src="img/<?= htmlspecialchars($doctor['uniqueFileName']); ?>" alt="Doctor's Picture">
                         </div>
-                        <h3 id="docName">Sara Ahmed</h3>
-                        <p id="docSpeciality">Pediatric</p>
-                        <p id="docEmail">Email: Sara@gmail.com</p>
-                        <p id="docId">ID: 1023438790</p>
+                        <h3 id="docName"><?= htmlspecialchars($doctor['firstName'] . ' ' . $doctor['lastName']); ?></h3>
+                        <p id="docSpeciality"><?= htmlspecialchars($speciality['speciality']); ?></p>
+                        <p id="docEmail">Email: <?= htmlspecialchars($doctor['emailAddress']); ?></p>
+                        <p id="docId">ID: <?= $doctor_id; ?></p>
                         <svg class="logout" width="22" height="25" viewBox="0 0 22 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <a href="index.html"> 
                             <path d="M6.59998 12.2H21" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -68,7 +120,7 @@ include 'db_connection.php';
        
         <div class="patBanner">
             <img src="img/docBanner.png" alt="DoctorBanner">
-            <h2>Welcome,<br> Sara!</h2>
+            <h2>Welcome,<br> <?= htmlspecialchars($doctor['firstName']); ?>!</h2>
             <!-- <div class="docInfo">
                 <p>[Doctor Information]</p>
             </div> -->
@@ -89,25 +141,27 @@ include 'db_connection.php';
                     </tr>
                 </thead>
                 <tbody>
+                    <?php while ($row = $appointments->fetch_assoc()) { 
+                        $age = date_diff(date_create($row['DoB']), date_create('today'))->y;
+                    ?>
                     <tr>
-                        <td>23/2/2025</td>
-                        <td>11 AM</td>
-                        <td>Nota Saad</td>
-                        <td>15</td>
-                        <td>Female</td>
-                        <td>Headache</td>
-                        <td>Pending</td>
-
+                        <td><?= $row['date']; ?></td>
+                        <td><?= $row['time']; ?></td>
+                        <td><?= htmlspecialchars($row['firstName']) . " " . htmlspecialchars($row['lastName']); ?></td>
+                        <td><?= $age; ?></td>
+                        <td><?= htmlspecialchars($row['Gender']); ?></td>
+                        <td><?= htmlspecialchars($row['reason']); ?></td>
+                        <td>
+                            <?php if ($row['status'] == 'Pending') { ?>
+                                <a href="confirm_appointment.php?id=<?= $row['id']; ?>">Confirm</a>
+                            <?php } elseif ($row['status'] == 'Confirmed') { ?>
+                                <a href="medication.php?id=<?= $row['id']; ?>">Prescribe</a>
+                            <?php } else { ?>
+                                <?= htmlspecialchars($row['status']); ?>
+                            <?php } ?>
+                        </td>
                     </tr>
-                    <tr>
-                        <td>16/7/2025</td>
-                        <td>5 PM</td>
-                        <td>Majed Ahmad</td>
-                        <td>45</td>
-                        <td>Male</td>
-                        <td>Back pain</td>
-                        <td>Confirmed</td>
-                    </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
@@ -124,20 +178,16 @@ include 'db_connection.php';
                     </tr>
                 </thead>
                 <tbody>
+                    <?php while ($row = $patients->fetch_assoc()) { 
+                        $age = date_diff(date_create($row['DoB']), date_create('today'))->y;
+                    ?>
                     <tr>
-                        <td>Leena Naser</td>
-                        <td>40</td>
-                        <td>Female</td>
-                        <td>Antibiotics</td>
-                        <td><a href="medication.html">Prescribe</a></td>
+                        <td><?= htmlspecialchars($row['firstName']) . " " . htmlspecialchars($row['lastName']); ?></td>
+                        <td><?= $age; ?></td>
+                        <td><?= htmlspecialchars($row['Gender']); ?></td>
+                        <td><?= htmlspecialchars($row['Medications']); ?></td>
                     </tr>
-                    <tr>
-                        <td>Majed Saleh</td>
-                        <td>35</td>
-                        <td>Male</td>
-                        <td>N/A</td>
-                        <td><a href="medication.html">Prescribe</a></td>
-                    </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>

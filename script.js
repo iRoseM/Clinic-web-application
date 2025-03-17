@@ -37,7 +37,7 @@ function stickyNavbar(event) {
 /*========== Prescribe Medication  ==========*/
 function navToDoctor(event){
     event.preventDefault();
-    window.location.href="indexDoctor.html";
+    window.location.href="indexDoctor.php";
 }
 
 function confirmPendingAppointments(event) {
