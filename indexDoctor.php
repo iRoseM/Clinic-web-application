@@ -5,11 +5,12 @@ ini_set('display_errors','1');
 
 session_start();
 include 'db_connection.php';
+
 // Temporary Doctor ID (for testing)
 $doctor_id = 6;
 
 // Fetch doctor information
-$query = "SELECT firstName, lastName, emailAddress, SpecialityID, uniqueFileName  FROM Doctor WHERE id = ?";
+$query = "SELECT firstName, lastName, emailAddress, SpecialityID  FROM Doctor WHERE id = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $doctor_id);
 $stmt->execute();
@@ -97,8 +98,7 @@ $patients = $stmt->get_result();
                     <div class="popup-content">
 
                         <div class="doctor-image">
-
-                            <img src="img/<?= htmlspecialchars($doctor['uniqueFileName']); ?>" alt="Doctor's Picture">
+                            <img src="img/doctor_67d882d36603a.jpg" alt="Doctor's Picture">
                         </div>
                         <h3 id="docName"><?= htmlspecialchars($doctor['firstName'] . ' ' . $doctor['lastName']); ?></h3>
                         <p id="docSpeciality"><?= htmlspecialchars($speciality['speciality']); ?></p>

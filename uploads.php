@@ -4,9 +4,9 @@ include 'db_connection.php';
 
 // 2️⃣ Define doctors and their image paths
 $doctors = [
-    5 => "img/maleDoc.jpg",   // Doctor 1
+    5 => "img/femaleDoc2.jpg",   // Doctor 1
     6 => "img/femaleDoc.jpg", // Doctor 2
-    7 => "img/femaleDoc.jpg" // Doctor 3
+    7 => "img/femaleDoc3.jpg" // Doctor 3
 ];
 
 // 3️⃣ Define the upload directory
