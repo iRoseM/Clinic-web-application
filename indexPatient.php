@@ -1,16 +1,20 @@
 <<<<<<< HEAD
 <<<<<<<< HEAD:indexPatient.php
-<?php
-ini_set('display_errors', '1');
+<?php 
+include 'db_connection.php';
 session_start();
-// include 'db.php'; // database connection
 
-
-// Check if patient is logged in
-if (!isset($_SESSION['id']) || $_SESSION['type'] !== 'patient') {
-    header('Location: LogIn.html'); // Redirect to login if not logged in as patient
+// Ensure the patient is logged in
+if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'patient') {
+    header("Location: LogIn.html?error=Please log in as a patient");
     exit();
 }
+
+$patient_id = $_SESSION['user_id']; // Get the logged-in patient's ID
+?>
+
+<?php
+ini_set('display_errors', '1');
 
 $patientID = $_SESSION['id'];
 

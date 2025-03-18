@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 session_start();
 // include 'db.php'; database connection
 
@@ -53,7 +52,6 @@ if (isset($_POST['doctor'], $_POST['date'], $_POST['time'], $_POST['reason'])) {
 }
 ?>
 
-=======
 include 'db_connection.php';
 session_start();
 
@@ -65,7 +63,6 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'patient') {
 
 $patient_id = $_SESSION['user_id']; // Get the logged-in patient's ID
 ?>
->>>>>>> e5bd12d0529538081cf19bd6b4da3047c5fcfb23
 <!DOCTYPE html>
 <html lang="en">
     <head>
