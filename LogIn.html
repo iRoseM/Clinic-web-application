@@ -238,7 +238,7 @@ h1 {
         <img src="img/backgroundHome.png" alt="TheraFlix">
         <header>
             <div class="login-container">
-                <form id="login-form">
+                <form id="login-form" action="LogIn.php" method="POST">
                     <h1 style="margin-bottom: 0.7em;">Log In</h1>
                     <p style="color: #333; margin-bottom: 0.9em;">Log in to your account</p>
                     <div class="role-group">
@@ -247,8 +247,8 @@ h1 {
                             <li><input type="radio" name="role" value="doctor" required> Doctor</li>
                         </ul>
                     </div>
-                    <input type="email" id="email" placeholder="Email Address" required value="sara@gmail.com">
-                    <input type="password" id="password" placeholder="Password" required value="123">
+                    <input type="email" name="email" placeholder="Email Address">
+                    <input type="password" name="password" placeholder="Password">
                     <button type="submit">Log In</button>
                     <div class="signup-text">
                         Don't have an account? <a href="SignUp.html">Sign up</a>
