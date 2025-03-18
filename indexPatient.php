@@ -7,22 +7,13 @@ session_start();
 // include 'db.php'; // database connection
 include 'db_connection.php';
 
-
 // Ensure the patient is logged in
 if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'patient') {
     header("Location: LogIn.html?error=Please log in as a patient");
     exit();
 }
 
-$patientID = $_SESSION['id'];
-
-// Fetch patient information
-$patientSql="SELECR * FROM patient WHERE id = ?";
-$stmt=$conn->prepare($patientSql);
-$stmt->bind_param('i',$patientID);
-$stmt->execute();
-$patientResult=$stmt->get_result();
-$patient=$patientResult->fetch_assoc();
+$patientID = $_SESSION['user_id'];
 
 // Fetch patient appointments
 $appointmentSql = "SELECT a.*, d.firstName AS doctorFirstName, d.lastName AS doctorLastName, d.uniqueFileName
@@ -30,11 +21,18 @@ $appointmentSql = "SELECT a.*, d.firstName AS doctorFirstName, d.lastName AS doc
                    JOIN Doctor d ON a.DoctorID = d.id
                    WHERE a.PatientID = ?
                    ORDER BY a.date, a.time";
-$stmt=$conn->prepare($appointmentSql);
-$stmt->bind_param("i",$patientID);
+$stmt = $conn->prepare($appointmentSql);
+$stmt->bind_param("i", $patientID);
 $stmt->execute();
-$appointments=$stmt->get_result();
+$appointments = $stmt->get_result();
 
+// Fetch patient information
+$patientSql = "SELECT * FROM patient WHERE id = ?"; // Corrected typo here
+$stmt = $conn->prepare($patientSql);
+$stmt->bind_param('i', $patientID);
+$stmt->execute();
+$patientResult = $stmt->get_result();
+$patient = $patientResult->fetch_assoc();
 ?>
 
 <!DOCTYPE html> 
@@ -115,18 +113,18 @@ $appointments=$stmt->get_result();
                 </thead>
                 <tbody>
                 <?php while ($row = $appointments->fetch_assoc()) { ?>
-                        echo "<tr>";
+                        <tr>
                             <td><?php echo htmlspecialchars($row['date']); ?></td>
                             <td><?php echo htmlspecialchars($row['time']); ?></td>
                             <td><?php echo htmlspecialchars($row['doctorFirstName'] . ' ' . $row['doctorLastName']); ?></td>
                             <td><img src="uploads/<?php echo htmlspecialchars($row['uniqueFileName']); ?>" width="50" height="50"></td>
                             <td><?php echo htmlspecialchars($row['status']); ?></td>
-                            <td><a href="cancel_appointment.php?id=<?php echo $row['id']; ?>">Cancel</a></td>
+                            <td><a href="cancelAppointment.php?id=<?php echo $row['id']; ?>">Cancel</a></td>
                         </tr>
                         <?php } ?> 
                 </tbody>
             </table>
-            <p class="BookAppointment"><span><a href="AppointmentBooking.html">Book an appointment</a></span></p>
+            <p class="BookAppointment"><span><a href="AppointmentBooking.php">Book an appointment</a></span></p>
         </div>
         
         <script src="script.js"> </script>

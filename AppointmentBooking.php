@@ -1,35 +1,37 @@
 <?php
-error_reporting(E_ALL); 
-ini_set('log_errors','1'); 
-ini_set('display_errors','1'); 
-
+error_reporting(E_ALL);
+ini_set('log_errors', '1');
+ini_set('display_errors', '1');
 
 session_start();
-// include 'db.php'; database connection
-include 'db_connection.php';
+include 'db_connection.php'; // Ensure this file properly connects to your database
 
-// Check if patient is logged in
-if (!isset($_SESSION['id']) || $_SESSION['type'] !== 'patient') {
-    header('Location: LogIn.html');
+// Ensure the patient is logged in
+if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'patient') {
+    header("Location: LogIn.html?error=Please log in as a patient");
     exit();
 }
 
+$patientID = $_SESSION['user_id'];
 $specialties = [];
 $doctors = [];
+$selectedSpecialtyID = null;
 
-// Fetch specialties
+// Fetch all specialties
 $specialtySql = "SELECT * FROM Speciality";
 $specialtyResult = $conn->query($specialtySql);
 while ($row = $specialtyResult->fetch_assoc()) {
     $specialties[] = $row;
 }
 
-// If specialty is selected
-if (isset($_POST['specialty'])) {
-    $specialtyID = intval($_POST['specialty']);
+// Handle first form submission (filter doctors by specialty)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['specialty'])) {
+    $selectedSpecialtyID = intval($_POST['specialty']);
+
+    // Fetch doctors for the selected specialty
     $doctorSql = "SELECT * FROM Doctor WHERE SpecialityID = ?";
     $stmt = $conn->prepare($doctorSql);
-    $stmt->bind_param("i", $specialtyID);
+    $stmt->bind_param("i", $selectedSpecialtyID);
     $stmt->execute();
     $result = $stmt->get_result();
     while ($row = $result->fetch_assoc()) {
@@ -37,15 +39,15 @@ if (isset($_POST['specialty'])) {
     }
 }
 
-// Handle appointment booking
-if (isset($_POST['doctor'], $_POST['date'], $_POST['time'], $_POST['reason'])) {
+// Handle second form submission (book appointment)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['doctor'], $_POST['date'], $_POST['time'], $_POST['reason'])) {
     $doctorID = intval($_POST['doctor']);
     $date = $_POST['date'];
     $time = $_POST['time'];
     $reason = $_POST['reason'];
     $status = 'Pending';
-    $patientID = $_SESSION['id'];
 
+    // Insert the appointment into the database
     $insertSql = "INSERT INTO Appointment (PatientID, DoctorID, date, time, reason, status) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($insertSql);
     $stmt->bind_param("iissss", $patientID, $doctorID, $date, $time, $reason, $status);
@@ -108,83 +110,78 @@ if (isset($_POST['doctor'], $_POST['date'], $_POST['time'], $_POST['reason'])) {
                     </form>
                     <br><hr><br>
                     <!-- Second Form -->
-                    
                     <?php if (!empty($doctors)) { ?>
-                    <form  method="POST" action="AppointmentBooking.php" id="bookingForm" onsubmit="handleBookingSubmit(event)" style=" display: none;">
-                        <label for="doctor">Select Doctor:</label>
-                        <input type="hidden" name="specialty" value="<?php echo $specialtyID; ?>">
-                        <select name="doctor" id="doctor" required>
-                            <option value="">--Choose a Doctor--</option>
-                            <?php foreach ($doctors as $doc) { ?>
-                                <option value="<?php echo $doc['id']; ?>"><?php echo htmlspecialchars($doc['firstName'] . ' ' . $doc['lastName']); ?></option>
-                            <?php } ?> 
-                            <!-- A drop-down list to display the doctors according to the selected specialty from the first form -->
-                        </select>
-                        
-                        <label for="date">Select Date:</label>
-                        <input type="date" id="date" name="date" required>
-                        
-                        <label for="time">Select Time:</label>
-                        <input type="time" id="time" name="time" required>
-                        
-                        <label for="reason">Reason for Visit:</label>
-                        <textarea id="reason" name="reason" rows="4" placeholder="Describe the reason for your visit..." required>Having severe pain.</textarea>
-                        
-                        <button type="submit" id="bookSubmit">Book Appointment</button>
-                    </form>
+                        <form method="POST" action="AppointmentBooking.php" id="bookingForm" onsubmit="handleBookingSubmit(event)" style="display: none;">
+                            <label for="doctor">Select Doctor:</label>
+                            <input type="hidden" name="specialty" value="<?php echo $specialtyID; ?>">
+                            <select name="doctor" id="doctor" required>
+                                <option value="">--Choose a Doctor--</option>
+                                <?php foreach ($doctors as $doc) { ?>
+                                    <option value="<?php echo $doc['id']; ?>"><?php echo htmlspecialchars($doc['firstName'] . ' ' . $doc['lastName']); ?></option>
+                                <?php } ?>
+                            </select>
+
+                            <label for="date">Select Date:</label>
+                            <input type="date" id="date" name="date" required>
+
+                            <label for="time">Select Time:</label>
+                            <input type="time" id="time" name="time" required>
+
+                            <label for="reason">Reason for Visit:</label>
+                            <textarea id="reason" name="reason" rows="4" placeholder="Describe the reason for your visit..." required>Having severe pain.</textarea>
+
+                            <button type="submit" id="bookSubmit">Book Appointment</button>
+                        </form>
                     <?php } ?>
                 </div>
         </div>
+    
     <script>
-        const specialtyToDoctors = {
-      Pediatric: ["Dr. Sara Ahmed", "Dr. Youssef Ali"],
-      "Chronic Pain": ["Dr. Saleh Abdullah", "Dr. Leila Hasan"],
-      Cardiology: ["Dr. Khaled Omar", "Dr. Amal Khalid"]
-    };
+        document.addEventListener("DOMContentLoaded", function () {
+            const specialtyForm = document.getElementById("specialtyForm");
+            const bookingForm = document.getElementById("bookingForm");
 
-    function handleSpecialtySubmit(event) {
-      event.preventDefault();
+            // Handle first form submission (filter doctors by specialty)
+            if (specialtyForm) {
+                specialtyForm.addEventListener("submit", function (event) {
+                    event.preventDefault(); // Prevent the default form submission
 
-      const selectedSpecialty = document.getElementById("specialty").value;
-      if (!selectedSpecialty) {
-        alert("Please select a specialty before submitting.");
-        return;
-      }
+                    const selectedSpecialty = document.getElementById("specialty").value;
+                    if (!selectedSpecialty) {
+                        alert("Please select a specialty before submitting.");
+                        return;
+                    }
 
-      const doctorSelect = document.getElementById("doctor");
-      doctorSelect.innerHTML = <option value="">--Choose a Doctor--</option>;
-      if (specialtyToDoctors[selectedSpecialty]) {
-        specialtyToDoctors[selectedSpecialty].forEach((doctor) => {
-          const option = document.createElement("option");
-          option.value = doctor;
-          option.textContent = doctor;
-          doctorSelect.appendChild(option);
+                    // Submit the form programmatically
+                    specialtyForm.submit();
+                });
+            }
+
+            // Handle second form submission (book appointment)
+            if (bookingForm) {
+                bookingForm.addEventListener("submit", function (event) {
+                    event.preventDefault(); // Prevent the default form submission
+
+                    const doctor = document.getElementById("doctor").value;
+                    const date = document.getElementById("date").value;
+                    const time = document.getElementById("time").value;
+                    const reason = document.getElementById("reason").value;
+
+                    if (!doctor || !date || !time || !reason) {
+                        alert("Please fill out all the fields before submitting.");
+                        return;
+                    }
+
+                    // Submit the form programmatically
+                    bookingForm.submit();
+                });
+            }
+
+            // Show the second form if doctors are available
+            if (bookingForm && <?php echo !empty($doctors) ? 'true' : 'false'; ?>) {
+                bookingForm.style.display = "block";
+            }
         });
-      }
-
-      document.getElementById("bookingForm").style.display = "block";
-    }
-
-    function handleBookingSubmit(event) {
-      event.preventDefault();
-
-      const doctor = document.getElementById("doctor").value;
-      const date = document.getElementById("date").value;
-      const time = document.getElementById("time").value;
-      const reason = document.getElementById("reason").value;
-
-      if (!doctor || !date || !time || !reason) {
-        alert("Please fill out all the fields before submitting.");
-        return;
-      }
-
-      console.log("Doctor:", doctor);
-      console.log("Date:", date);
-      console.log("Time:", time);
-      console.log("Reason:", reason);
-
-      window.location.href = "indexPatient.html";
-    }
     </script>
 
     </body>
