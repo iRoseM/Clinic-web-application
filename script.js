@@ -37,7 +37,7 @@ function stickyNavbar(event) {
 /*========== Prescribe Medication  ==========*/
 function navToDoctor(event){
     event.preventDefault();
-    window.location.href="indexDoctor.html";
+    window.location.href="indexDoctor.php";
 }
 
 function confirmPendingAppointments(event) {
@@ -166,20 +166,20 @@ function redirectToHome(event, role) {
 /*============= Log in ==============*/ 
 
 
-document.getElementById("login-form").addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    const userRole = document.querySelector('input[name="role"]:checked').value;
-
-    if (userRole === "patient") {
-        window.location.href = "indexPatient.html";
-    } else if (userRole === "doctor") {
-        window.location.href = "indexDoctor.html";
-    } else {
-        alert("Please select a valid role.");
-    }
-});
-
+//document.getElementById("login-form").addEventListener("submit", function(event) {
+//    event.preventDefault();
+//
+//    const userRole = document.querySelector('input[name="role"]:checked').value;
+//
+//    if (userRole === "patient") {
+//        window.location.href = "indexPatient.html";
+//    } else if (userRole === "doctor") {
+//        window.location.href = "indexDoctor.html";
+//    } else {
+//        alert("Please select a valid role.");
+//    }
+//});
+//
 
 /*========== Home - Patient (chronological order)  ==========*/
 

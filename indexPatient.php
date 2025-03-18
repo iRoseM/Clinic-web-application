@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+<<<<<<<< HEAD:indexPatient.php
 <?php
 ini_set('display_errors', '1');
 session_start();
@@ -32,7 +34,23 @@ $stmt->execute();
 $appointments=$stmt->get_result();
 
 ?>
+========
+>>>>>>>> e5bd12d0529538081cf19bd6b4da3047c5fcfb23:indexPatient.html
 
+=======
+<?php
+include 'db_connection.php';
+session_start();
+
+// Ensure the patient is logged in
+if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'patient') {
+    header("Location: LogIn.html?error=Please log in as a patient");
+    exit();
+}
+
+$patient_id = $_SESSION['user_id']; // Get the logged-in patient's ID
+?>
+>>>>>>> e5bd12d0529538081cf19bd6b4da3047c5fcfb23
 <!DOCTYPE html> 
 <html lang="en"> 
     <head> 
@@ -74,11 +92,19 @@ $appointments=$stmt->get_result();
 
             <div class="popup-card" id="popupCard">
                     <div class="popup-content">
+<<<<<<< HEAD
                         <h3 id="patName">Name: <?php echo htmlspecialchars($patient['firstName']); ?></h3>
                         <p id="patEmail">Email: <?php echo htmlspecialchars($patient['emailAddress']); ?></p>
                         <p id="patId">ID: <?php echo htmlspecialchars($patient['id']); ?></p>
                         <p id="patGender"><?php echo htmlspecialchars($patient['Gender']); ?></p>
                         <p id="patDOB">DOB: <?php echo htmlspecialchars($patient['DoB']); ?></p>
+=======
+                        <h3 id="patName">Leena Nasser</h3>
+                        <p id="patEmail">Email: Sara@gmail.com</p>
+                        <p id="patId">ID: 1023438790</p>
+                        <p id="patGender">Female</p>
+                        <p id="patDOB">DOB: 17/4/1982</p>
+>>>>>>> e5bd12d0529538081cf19bd6b4da3047c5fcfb23
 
                         <svg class="logout" width="22" height="25" viewBox="0 0 22 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <a href="index.html"> 
@@ -94,7 +120,11 @@ $appointments=$stmt->get_result();
 
         <div class="patBanner">
             <img src="img/patBanner.png" alt="Patient Banner">
+<<<<<<< HEAD
             <h2>Welcome, <br><?php echo htmlspecialchars($patient['firstName']); ?>!</h2>
+=======
+            <h2>Welcome, <br>Leena!</h2>
+>>>>>>> e5bd12d0529538081cf19bd6b4da3047c5fcfb23
             <!-- <div>
                 <p>[Patient Information]</p>
             </div> -->
@@ -113,6 +143,7 @@ $appointments=$stmt->get_result();
                     </tr>
                 </thead>
                 <tbody>
+<<<<<<< HEAD
                 <?php while ($row = $appointments->fetch_assoc()) { ?>
                         <tr>
                             <td><?php echo htmlspecialchars($row['date']); ?></td>
@@ -123,6 +154,24 @@ $appointments=$stmt->get_result();
                             <td><a href="cancel_appointment.php?id=<?php echo $row['id']; ?>">Cancel</a></td>
                         </tr>
                         <?php } ?>
+=======
+                    <tr>
+                        <td>3PM</td>
+                        <td>20/5/2025</td>
+                        <td>DR.Sara Ahmed</td>
+                        <td> <img src="img/femaleDoc.jpg" alt="Doctorpicture" > </td>
+                        <td>Pending</td>
+                        <td><a href="indexPatient.html">Cancel</a></td>
+                    </tr>
+                    <tr>
+                        <td>10AM</td>
+                        <td>14/2/2025</td>
+                        <td>DR.Saleh Abdullah</td>
+                        <td> <img src="img/maleDoc.jpg" alt="Doctorpicture" > </td>
+                        <td>Confirmed</td>
+                        <td><a href="indexPatient.html">Cancel</a></td>
+                    </tr>
+>>>>>>> e5bd12d0529538081cf19bd6b4da3047c5fcfb23
                 </tbody>
             </table>
             <p class="BookAppointment"><span><a href="AppointmentBooking.html">Book an appointment</a></span></p>

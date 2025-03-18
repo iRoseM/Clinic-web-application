@@ -263,7 +263,7 @@ header {
                     <!-- Patient Form -->
                     <div class="form-container" id="patient-form">
                         <h1>Patient Sign-Up</h1>
-                        <form action="signUpPhp.php" method="POST">
+                        <form action="signUp.php" method="POST">
                             <input type="hidden" name="userType" value="patient">
                             
                             <label for="psignfirst-name">First Name</label>
@@ -288,7 +288,7 @@ header {
                             <label for="psignpassword">Password</label>
                             <input type="password" name="password" required>
                         
-                            <button type="submit">Sign Up</button>
+                            <button type="submit" name="register" onclick="showForm();">Sign Up</button>
                         </form>
                     </div>
 
@@ -296,7 +296,7 @@ header {
                     <!-- Doctor Form -->
                     <div class="form-container" id="doctor-form">
                         <h1>Doctor Sign-Up</h1>
-                        <form action="signUpPhp.php" method="POST" enctype="multipart/form-data">
+                        <form action="signUp.php" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="userType" value="doctor">
                         
                             <label for="doctor-first-name">First Name</label>
@@ -314,10 +314,9 @@ header {
                             <label for="docsignSpeciality">Speciality</label>
                             <select name="speciality" required>
                                 <option value="">Select Speciality</option>
-                                <option value="cardiology">Cardiology</option>
-                                <option value="neurology">Neurology</option>
-                                <option value="orthopedics">Orthopedics</option>
-                                <option value="pediatrics">Pediatrics</option>
+                                <option value="1">Physiotherapy</option>
+                                <option value="2">Rehabilitation</option>
+                                <option value="3">Sports Injury</option>
                             </select>
                         
                             <label for="docsignEmail">Email Address</label>
