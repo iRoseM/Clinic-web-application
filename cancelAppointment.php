@@ -2,9 +2,9 @@
 session_start();
 // include 'db.php'; //database connection
 
-// Check if patient is logged in
-if (!isset($_SESSION['id']) || $_SESSION['type'] !== 'patient') {
-    header('Location: LogIn.html'); // Redirect to login if not patient
+// Ensure the patient is logged in
+if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'patient') {
+    header("Location: LogIn.html?error=Please log in as a patient");
     exit();
 }
 
@@ -14,7 +14,7 @@ $appointmentID = isset($_GET['id']) ? intval($_GET['id']) : 0;
 $checkSql = "SELECT * FROM Appointment WHERE id = ? AND PatientID = ?";
 $stmt = $conn->prepare($checkSql);
 $stmt->bind_param("ii", $appointmentID, $_SESSION['id']);
-$stmt->execute();
+$stmt->execute(); 
 $result = $stmt->get_result();
 
 if ($result->num_rows > 0) {

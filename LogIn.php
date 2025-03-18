@@ -49,9 +49,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Use JavaScript to redirect
             if ($role == 'doctor') {
-                echo "<script>alert('Login successful! Redirecting to doctor homepage.'); window.location.href = 'indexDoctor.html';</script>";
+                echo "<script>alert('Login successful! Redirecting to doctor homepage.'); window.location.href = 'indexDoctor.php';</script>";
             } else {
-                echo "<script>alert('Login successful! Redirecting to patient homepage.'); window.location.href = 'indexPatient.html';</script>";
+                echo "<script>alert('Login successful! Redirecting to patient homepage.'); window.location.href = 'indexPatient.php';</script>";
             }
             exit();
         } else {

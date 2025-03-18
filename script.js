@@ -155,7 +155,7 @@ function redirectToHome(event, role) {
         : document.getElementById("doctor-form").querySelector("form");
 
     if (form.checkValidity()) {
-        window.location.href = role === "patient" ? "indexPatient.php" : "indexDoctor.html";
+        window.location.href = role === "patient" ? "indexPatient.php" : "indexDoctor.php";
     } else {
         alert("Please fill out all required fields.");
     }
