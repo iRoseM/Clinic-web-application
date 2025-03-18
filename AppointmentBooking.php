@@ -1,3 +1,57 @@
+<?php
+session_start();
+// include 'db.php'; database connection
+
+// Check if patient is logged in
+if (!isset($_SESSION['id']) || $_SESSION['type'] !== 'patient') {
+    header('Location: LogIn.html');
+    exit();
+}
+
+$specialties = [];
+$doctors = [];
+
+// Fetch specialties
+$specialtySql = "SELECT * FROM Speciality";
+$specialtyResult = $conn->query($specialtySql);
+while ($row = $specialtyResult->fetch_assoc()) {
+    $specialties[] = $row;
+}
+
+// If specialty is selected
+if (isset($_POST['specialty'])) {
+    $specialtyID = intval($_POST['specialty']);
+    $doctorSql = "SELECT * FROM Doctor WHERE SpecialityID = ?";
+    $stmt = $conn->prepare($doctorSql);
+    $stmt->bind_param("i", $specialtyID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+        $doctors[] = $row;
+    }
+}
+
+// Handle appointment booking
+if (isset($_POST['doctor'], $_POST['date'], $_POST['time'], $_POST['reason'])) {
+    $doctorID = intval($_POST['doctor']);
+    $date = $_POST['date'];
+    $time = $_POST['time'];
+    $reason = $_POST['reason'];
+    $status = 'Pending';
+    $patientID = $_SESSION['id'];
+
+    $insertSql = "INSERT INTO Appointment (PatientID, DoctorID, date, time, reason, status) VALUES (?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($insertSql);
+    $stmt->bind_param("iissss", $patientID, $doctorID, $date, $time, $reason, $status);
+    if ($stmt->execute()) {
+        header('Location: indexPatient.php?msg=Appointment booked successfully');
+        exit();
+    } else {
+        echo "Error booking appointment.";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -35,25 +89,30 @@
                     <h1 class="FormTitle">Appointment Booking</h1>
                     <br>
                     <!--First Form-->
-                    <form id="specialtyForm" onsubmit="handleSpecialtySubmit(event)">
+                    <form method="POST" action="AppointmentBooking.php" id="specialtyForm" onsubmit="handleSpecialtySubmit(event)">
                         <label for="specialty">Select Specialty:</label>
                         <select name="specialty" id="specialty" required>
                             <option value="">--Choose a Specialty--</option>
-                            <option value="Pediatric" selected>Pediatric</option>
-                            <option value="Chronic Pain">Chronic Pain</option>
-                            <option value="Cardiology">Cardiology</option>
+                            <?php foreach ($specialties as $spec) { ?>
+                                <option value="<?php echo $spec['id']; ?>" <?php if (isset($_POST['specialty']) && $_POST['specialty'] == $spec['id']) echo 'selected'; ?>>
+                                    <?php echo htmlspecialchars($spec['speciality']); ?>
+                                        </option>
+                                    <?php } ?>
                         </select>
                         <button type="submit" id="specialtySubmit">Submit</button>
-    
                     </form>
                     <br><hr><br>
                     <!-- Second Form -->
-                    <form id="bookingForm" onsubmit="handleBookingSubmit(event)" style=" display: none;">
+                    
+                    <?php if (!empty($doctors)) { ?>
+                    <form  method="POST" action="AppointmentBooking.php" id="bookingForm" onsubmit="handleBookingSubmit(event)" style=" display: none;">
                         <label for="doctor">Select Doctor:</label>
+                        <input type="hidden" name="specialty" value="<?php echo $specialtyID; ?>">
                         <select name="doctor" id="doctor" required>
                             <option value="">--Choose a Doctor--</option>
-                            
-
+                            <?php foreach ($doctors as $doc) { ?>
+                                <option value="<?php echo $doc['id']; ?>"><?php echo htmlspecialchars($doc['firstName'] . ' ' . $doc['lastName']); ?></option>
+                            <?php } ?> 
                             <!-- A drop-down list to display the doctors according to the selected specialty from the first form -->
                         </select>
                         
@@ -68,6 +127,7 @@
                         
                         <button type="submit" id="bookSubmit">Book Appointment</button>
                     </form>
+                    <?php } ?>
                 </div>
         </div>
     <script>

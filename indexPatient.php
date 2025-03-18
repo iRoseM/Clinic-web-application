@@ -1,3 +1,38 @@
+<?php
+ini_set('display_errors', '1');
+session_start();
+// include 'db.php'; // database connection
+
+
+// Check if patient is logged in
+if (!isset($_SESSION['id']) || $_SESSION['type'] !== 'patient') {
+    header('Location: LogIn.html'); // Redirect to login if not logged in as patient
+    exit();
+}
+
+$patientID = $_SESSION['id'];
+
+// Fetch patient information
+$patientSql="SELECR * FROM patient WHERE id = ?";
+$stmt=$conn->prepare($patientSql);
+$stmt->bind_param('i',$patientID);
+$stmt->execute();
+$patientResult=$stmt->get_result();
+$patient=$patientResult->fetch_assoc();
+
+// Fetch patient appointments
+$appointmentSql = "SELECT a.*, d.firstName AS doctorFirstName, d.lastName AS doctorLastName, d.uniqueFileName
+                   FROM Appointment a
+                   JOIN Doctor d ON a.DoctorID = d.id
+                   WHERE a.PatientID = ?
+                   ORDER BY a.date, a.time";
+$stmt=$conn->prepare($appointmentSql);
+$stmt->bind_param("i",$patientID);
+$stmt->execute();
+$appointments=$stmt->get_result();
+
+?>
+
 <!DOCTYPE html> 
 <html lang="en"> 
     <head> 
@@ -39,11 +74,11 @@
 
             <div class="popup-card" id="popupCard">
                     <div class="popup-content">
-                        <h3 id="patName">Leena Nasser</h3>
-                        <p id="patEmail">Email: Sara@gmail.com</p>
-                        <p id="patId">ID: 1023438790</p>
-                        <p id="patGender">Female</p>
-                        <p id="patDOB">DOB: 17/4/1982</p>
+                        <h3 id="patName">Name: <?php echo htmlspecialchars($patient['firstName']); ?></h3>
+                        <p id="patEmail">Email: <?php echo htmlspecialchars($patient['emailAddress']); ?></p>
+                        <p id="patId">ID: <?php echo htmlspecialchars($patient['id']); ?></p>
+                        <p id="patGender"><?php echo htmlspecialchars($patient['Gender']); ?></p>
+                        <p id="patDOB">DOB: <?php echo htmlspecialchars($patient['DoB']); ?></p>
 
                         <svg class="logout" width="22" height="25" viewBox="0 0 22 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <a href="index.html"> 
@@ -59,7 +94,7 @@
 
         <div class="patBanner">
             <img src="img/patBanner.png" alt="Patient Banner">
-            <h2>Welcome, <br>Leena!</h2>
+            <h2>Welcome, <br><?php echo htmlspecialchars($patient['firstName']); ?>!</h2>
             <!-- <div>
                 <p>[Patient Information]</p>
             </div> -->
@@ -78,22 +113,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>3PM</td>
-                        <td>20/5/2025</td>
-                        <td>DR.Sara Ahmed</td>
-                        <td> <img src="img/femaleDoc.jpg" alt="Doctorpicture" > </td>
-                        <td>Pending</td>
-                        <td><a href="indexPatient.html">Cancel</a></td>
-                    </tr>
-                    <tr>
-                        <td>10AM</td>
-                        <td>14/2/2025</td>
-                        <td>DR.Saleh Abdullah</td>
-                        <td> <img src="img/maleDoc.jpg" alt="Doctorpicture" > </td>
-                        <td>Confirmed</td>
-                        <td><a href="indexPatient.html">Cancel</a></td>
-                    </tr>
+                <?php while ($row = $appointments->fetch_assoc()) { ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($row['date']); ?></td>
+                            <td><?php echo htmlspecialchars($row['time']); ?></td>
+                            <td><?php echo htmlspecialchars($row['doctorFirstName'] . ' ' . $row['doctorLastName']); ?></td>
+                            <td><img src="uploads/<?php echo htmlspecialchars($row['uniqueFileName']); ?>" width="50" height="50"></td>
+                            <td><?php echo htmlspecialchars($row['status']); ?></td>
+                            <td><a href="cancel_appointment.php?id=<?php echo $row['id']; ?>">Cancel</a></td>
+                        </tr>
+                        <?php } ?>
                 </tbody>
             </table>
             <p class="BookAppointment"><span><a href="AppointmentBooking.html">Book an appointment</a></span></p>
