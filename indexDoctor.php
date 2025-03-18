@@ -1,55 +1,55 @@
-<?php
-error_reporting(E_ALL); 
-ini_set('log_errors','1'); 
-ini_set('display_errors','1'); 
+    <?php
+    error_reporting(E_ALL); 
+    ini_set('log_errors','1'); 
+    ini_set('display_errors','1'); 
 
-session_start();
-include 'db_connection.php';
+    session_start();
+    include 'db_connection.php';
 
-// Temporary Doctor ID (for testing)
-$doctor_id = 6;
+    // Temporary Doctor ID (for testing)
+    $doctor_id = 6;
 
-// Fetch doctor information
-$query = "SELECT firstName, lastName, emailAddress, SpecialityID  FROM Doctor WHERE id = ?";
-$stmt = $conn->prepare($query);
-$stmt->bind_param("i", $doctor_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$doctor = $result->fetch_assoc();
+    // Fetch doctor information
+    $query = "SELECT firstName, lastName, emailAddress, SpecialityID, uniqueFileName FROM Doctor WHERE id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $doctor_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $doctor = $result->fetch_assoc();
 
-// Get speciality name
-$query = "SELECT speciality FROM Speciality WHERE id = ?";
-$stmt = $conn->prepare($query);
-$stmt->bind_param("i", $doctor['SpecialityID']);
-$stmt->execute();
-$speciality_result = $stmt->get_result();
-$speciality = $speciality_result->fetch_assoc();
+    // Get speciality name
+    $query = "SELECT speciality FROM Speciality WHERE id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $doctor['SpecialityID']);
+    $stmt->execute();
+    $speciality_result = $stmt->get_result();
+    $speciality = $speciality_result->fetch_assoc();
 
-// Fetch upcoming appointments
-$query = "SELECT a.id, a.date, a.time, p.firstName, p.lastName, p.Gender, p.DoB, a.reason, a.status 
-          FROM Appointment a 
-          JOIN Patient p ON a.PatientID = p.id 
-          WHERE a.DoctorID = ? AND (a.status = 'Pending' OR a.status = 'Confirmed') 
-          ORDER BY a.date, a.time";
-$stmt = $conn->prepare($query);
-$stmt->bind_param("i", $doctor_id);
-$stmt->execute();
-$appointments = $stmt->get_result();
+    // Fetch upcoming appointments
+    $query = "SELECT a.id, a.date, a.time, p.firstName, p.lastName, p.Gender, p.DoB, a.reason, a.status 
+            FROM Appointment a 
+            JOIN Patient p ON a.PatientID = p.id 
+            WHERE a.DoctorID = ? AND (a.status = 'Pending' OR a.status = 'Confirmed') 
+            ORDER BY a.date, a.time";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $doctor_id);
+    $stmt->execute();
+    $appointments = $stmt->get_result();
 
-// Fetch past patients (ONLY "Done" appointments)
-$query = "SELECT DISTINCT p.id, p.firstName, p.lastName, p.Gender, p.DoB, 
-                 IFNULL(GROUP_CONCAT(DISTINCT m.MedicationName SEPARATOR ', '), 'N/A') AS Medications 
-          FROM Appointment a
-          JOIN Patient p ON a.PatientID = p.id 
-          LEFT JOIN Prescription pr ON a.id = pr.AppointmentID
-          LEFT JOIN Medication m ON pr.MedicationID = m.id
-          WHERE a.DoctorID = ? AND a.status = 'Done'
-          GROUP BY p.id
-          ORDER BY p.lastName, p.firstName";
-$stmt = $conn->prepare($query);
-$stmt->bind_param("i", $doctor_id);
-$stmt->execute();
-$patients = $stmt->get_result();
+    // Fetch past patients (ONLY "Done" appointments)
+    $query = "SELECT DISTINCT p.id, p.firstName, p.lastName, p.Gender, p.DoB, 
+                    IFNULL(GROUP_CONCAT(DISTINCT m.MedicationName SEPARATOR ', '), 'N/A') AS Medications 
+            FROM Appointment a
+            JOIN Patient p ON a.PatientID = p.id 
+            LEFT JOIN Prescription pr ON a.id = pr.AppointmentID
+            LEFT JOIN Medication m ON pr.MedicationID = m.id
+            WHERE a.DoctorID = ? AND a.status = 'Done'
+            GROUP BY p.id
+            ORDER BY p.lastName, p.firstName";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("i", $doctor_id);
+    $stmt->execute();
+    $patients = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -98,7 +98,11 @@ $patients = $stmt->get_result();
                     <div class="popup-content">
 
                         <div class="doctor-image">
-                            <img src="img/doctor_67d882d36603a.jpg" alt="Doctor's Picture">
+                            <?php
+                                $imagePath = "uploads/" . htmlspecialchars($doctor['uniqueFileName']);
+                            ?>
+                            <img src="<?= $imagePath; ?>" alt="Doctor's Picture">
+
                         </div>
                         <h3 id="docName"><?= htmlspecialchars($doctor['firstName'] . ' ' . $doctor['lastName']); ?></h3>
                         <p id="docSpeciality"><?= htmlspecialchars($speciality['speciality']); ?></p>
@@ -121,9 +125,6 @@ $patients = $stmt->get_result();
         <div class="patBanner">
             <img src="img/docBanner.png" alt="DoctorBanner">
             <h2>Welcome,<br> <?= htmlspecialchars($doctor['firstName']); ?>!</h2>
-            <!-- <div class="docInfo">
-                <p>[Doctor Information]</p>
-            </div> -->
         </div>
 
         <div class="docAppointment" id="docAppointmentnav">
@@ -151,21 +152,25 @@ $patients = $stmt->get_result();
                         <td><?= $age; ?></td>
                         <td><?= htmlspecialchars($row['Gender']); ?></td>
                         <td><?= htmlspecialchars($row['reason']); ?></td>
-                        <td>
-                            <?php if ($row['status'] == 'Pending') { ?>
-                                <a href="confirm_appointment.php?id=<?= $row['id']; ?>">Confirm</a>
-                            <?php } elseif ($row['status'] == 'Confirmed') { ?>
-                                <a href="medication.php?id=<?= $row['id']; ?>">Prescribe</a>
-                            <?php } else { ?>
-                                <?= htmlspecialchars($row['status']); ?>
-                            <?php } ?>
+
+                        <td style="text-align: center; vertical-align: middle; padding: 10px;">
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;"> 
+                            <span><?= htmlspecialchars($row['status']); ?></span> 
+
+
+                                <?php if ($row['status'] == 'Pending') { ?>
+                                    <a href="confirm_appointment.php?id=<?= $row['id']; ?>" style ="background-color: darkgreen;">Confirm</a>
+                                <?php } elseif ($row['status'] == 'Confirmed') { ?>
+                                    <a href="medication.php?id=<?= $row['id']; ?>">Prescribe</a>
+                                <?php } ?>
+                            </div>
                         </td>
                     </tr>
                     <?php } ?>
                 </tbody>
             </table>
         </div>
-
+                
         <div class="docPatients" id="docPatientsnav">
             <h2>Your Patients</h2>
             <table id="patientsTable">
@@ -185,7 +190,7 @@ $patients = $stmt->get_result();
                         <td><?= htmlspecialchars($row['firstName']) . " " . htmlspecialchars($row['lastName']); ?></td>
                         <td><?= $age; ?></td>
                         <td><?= htmlspecialchars($row['Gender']); ?></td>
-                        <td><?= htmlspecialchars($row['Medications']); ?></td>
+                        <td><?= nl2br(htmlspecialchars(str_replace(', ', "\n", $row['Medications']))); ?></td>
                     </tr>
                     <?php } ?>
                 </tbody>

@@ -1,6 +1,82 @@
 
 <?php
+error_reporting(E_ALL); 
+ini_set('log_errors','1'); 
+ini_set('display_errors','1'); 
+
 include 'db_connection.php';
+
+
+// Check if appointment ID is provided
+if (!isset($_GET['id']) || empty($_GET['id'])) {
+    die("Error: No appointment ID provided.");
+}
+$appointment_id = intval($_GET['id']);
+
+// Retrieve the Patient ID from the Appointment
+$query = "SELECT PatientID FROM Appointment WHERE id = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $appointment_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$appointment = $result->fetch_assoc();
+
+if (!$appointment) {
+    die("Error: Appointment not found.");
+}
+
+$patient_id = $appointment['PatientID']; // Get the Patient ID
+
+// Retrieve Patient Info
+$query = "SELECT firstName, lastName, Gender, DoB FROM Patient WHERE id = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("i", $patient_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$patient = $result->fetch_assoc();
+
+if (!$patient) {
+    die("Error: Patient not found.");
+}
+
+// Retrieve Medications
+$query = "SELECT id, MedicationName FROM Medication";
+$medications = $conn->query($query);
+
+// If form is submitted, update the database
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $selected_medications = isset($_POST['pMedication']) ? $_POST['pMedication'] : [];
+
+    // Start a transaction
+    $conn->begin_transaction();
+
+    try {
+        // Update the appointment status to "Done"
+        $query = "UPDATE Appointment SET status = 'Done' WHERE id = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i", $appointment_id);
+        $stmt->execute();
+
+        // Insert selected medications into Prescription table
+        foreach ($selected_medications as $med_id) {
+            $query = "INSERT INTO Prescription (AppointmentID, MedicationID) VALUES (?, ?)";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("ii", $appointment_id, $med_id);
+            $stmt->execute();
+        }
+
+        // Commit the transaction
+        $conn->commit();
+
+        // Redirect to Doctor's Homepage
+        header("Location: indexDoctor.php");
+        exit();
+    } catch (Exception $e) {
+        // Rollback the transaction if an error occurs
+        $conn->rollback();
+        die("Error processing prescription: " . $e->getMessage());
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,24 +113,30 @@ include 'db_connection.php';
 
             <div class="Formdiv">
                 <h1 class="FormTitle">Patient's Medications</h1>
-                <form action="x" method="post" id="PatientMedForm">
-                    <label>Patient's Name: <input type="text" name="pName" value="Nouf"></label>
-                    <label>Age: <input type="number" name="pAge" value="12"></label>
+                <form  action="" method="post" id="PatientMedForm">
+
+                <!-- Hidden input to store patient ID -->
+                <input type="hidden" name="patient_id" value="<?= $patient_id; ?>">
+
+                <label>Patient's Name: <input type="text" name="pName" value="<?= htmlspecialchars($patient['firstName'] . ' ' . $patient['lastName']); ?>"></label>
+                    <label>Age: <input type="number" name="pAge" value="<?= date_diff(date_create($patient['DoB']), date_create('today'))->y; ?>"></label>
 
                     <label>Gender:</label>
                     <ul>
-                        <li><input type="radio" name="pGender" value="male">Male</li>
-                        <li><input type="radio" name="pGender" value="female" checked>Female</li>
+                        <li><input type="radio" name="pGender" value="male" <?= ($patient['Gender'] == 'Male') ? 'checked' : ''; ?> disabled>Male</li>
+                        <li><input type="radio" name="pGender" value="female" <?= ($patient['Gender'] == 'Female') ? 'checked' : ''; ?> disabled>Female</li>
                     </ul>
 
                     <label>Medications:</label>
                     <ul>
-                        <li><input type="checkbox" name="pMedication" value="Asprin" checked>Asprin</li>
-                        <li><input type="checkbox" name="pMedication" value="Ibrufen" checked>Ibrufen</li>
-                        <li><input type="checkbox" name="pMedication" value="Paracetamol">Paracetamol</li>
-                        <li><input type="checkbox" name="pMedication" value="Antibiotics">Antibiotics</li>
+                        <?php foreach ($medications as $med) { ?>
+                            <li>
+                                <input type="checkbox" name="pMedication[]" value="<?= $med['id']; ?>"> 
+                                <?= htmlspecialchars($med['MedicationName']); ?>
+                            </li>
+                        <?php } ?>
                     </ul>
-                    <input type="submit" value="Submit" id="pSubmit" onclick="navToDoctor(event)">
+                    <input type="submit" value="Submit" id="pSubmit">
                 </form>
             </div>
         </div>
