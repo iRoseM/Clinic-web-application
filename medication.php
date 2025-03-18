@@ -85,6 +85,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'doctor') {
 }
 
 $doctor_id = $_SESSION['user_id']; // Get the logged-in patient's ID
+
 ?>
 
 <!DOCTYPE html>
