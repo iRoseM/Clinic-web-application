@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>TheraFlex - Login</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/Logo.png" type="image/x-icon">
+    <style>
+
+body{
+                height: auto; 
+                width: auto;
+
+            }
+
+.image-container {
+    position: relative;
+    max-width: 800px;
+
+}
+
+.image-container img {
+    width: 200%;
+    height: 100%; 
+    object-fit: cover; 
+    background-size: cover;
+}
+
+
+.login-container form {
+    background-color: rgb(255, 255, 255, 0.6);
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 1000px;
+}
+
+.login-container h1 {
+    margin-bottom: 4rem;
+    font-size: 1.8rem;
+    color: #22372d;
+    text-align: center;
+    font-weight: bold;
+}
+
+.login-container input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #22372d;
+    padding: 0.8rem 0;
+    font-size: 1rem;
+    color: #333;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.login-container input:focus {
+    outline: none;
+    border-bottom: 3.5px solid #22372d;
+}
+
+.login-container input,
+.login-container button {
+    width: 100%;
+    margin: 1rem 0;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.login-container button {
+    background-color: #22372d;
+    color: white;
+    border: none;
+    font-weight: bold;
+    padding: 0.8rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-container button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: all 0.5s ease-in-out;
+    z-index: 0;
+}
+
+.login-container button:hover::before {
+    left: 0;
+}
+
+.login-container button:hover {
+    background-color: #555;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.login-container .signup-text {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #333;
+}
+
+.login-container .signup-text a {
+    color: #22372d;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.login-container .signup-text a:hover {
+    text-decoration: underline;
+    color: #4ecca3;
+}
+
+header {
+    position: absolute;
+    bottom: 22%;
+    left: 80%;
+    color: white;
+    background-color: rgba(159, 183, 175, 0);
+    padding: 2rem;
+    text-align: center;
+    z-index: 1;
+    max-width: 40em;
+    width: 100%;
+}
+
+nav .login-btn {
+    color: white;
+    background-color: #22372d;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 1rem;
+    transition: background-color 0.3s ease-in-out, transform 0.2s;
+}
+
+nav .login-btn:hover {
+    background-color: #555;
+    transform: translateY(-2px);
+}
+
+nav .signup-text {
+    margin-top: 1rem;
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.signup-text {
+    padding-bottom: 20pt;
+}
+
+nav .signup-text a {
+    color: #333;
+    text-decoration: underline;
+}
+
+nav .signup-text a:hover {
+    color: #555;
+}
+
+h1 {
+    color: #fff;
+    font-size: 2.5rem;
+    line-height: 0.5;
+    margin-top: 0rem;
+}
+
+.role-group {
+    margin-bottom: 1rem;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.role-group ul {
+    font-size: 1rem;
+    color: #333;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 10%;
+}
+
+.role-group ul li {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.role-group input[type="radio"] {
+    margin: 0.5rem;
+}
+
+
+        @media (max-width: 1024px) {
+            h1 {
+                line-height: 1.3;
+            }
+
+            header {
+                bottom: 17%;
+                left: 50%;
+                padding: 1rem;
+                max-width: 50em;
+                width: 60%;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            h1 {
+                line-height: 1;
+            }
+
+            header {
+                bottom: 20%;
+                left: 15%;
+                padding: 1rem;
+                max-width: 30em;
+                width: 70%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <img src="img/backgroundHome.png" alt="TheraFlix">
+        <header>
+            <div class="login-container">
+                <form id="login-form">
+                    <h1 style="margin-bottom: 0.7em;">Log In</h1>
+                    <p style="color: #333; margin-bottom: 0.9em;">Log in to your account</p>
+                    <div class="role-group">
+                        <ul>
+                            <li><input type="radio" name="role" value="patient" required> Patient</li>
+                            <li><input type="radio" name="role" value="doctor" required> Doctor</li>
+                        </ul>
+                    </div>
+                    <input type="email" id="email" placeholder="Email Address" required value="sara@gmail.com">
+                    <input type="password" id="password" placeholder="Password" required value="123">
+                    <button type="submit">Log In</button>
+                    <div class="signup-text">
+                        Don't have an account? <a href="SignUp.html">Sign up</a>
+                    </div>
+                </form>
+            </div>
+        </header>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
