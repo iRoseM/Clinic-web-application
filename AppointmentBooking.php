@@ -1,5 +1,14 @@
 <?php
 include 'db_connection.php';
+session_start();
+
+// Ensure the patient is logged in
+if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'patient') {
+    header("Location: LogIn.html?error=Please log in as a patient");
+    exit();
+}
+
+$patient_id = $_SESSION['user_id']; // Get the logged-in patient's ID
 ?>
 <!DOCTYPE html>
 <html lang="en">
