@@ -1,10 +1,10 @@
-<<<<<<< HEAD
-    <?php
+<?php
     error_reporting(E_ALL); 
     ini_set('log_errors','1'); 
     ini_set('display_errors','1'); 
 
     session_start();
+    include 'db_connection.php'; 
 
 // Ensure the patient is logged in
 if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'doctor') {
@@ -117,7 +117,7 @@ $doctor_id = $_SESSION['user_id']; // Get the logged-in patient's ID
                         <p id="docEmail">Email: <?= htmlspecialchars($doctor['emailAddress']); ?></p>
                         <p id="docId">ID: <?= $doctor_id; ?></p>
                         <svg class="logout" width="22" height="25" viewBox="0 0 22 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <a href="index.html"> 
+                            <a href="logout.php"> 
                             <path d="M6.59998 12.2H21" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M10.9 1H3.5C2.1 1 1 2.1 1 3.4V20.9C1 22.3 2.1 23.4 3.5 23.4H10.9" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M17.2 8.4L21 12.2L17.2 16" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
