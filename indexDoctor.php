@@ -112,6 +112,7 @@ $doctor_id = $_SESSION['user_id']; // Get the logged-in patient's ID
                             <img src="<?= $imagePath; ?>" alt="Doctor's Picture">
 
                         </div>
+                        
                         <h3 id="docName"><?= htmlspecialchars($doctor['firstName'] . ' ' . $doctor['lastName']); ?></h3>
                         <p id="docSpeciality"><?= htmlspecialchars($speciality['speciality']); ?></p>
                         <p id="docEmail">Email: <?= htmlspecialchars($doctor['emailAddress']); ?></p>
