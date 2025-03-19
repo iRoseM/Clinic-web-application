@@ -86,13 +86,13 @@ $doctor_id = $_SESSION['user_id']; // Get the logged-in patient's ID
             </div>
 
             <div class="navigation">
-              <ul class="nav-links">
-                <li><a href="indexDoctor.html">Home</a></li>
-                <li><a href="#docAppointmentnav">Upcoming Appointments</a></li>
-                <li><a href="#docPatientsnav">Patients</a></li>
-                <li><a href="#contactUsnav">Contact Us</a></li>
-                <li class="logout-mobile"><a href="index.html">Log out</a></li> <!-- Only for mobile -->
-              </ul>
+                <ul class="nav-links">
+                    <li><a href="indexDoctor.php">Home</a></li>
+                    <li><a href="indexDoctor.php#docAppointmentnav">Upcoming Appointments</a></li>
+                    <li><a href="indexDoctor.php#docPatientsnav">Patients</a></li>
+                    <li><a href="indexDoctor.php#contactUsnav">Contact Us</a></li>
+                    <li class="logout-mobile"><a href="logout.php">Log out</a></li> <!-- Only for mobile -->
+                </ul>
             </div>
 
             <div class="icon-container" onclick="togglePopup()">
