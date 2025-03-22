@@ -8,7 +8,7 @@
 
 // Ensure the patient is logged in
 if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'doctor') {
-    header("Location: LogIn.html?error=Please log in as a doctor");
+    header("Location: index.html?error= Sign up or log in account as a doctor");
     exit();
 }
 

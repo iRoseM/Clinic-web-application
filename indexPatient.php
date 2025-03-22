@@ -9,7 +9,7 @@ include 'db_connection.php';
 
 // Ensure the patient is logged in
 if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'patient') {
-    header("Location: LogIn.html?error=Please log in as a patient");
+    header("Location: index.html?error= Sign up or log in account as a patient");
     exit();
 }
 
