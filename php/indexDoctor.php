@@ -116,7 +116,7 @@ $doctor_id = $_SESSION['user_id']; // Get the logged-in patient's ID
                         <h3 id="docName"><?= htmlspecialchars($doctor['firstName'] . ' ' . $doctor['lastName']); ?></h3>
                         <p id="docSpeciality"><?= htmlspecialchars($speciality['speciality']); ?></p>
                         <p id="docEmail">Email: <?= htmlspecialchars($doctor['emailAddress']); ?></p>
-                        <p id="docId">ID: <?= $doctor_id; ?></p>
+<!--                        <p id="docId">ID: //<?= $doctor_id; ?></p>-->
                         <svg class="logout" width="22" height="25" viewBox="0 0 22 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <a href="logout.php"> 
                             <path d="M6.59998 12.2H21" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>

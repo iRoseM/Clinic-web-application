@@ -78,9 +78,9 @@ $patient = $patientResult->fetch_assoc();
                     <div class="popup-content">
                         <h3 id="patName">Name: <?php echo htmlspecialchars($patient['firstName']); ?></h3>
                         <p id="patEmail">Email: <?php echo htmlspecialchars($patient['emailAddress']); ?></p>
-                        <p id="patId">ID: <?php echo htmlspecialchars($patient['id']); ?></p>
+<!--                        <p id="patId">ID: <?php echo htmlspecialchars($patient['id']); ?></p>-->
                         <p id="patGender"><?php echo htmlspecialchars($patient['Gender']); ?></p>
-                        <p id="patDOB">DOB: <?php echo htmlspecialchars($patient['DoB']); ?></p>
+<!--                        <p id="patDOB">DOB: <?php echo htmlspecialchars($patient['DoB']); ?></p>-->
 
                         <svg class="logout" width="22" height="25" viewBox="0 0 22 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <a href="logout.php"> 
