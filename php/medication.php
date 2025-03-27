@@ -93,14 +93,14 @@ $doctor_id = $_SESSION['user_id']; // Get the logged-in patient's ID
     <head>
         <meta charset="utf-8">
         <title>TheraFlex - Medication</title>
-        <link rel="icon" href="img/Logo.png" type="image/x-icon">
+        <link rel="icon" href="../img/Logo.png" type="image/x-icon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../css/style.css">
 
         <style>
             body {
                 margin: 0;
-                background: url('img/medication.png') no-repeat center center fixed;
+                background: url('../img/medication.png') no-repeat center center fixed;
                 background-size: cover;
                 min-height: 100vh;
                 display: flex;
@@ -149,6 +149,6 @@ $doctor_id = $_SESSION['user_id']; // Get the logged-in patient's ID
                 </form>
             </div>
         </div>
-            <script src="script.js"></script>
+        <script src="../script/script.js"></script>
     </body>
 </html>

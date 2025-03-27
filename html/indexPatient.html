@@ -1,56 +1,20 @@
-<?php
-error_reporting(E_ALL); 
-ini_set('log_errors','1'); 
-ini_set('display_errors','1'); 
-
-session_start();
-// include 'db.php'; // database connection
-include 'db_connection.php';
-
-// Ensure the patient is logged in
-if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'patient') {
-    header("Location: index.html?error= Sign up or log in account as a patient");
-    exit();
-}
-
-$patientID = $_SESSION['user_id'];
-
-// Fetch patient appointments
-$appointmentSql = "SELECT a.*, d.firstName AS doctorFirstName, d.lastName AS doctorLastName, d.uniqueFileName
-                   FROM Appointment a
-                   JOIN Doctor d ON a.DoctorID = d.id
-                   WHERE a.PatientID = ?
-                   ORDER BY a.date, a.time";
-$stmt = $conn->prepare($appointmentSql);
-$stmt->bind_param("i", $patientID);
-$stmt->execute();
-$appointments = $stmt->get_result();
-
-// Fetch patient information
-$patientSql = "SELECT * FROM patient WHERE id = ?"; // Corrected typo here
-$stmt = $conn->prepare($patientSql);
-$stmt->bind_param('i', $patientID);
-$stmt->execute();
-$patientResult = $stmt->get_result();
-$patient = $patientResult->fetch_assoc();
-?>
-
+<!-- This is supposed to be deleted!  -->
 <!DOCTYPE html> 
 <html lang="en"> 
     <head> 
         <meta charset="utf-8">
         <title>TheraFlex - Home</title>
-        <link rel="stylesheet" href="style.css">  
-        <link rel="icon" href="img/Logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="../css/style.css">  
+        <link rel="icon" href="../img/Logo.png" type="image/x-icon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     </head> 
     <body onload="stickyNavbar(event); sortPappointments(event); " > 
-    
+
         <!-- Nav Bar -->
         <header class="header">
             <div class="logo">
-                <a href="indexPatient.php"><img src="img/Logo.png" alt="logo"></a>
-                <span> <a href="indexPatient.php">TheraFlex</a></span>
+                <a href="indexPatient.html"><img src="../img/Logo.png" alt="logo"></a>
+                <span> <a href="indexPatient.html">TheraFlex</a></span>
             </div>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -76,11 +40,11 @@ $patient = $patientResult->fetch_assoc();
 
             <div class="popup-card" id="popupCard">
                     <div class="popup-content">
-                        <h3 id="patName">Name: <?php echo htmlspecialchars($patient['firstName']); ?></h3>
-                        <p id="patEmail">Email: <?php echo htmlspecialchars($patient['emailAddress']); ?></p>
-                        <p id="patId">ID: <?php echo htmlspecialchars($patient['id']); ?></p>
-                        <p id="patGender"><?php echo htmlspecialchars($patient['Gender']); ?></p>
-                        <p id="patDOB">DOB: <?php echo htmlspecialchars($patient['DoB']); ?></p>
+                        <h3 id="patName">Leena Nasser</h3>
+                        <p id="patEmail">Email: Sara@gmail.com</p>
+                        <p id="patId">ID: 1023438790</p>
+                        <p id="patGender">Female</p>
+                        <p id="patDOB">DOB: 17/4/1982</p>
 
                         <svg class="logout" width="22" height="25" viewBox="0 0 22 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <a href="index.html"> 
@@ -95,8 +59,11 @@ $patient = $patientResult->fetch_assoc();
           </header>
 
         <div class="patBanner">
-            <img src="img/patBanner.png" alt="Patient Banner">
-            <h2>Welcome, <br><?php echo htmlspecialchars($patient['firstName']); ?>!</h2>
+            <img src="../img/patBanner.png" alt="Patient Banner">
+            <h2>Welcome, <br>Leena!</h2>
+            <!-- <div>
+                <p>[Patient Information]</p>
+            </div> -->
         </div>
         
         <div class="patAppointment" id="patAppointmentnav"> 
@@ -112,22 +79,29 @@ $patient = $patientResult->fetch_assoc();
                     </tr>
                 </thead>
                 <tbody>
-                <?php while ($row = $appointments->fetch_assoc()) { ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($row['date']); ?></td>
-                            <td><?php echo htmlspecialchars($row['time']); ?></td>
-                            <td><?php echo htmlspecialchars($row['doctorFirstName'] . ' ' . $row['doctorLastName']); ?></td>
-                            <td><img src="uploads/<?php echo htmlspecialchars($row['uniqueFileName']); ?>" width="50" height="50"></td>
-                            <td><?php echo htmlspecialchars($row['status']); ?></td>
-                            <td><a href="cancelAppointment.php?id=<?php echo $row['id']; ?>">Cancel</a></td>
-                        </tr>
-                        <?php } ?> 
+                    <tr>
+                        <td>3PM</td>
+                        <td>20/5/2025</td>
+                        <td>DR.Sara Ahmed</td>
+                        <td> <img src="../img/femaleDoc.jpg" alt="Doctorpicture" > </td>
+                        <td>Pending</td>
+                        <td><a href="indexPatient.html">Cancel</a></td>
+                    </tr>
+                    <tr>
+                        <td>10AM</td>
+                        <td>14/2/2025</td>
+                        <td>DR.Saleh Abdullah</td>
+                        <td> <img src="img/maleDoc.jpg" alt="Doctorpicture" > </td>
+                        <td>Confirmed</td>
+                        <td><a href="indexPatient.html">Cancel</a></td>
+                    </tr>
                 </tbody>
             </table>
-            <p class="BookAppointment"><span><a href="AppointmentBooking.php">Book an appointment</a></span></p>
+            <p class="BookAppointment"><span><a href="AppointmentBooking.html">Book an appointment</a></span></p>
         </div>
+
         
-        <script src="script.js"> </script>
+        <script src="../script/script.js"> </script>
         <script> 
             document.addEventListener("DOMContentLoaded", function () {
                 const popupCard = document.getElementById("popupCard");
@@ -206,17 +180,5 @@ $patient = $patientResult->fetch_assoc();
         <p>&copy; 2025 TheraFlex. All rights reserved.</p>
     </div>
     
-    <?php if (isset($_GET['msg'])): ?>
-    <script>
-        alert("<?= htmlspecialchars($_GET['msg'], ENT_QUOTES) ?>");
-
-        // Remove ?msg=... from the URL after showing the alert
-        if (history.replaceState) {
-            const cleanUrl = window.location.origin + window.location.pathname;
-            history.replaceState(null, '', cleanUrl);
-        }
-    </script>
-    <?php endif; ?>
-
 </body>
 </html>

@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 session_start();
-include 'db_connection.php'; // Ensure this file properly connects to your database
+include 'db_connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userType = $_POST['userType'];
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($idResult->num_rows > 0) {
             // ID already exists, display error message as a popup
-            echo "<script>alert('ID already registered'); window.location.href = 'signUp.html';</script>";
+            echo "<script>alert('ID already registered'); window.location.href = '../html/signUp.html';</script>";
             exit();
         }
 
@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($result->num_rows > 0) {
             // Email already exists, display error message as a popup
-            echo "<script>alert('Email already registered'); window.location.href = 'signUp.html';</script>";
+            echo "<script>alert('Email already registered'); window.location.href = '../html/signUp.html';</script>";
             exit();
         }
 
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         } else {
             // Handle database insertion error
-            echo "<script>alert('Something went wrong during registration'); window.location.href = 'signUp.html';</script>";
+            echo "<script>alert('Something went wrong during registration'); window.location.href = '../html/signUp.html';</script>";
             exit();
         }
     } elseif ($userType == "patient") {
@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($idResult->num_rows > 0) {
             // ID already exists, display error message as a popup
-            echo "<script>alert('ID already registered'); window.location.href = 'signUp.html';</script>";
+            echo "<script>alert('ID already registered'); window.location.href = '../html/signUp.html';</script>";
             exit();
         }
 
@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($result->num_rows > 0) {
             // Email already exists, display error message as a popup
-            echo "<script>alert('Email already registered'); window.location.href = 'signUp.html';</script>";
+            echo "<script>alert('Email already registered'); window.location.href = '../html/signUp.html';</script>";
             exit();
         }
 
@@ -101,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         } else {
             // Handle database insertion error
-            echo "<script>alert('Something went wrong during registration'); window.location.href = 'signUp.html';</script>";
+            echo "<script>alert('Something went wrong during registration'); window.location.href = '../html/signUp.html';</script>";
             exit();
         }
     }

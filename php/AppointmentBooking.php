@@ -7,7 +7,7 @@ session_start();
 include 'db_connection.php';
 
 if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'patient') {
-    header("Location: LogIn.html?error=Please log in as a patient");
+    header("Location: ../html/LogIn.html?error=Please log in as a patient");
     exit();
 }
 
@@ -69,13 +69,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="utf-8">
     <title>TheraFlex - Booking Appointment</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="img/Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" href="../img/Logo.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             margin: 0;
-            background: url('img/appointment2.png') no-repeat center center fixed;
+            background: url('../img/appointment2.png') no-repeat center center fixed;
             background-size: cover;
             min-height: 100vh;
             display: flex;

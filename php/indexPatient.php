@@ -1,20 +1,56 @@
-<!-- This is supposed to be deleted!  -->
+<?php
+error_reporting(E_ALL); 
+ini_set('log_errors','1'); 
+ini_set('display_errors','1'); 
+
+session_start();
+ // database connection
+include 'db_connection.php';
+
+// Ensure the patient is logged in
+if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'patient') {
+    header("Location: index.html?error= Sign up or log in account as a patient");
+    exit();
+}
+
+$patientID = $_SESSION['user_id'];
+
+// Fetch patient appointments
+$appointmentSql = "SELECT a.*, d.firstName AS doctorFirstName, d.lastName AS doctorLastName, d.uniqueFileName
+                   FROM Appointment a
+                   JOIN Doctor d ON a.DoctorID = d.id
+                   WHERE a.PatientID = ?
+                   ORDER BY a.date, a.time";
+$stmt = $conn->prepare($appointmentSql);
+$stmt->bind_param("i", $patientID);
+$stmt->execute();
+$appointments = $stmt->get_result();
+
+// Fetch patient information
+$patientSql = "SELECT * FROM patient WHERE id = ?"; 
+$stmt = $conn->prepare($patientSql);
+$stmt->bind_param('i', $patientID);
+$stmt->execute();
+$patientResult = $stmt->get_result();
+$patient = $patientResult->fetch_assoc();
+?>
+
 <!DOCTYPE html> 
 <html lang="en"> 
     <head> 
         <meta charset="utf-8">
         <title>TheraFlex - Home</title>
-        <link rel="stylesheet" href="style.css">  
-        <link rel="icon" href="img/Logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="../css/style.css">  
+        <link rel="icon" href="../img/Logo.png" type="image/x-icon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     </head> 
     <body onload="stickyNavbar(event); sortPappointments(event); " > 
-
+    
         <!-- Nav Bar -->
         <header class="header">
             <div class="logo">
-                <a href="indexPatient.html"><img src="img/Logo.png" alt="logo"></a>
-                <span> <a href="indexPatient.html">TheraFlex</a></span>
+                <a href="indexPatient.php"><img src="../img/Logo.png" alt="logo"></a>
+                <span> <a href="indexPatient.php">TheraFlex</a></span>
             </div>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -27,7 +63,7 @@
                 <li><a href="indexPatient.html">Home</a></li>
                 <li><a href="#patAppointmentnav">Appointments</a></li>
                 <li><a href="#contactUsnav">Contact Us</a></li>
-                <li class="logout-mobile"><a href="logout.php">Log out</a></li> <!-- Only for mobile -->
+                <li class="logout-mobile"><a href="../html/index.html">Log out</a></li> <!-- Only for mobile -->
               </ul>
             </div>
 
@@ -59,11 +95,8 @@
           </header>
 
         <div class="patBanner">
-            <img src="img/patBanner.png" alt="Patient Banner">
+            <img src="../img/patBanner.png" alt="Patient Banner">
             <h2>Welcome, <br><?php echo htmlspecialchars($patient['firstName']); ?>!</h2>
-            <!-- <div>
-                <p>[Patient Information]</p>
-            </div> -->
         </div>
         
         <div class="patAppointment" id="patAppointmentnav"> 
@@ -86,15 +119,15 @@
                             <td><?php echo htmlspecialchars($row['doctorFirstName'] . ' ' . $row['doctorLastName']); ?></td>
                             <td><img src="uploads/<?php echo htmlspecialchars($row['uniqueFileName']); ?>" width="50" height="50"></td>
                             <td><?php echo htmlspecialchars($row['status']); ?></td>
-                            <td><a href="cancel_appointment.php?id=<?php echo $row['id']; ?>">Cancel</a></td>
+                            <td><a href="cancelAppointment.php?id=<?php echo $row['id']; ?>">Cancel</a></td>
                         </tr>
-                        <?php } ?>
+                        <?php } ?> 
                 </tbody>
             </table>
-            <p class="BookAppointment"><span><a href="AppointmentBooking.html">Book an appointment</a></span></p>
+            <p class="BookAppointment"><span><a href="AppointmentBooking.php">Book an appointment</a></span></p>
         </div>
         
-        <script src="script.js"> </script>
+        <script src="../script/script.js"> </script>
         <script> 
             document.addEventListener("DOMContentLoaded", function () {
                 const popupCard = document.getElementById("popupCard");
@@ -147,7 +180,7 @@
         </script>
     
     <footer id="contactUsnav">
-        <a href="indexPatient.html"><img src="img/Logo.png" alt="logo" class="footerlogo"></a>
+        <a href="indexPatient.php"><img src="../img/Logo.png" alt="logo" class="footerlogo"></a>
 
         <div class="firstSec">
             <h4>TheraFlex</h4>
@@ -173,5 +206,17 @@
         <p>&copy; 2025 TheraFlex. All rights reserved.</p>
     </div>
     
+    <?php if (isset($_GET['msg'])): ?>
+    <script>
+        alert("<?= htmlspecialchars($_GET['msg'], ENT_QUOTES) ?>");
+
+        // Remove ?msg=... from the URL after showing the alert
+        if (history.replaceState) {
+            const cleanUrl = window.location.origin + window.location.pathname;
+            history.replaceState(null, '', cleanUrl);
+        }
+    </script>
+    <?php endif; ?>
+
 </body>
 </html>
