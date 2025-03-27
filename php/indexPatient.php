@@ -63,7 +63,7 @@ $patient = $patientResult->fetch_assoc();
                 <li><a href="indexPatient.html">Home</a></li>
                 <li><a href="#patAppointmentnav">Appointments</a></li>
                 <li><a href="#contactUsnav">Contact Us</a></li>
-                <li class="logout-mobile"><a href="../html/index.html">Log out</a></li> <!-- Only for mobile -->
+                <li class="logout-mobile"><a href="logout.php">Log out</a></li> <!-- Only for mobile -->
               </ul>
             </div>
 
