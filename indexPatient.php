@@ -45,7 +45,7 @@ $patient = $patientResult->fetch_assoc();
         <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     </head> 
     <body onload="stickyNavbar(event); sortPappointments(event); " > 
-
+    
         <!-- Nav Bar -->
         <header class="header">
             <div class="logo">
@@ -76,7 +76,7 @@ $patient = $patientResult->fetch_assoc();
 
             <div class="popup-card" id="popupCard">
                     <div class="popup-content">
-                        <h3 id="patName">Name: <?php echo htmlspecialchars($patient['firstName'] . ' ' . $patient['lastName']); ?></h3>
+                        <h3 id="patName">Name: <?php echo htmlspecialchars($patient['firstName']); ?></h3>
                         <p id="patEmail">Email: <?php echo htmlspecialchars($patient['emailAddress']); ?></p>
                         <p id="patId">ID: <?php echo htmlspecialchars($patient['id']); ?></p>
                         <p id="patGender"><?php echo htmlspecialchars($patient['Gender']); ?></p>
@@ -206,5 +206,17 @@ $patient = $patientResult->fetch_assoc();
         <p>&copy; 2025 TheraFlex. All rights reserved.</p>
     </div>
     
+    <?php if (isset($_GET['msg'])): ?>
+    <script>
+        alert("<?= htmlspecialchars($_GET['msg'], ENT_QUOTES) ?>");
+
+        // Remove ?msg=... from the URL after showing the alert
+        if (history.replaceState) {
+            const cleanUrl = window.location.origin + window.location.pathname;
+            history.replaceState(null, '', cleanUrl);
+        }
+    </script>
+    <?php endif; ?>
+
 </body>
 </html>
