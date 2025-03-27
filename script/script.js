@@ -1,4 +1,3 @@
-
 /*========== nav bar  ==========*/
 
 function initStickyHeader() {
@@ -37,7 +36,7 @@ function stickyNavbar(event) {
 /*========== Prescribe Medication  ==========*/
 function navToDoctor(event){
     event.preventDefault();
-    window.location.href="indexDoctor.php";
+    window.location.href="html/indexDoctor.php";  // Updated path
 }
 
 function confirmPendingAppointments(event) {
@@ -62,7 +61,6 @@ function confirmPendingAppointments(event) {
             confirmButton.addEventListener("mouseover", function() {
                 confirmButton.style.backgroundColor = "#45b395"; // Change color on hover
                 confirmButton.style.color= "white";
-
             });
         
             confirmButton.addEventListener("mouseout", function() {
@@ -76,41 +74,41 @@ function confirmPendingAppointments(event) {
             statusCell.appendChild(confirmButton); // Append the button
         }
     }
+}
 
 /*========== Home - Doctor (chronological order)  ==========*/
 
 function sortAppointments(event) {
-        event.preventDefault();
-        const table = document.getElementById('appointmentTable');
-        const tbody = table.querySelector('tbody');
-        const rows = Array.from(tbody.querySelectorAll('tr'));
+    event.preventDefault();
+    const table = document.getElementById('appointmentTable');
+    const tbody = table.querySelector('tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
 
-        // Helper function to parse Date and Time
-        function parseDateTime(date, time) {
-            const [day, month, year] = date.split('/').map(Number);
-            const timeParts = time.match(/(\d+):?(\d+)?\s?(AM|PM)/i);
-            let hours = parseInt(timeParts[1]);
-            const minutes = parseInt(timeParts[2]) || 0;
-            const isPM = timeParts[3].toUpperCase() === 'PM';
-            if (isPM && hours !== 12) hours += 12; // Convert PM to 24-hour format
-            if (!isPM && hours === 12) hours = 0; // Handle 12 AM as midnight
-            return new Date(year, month - 1, day, hours, minutes);
-        }
-
-        // Sort rows by Date and Time
-        rows.sort((rowA, rowB) => {
-            const dateA = rowA.children[0].textContent.trim();
-            const timeA = rowA.children[1].textContent.trim();
-            const dateB = rowB.children[0].textContent.trim();
-            const timeB = rowB.children[1].textContent.trim();
-
-            return parseDateTime(dateA, timeA) - parseDateTime(dateB, timeB);
-        });
-
-        // Clear and re-append sorted rows
-        tbody.innerHTML = '';
-        rows.forEach(row => tbody.appendChild(row));
+    // Helper function to parse Date and Time
+    function parseDateTime(date, time) {
+        const [day, month, year] = date.split('/').map(Number);
+        const timeParts = time.match(/(\d+):?(\d+)?\s?(AM|PM)/i);
+        let hours = parseInt(timeParts[1]);
+        const minutes = parseInt(timeParts[2]) || 0;
+        const isPM = timeParts[3].toUpperCase() === 'PM';
+        if (isPM && hours !== 12) hours += 12; // Convert PM to 24-hour format
+        if (!isPM && hours === 12) hours = 0; // Handle 12 AM as midnight
+        return new Date(year, month - 1, day, hours, minutes);
     }
+
+    // Sort rows by Date and Time
+    rows.sort((rowA, rowB) => {
+        const dateA = rowA.children[0].textContent.trim();
+        const timeA = rowA.children[1].textContent.trim();
+        const dateB = rowB.children[0].textContent.trim();
+        const timeB = rowB.children[1].textContent.trim();
+
+        return parseDateTime(dateA, timeA) - parseDateTime(dateB, timeB);
+    });
+
+    // Clear and re-append sorted rows
+    tbody.innerHTML = '';
+    rows.forEach(row => tbody.appendChild(row));
 }
 
 function sortPatientsTable(event) {
@@ -155,16 +153,13 @@ function redirectToHome(event, role) {
         : document.getElementById("doctor-form").querySelector("form");
 
     if (form.checkValidity()) {
-        window.location.href = role === "patient" ? "indexPatient.php" : "indexDoctor.php";
+        window.location.href = role === "patient" ? "html/indexPatient.php" : "html/indexDoctor.php";  // Updated path
     } else {
         alert("Please fill out all required fields.");
     }
 }
 
-
-
 /*============= Log in ==============*/ 
-
 
 //document.getElementById("login-form").addEventListener("submit", function(event) {
 //    event.preventDefault();
@@ -172,14 +167,13 @@ function redirectToHome(event, role) {
 //    const userRole = document.querySelector('input[name="role"]:checked').value;
 //
 //    if (userRole === "patient") {
-//        window.location.href = "indexPatient.html";
+//        window.location.href = "html/indexPatient.php";  // Updated path
 //    } else if (userRole === "doctor") {
-//        window.location.href = "indexDoctor.html";
+//        window.location.href = "html/indexDoctor.php";  // Updated path
 //    } else {
 //        alert("Please select a valid role.");
 //    }
 //});
-//
 
 /*========== Home - Patient (chronological order)  ==========*/
 

@@ -1,19 +1,29 @@
 <?php
 include 'db_connection.php';
 
-
 // 2️⃣ Define doctors and their image paths
 $doctors = [
-    5 => "img/femaleDoc2.jpg",   // Doctor 1
-    6 => "img/femaleDoc.jpg", // Doctor 2
-    7 => "img/femaleDoc3.jpg" // Doctor 3
+    5 => "../img/femaleDoc2.jpg",
+    6 => "../img/femaleDoc.jpg",
+    7 => "../img/femaleDoc3.jpg"
 ];
 
 // 3️⃣ Define the upload directory
-$targetDirectory = "uploads/"; // Make sure this folder exists and has write permissions
+$targetDirectory = "uploads/";
 
-// 4️⃣ Process each doctor and store their images
+// 4️⃣ Ensure the target directory exists
+if (!is_dir($targetDirectory)) {
+    mkdir($targetDirectory, 0777, true);
+}
+
+// 5️⃣ Process each doctor and store their images
 foreach ($doctors as $doctorID => $originalImagePath) {
+    // Check if the original image exists before copying
+    if (!file_exists($originalImagePath)) {
+        echo "❌ Original image not found: $originalImagePath for Doctor ID: $doctorID<br>";
+        continue;
+    }
+
     // Generate a unique filename
     $uniqueFileName = uniqid("doctor_") . ".jpg";
     $targetPath = $targetDirectory . $uniqueFileName;
@@ -33,6 +43,8 @@ foreach ($doctors as $doctorID => $originalImagePath) {
     }
 }
 
-// 5️⃣ Close the database connection
-$conn->close();
+// 6️⃣ Close the database connection (ensure it's open before closing)
+if ($conn) {
+    $conn->close();
+}
 ?>

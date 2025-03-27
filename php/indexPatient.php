@@ -4,7 +4,7 @@ ini_set('log_errors','1');
 ini_set('display_errors','1'); 
 
 session_start();
-// include 'db.php'; // database connection
+ // database connection
 include 'db_connection.php';
 
 // Ensure the patient is logged in
@@ -27,7 +27,7 @@ $stmt->execute();
 $appointments = $stmt->get_result();
 
 // Fetch patient information
-$patientSql = "SELECT * FROM patient WHERE id = ?"; // Corrected typo here
+$patientSql = "SELECT * FROM patient WHERE id = ?"; 
 $stmt = $conn->prepare($patientSql);
 $stmt->bind_param('i', $patientID);
 $stmt->execute();
@@ -40,16 +40,16 @@ $patient = $patientResult->fetch_assoc();
     <head> 
         <meta charset="utf-8">
         <title>TheraFlex - Home</title>
-        <link rel="stylesheet" href="style.css">  
-        <link rel="icon" href="img/Logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="../css/style.css">  
+        <link rel="icon" href="../img/Logo.png" type="image/x-icon">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     </head> 
     <body onload="stickyNavbar(event); sortPappointments(event); " > 
-
+    
         <!-- Nav Bar -->
         <header class="header">
             <div class="logo">
-                <a href="indexPatient.php"><img src="img/Logo.png" alt="logo"></a>
+                <a href="indexPatient.php"><img src="../img/Logo.png" alt="logo"></a>
                 <span> <a href="indexPatient.php">TheraFlex</a></span>
             </div>
             <div class="hamburger" id="hamburger">
@@ -63,7 +63,7 @@ $patient = $patientResult->fetch_assoc();
                 <li><a href="indexPatient.html">Home</a></li>
                 <li><a href="#patAppointmentnav">Appointments</a></li>
                 <li><a href="#contactUsnav">Contact Us</a></li>
-                <li class="logout-mobile"><a href="index.html">Log out</a></li> <!-- Only for mobile -->
+                <li class="logout-mobile"><a href="logout.php">Log out</a></li> <!-- Only for mobile -->
               </ul>
             </div>
 
@@ -78,15 +78,15 @@ $patient = $patientResult->fetch_assoc();
                     <div class="popup-content">
                         <h3 id="patName">Name: <?php echo htmlspecialchars($patient['firstName']); ?></h3>
                         <p id="patEmail">Email: <?php echo htmlspecialchars($patient['emailAddress']); ?></p>
-                        <p id="patId">ID: <?php echo htmlspecialchars($patient['id']); ?></p>
+<!--                        <p id="patId">ID: <?php echo htmlspecialchars($patient['id']); ?></p>-->
                         <p id="patGender"><?php echo htmlspecialchars($patient['Gender']); ?></p>
-                        <p id="patDOB">DOB: <?php echo htmlspecialchars($patient['DoB']); ?></p>
+<!--                        <p id="patDOB">DOB: <?php echo htmlspecialchars($patient['DoB']); ?></p>-->
 
                         <svg class="logout" width="22" height="25" viewBox="0 0 22 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <a href="index.html"> 
-                            <path d="M6.59998 12.2H21" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M10.9 1H3.5C2.1 1 1 2.1 1 3.4V20.9C1 22.3 2.1 23.4 3.5 23.4H10.9" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M17.2 8.4L21 12.2L17.2 16" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <a href="logout.php"> 
+                                <path d="M6.59998 12.2H21" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M10.9 1H3.5C2.1 1 1 2.1 1 3.4V20.9C1 22.3 2.1 23.4 3.5 23.4H10.9" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M17.2 8.4L21 12.2L17.2 16" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                             </a> 
                         </svg>
                     </div>
@@ -95,7 +95,7 @@ $patient = $patientResult->fetch_assoc();
           </header>
 
         <div class="patBanner">
-            <img src="img/patBanner.png" alt="Patient Banner">
+            <img src="../img/patBanner.png" alt="Patient Banner">
             <h2>Welcome, <br><?php echo htmlspecialchars($patient['firstName']); ?>!</h2>
         </div>
         
@@ -112,22 +112,26 @@ $patient = $patientResult->fetch_assoc();
                     </tr>
                 </thead>
                 <tbody>
-                <?php while ($row = $appointments->fetch_assoc()) { ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($row['date']); ?></td>
-                            <td><?php echo htmlspecialchars($row['time']); ?></td>
-                            <td><?php echo htmlspecialchars($row['doctorFirstName'] . ' ' . $row['doctorLastName']); ?></td>
-                            <td><img src="uploads/<?php echo htmlspecialchars($row['uniqueFileName']); ?>" width="50" height="50"></td>
-                            <td><?php echo htmlspecialchars($row['status']); ?></td>
-                            <td><a href="cancelAppointment.php?id=<?php echo $row['id']; ?>">Cancel</a></td>
-                        </tr>
-                        <?php } ?> 
-                </tbody>
+                    <?php while ($row = $appointments->fetch_assoc()) { 
+                        if ($row['status'] === 'Done') {
+                            continue; // Skip rows with status "Done"
+                        }
+                    ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($row['date']); ?></td>
+                        <td><?php echo htmlspecialchars($row['time']); ?></td>
+                        <td><?php echo htmlspecialchars($row['doctorFirstName'] . ' ' . $row['doctorLastName']); ?></td>
+                        <td><img src="uploads/<?php echo htmlspecialchars($row['uniqueFileName']); ?>" width="50" height="50"></td>
+                        <td><?php echo htmlspecialchars($row['status']); ?></td>
+                        <td><a href="cancelAppointment.php?id=<?php echo $row['id']; ?>">Cancel</a></td>
+                    </tr>
+                    <?php } ?>
+                    </tbody>
             </table>
             <p class="BookAppointment"><span><a href="AppointmentBooking.php">Book an appointment</a></span></p>
         </div>
         
-        <script src="script.js"> </script>
+        <script src="../script/script.js"> </script>
         <script> 
             document.addEventListener("DOMContentLoaded", function () {
                 const popupCard = document.getElementById("popupCard");
@@ -180,7 +184,7 @@ $patient = $patientResult->fetch_assoc();
         </script>
     
     <footer id="contactUsnav">
-        <a href="indexPatient.html"><img src="img/Logo.png" alt="logo" class="footerlogo"></a>
+        <a href="indexPatient.php"><img src="../img/Logo.png" alt="logo" class="footerlogo"></a>
 
         <div class="firstSec">
             <h4>TheraFlex</h4>
@@ -206,5 +210,17 @@ $patient = $patientResult->fetch_assoc();
         <p>&copy; 2025 TheraFlex. All rights reserved.</p>
     </div>
     
+    <?php if (isset($_GET['msg'])): ?>
+    <script>
+        alert("<?= htmlspecialchars($_GET['msg'], ENT_QUOTES) ?>");
+
+        // Remove ?msg=... from the URL after showing the alert
+        if (history.replaceState) {
+            const cleanUrl = window.location.origin + window.location.pathname;
+            history.replaceState(null, '', cleanUrl);
+        }
+    </script>
+    <?php endif; ?>
+
 </body>
 </html>

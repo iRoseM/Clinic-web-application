@@ -4,13 +4,13 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="img/Logo.png" type="image/x-icon">
+        <link rel="icon" href="../img/Logo.png" type="image/x-icon">
         <title>TheraFlex - Booking Appointment</title>
-        <link  rel="stylesheet" href="style.css">
+        <link  rel="stylesheet" href="css/style.css">
         <style>
             body {
                 margin: 0;
-                background: url('img/appointment2.png') no-repeat center center fixed;
+                background: url('../img/appointment2.png') no-repeat center center fixed;
                 background-size: cover;
                 min-height: 100vh;
                 display: flex;
@@ -22,7 +22,7 @@
         </style>
         
     </head>
-
+<!--
     <body>
         <div class="main-container">
 
@@ -35,7 +35,7 @@
 
                     <h1 class="FormTitle">Appointment Booking</h1>
                     <br>
-                    <!--First Form-->
+                    First Form
                     <form method="POST" action="AppointmentBooking.php" id="specialtyForm" onsubmit="handleSpecialtySubmit(event)">
                         <label for="specialty">Select Specialty:</label>
                         <select name="specialty" id="specialty" required>
@@ -49,7 +49,7 @@
                         <button type="submit" id="specialtySubmit">Submit</button>
                     </form>
                     <br><hr><br>
-                    <!-- Second Form -->
+                     Second Form 
                     
                     <?php if (!empty($doctors)) { ?>
                     <form  method="POST" action="AppointmentBooking.php" id="bookingForm" onsubmit="handleBookingSubmit(event)" style=" display: none;">
@@ -60,7 +60,7 @@
                             <?php foreach ($doctors as $doc) { ?>
                                 <option value="<?php echo $doc['id']; ?>"><?php echo htmlspecialchars($doc['firstName'] . ' ' . $doc['lastName']); ?></option>
                             <?php } ?> 
-                            <!-- A drop-down list to display the doctors according to the selected specialty from the first form -->
+                             A drop-down list to display the doctors according to the selected specialty from the first form 
                         </select>
                         
                         <label for="date">Select Date:</label>
@@ -127,7 +127,7 @@
 
       window.location.href = "indexPatient.html";
     }
-    </script>
+    </script>-->
 
     </body>
 </html>

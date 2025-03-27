@@ -3,8 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 session_start();
-include 'db_connection.php'; // Ensure this file properly connects to your database
-
+include 'db_connection.php'; 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Debugging: Display submitted form data
 
@@ -15,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate input
     if (empty($email) || empty($password) || empty($role)) {
         // Display error message as a popup
-        echo "<script>alert('Please fill in all fields'); window.location.href = 'LogIn.html';</script>";
+        echo "<script>alert('Please fill in all fields'); window.location.href = '../html/LogIn.html';</script>";
         exit();
     }
 
@@ -26,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $table = "patient";
     } else {
         // Invalid role
-        echo "<script>alert('Invalid role selected'); window.location.href = 'LogIn.html';</script>";
+        echo "<script>alert('Invalid role selected'); window.location.href = '../html/LogIn.html';</script>";
         exit();
     }
 
@@ -56,17 +55,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         } else {
             // Incorrect password
-            echo "<script>alert('Incorrect email or password'); window.location.href = 'LogIn.html';</script>";
+            echo "<script>alert('Incorrect email or password'); window.location.href = '../html/LogIn.html';</script>";
             exit();
         }
     } else {
         // User does not exist
-        echo "<script>alert('Incorrect email or password'); window.location.href = 'LogIn.html';</script>";
+        echo "<script>alert('Incorrect email or password'); window.location.href = '../html/LogIn.html';</script>";
         exit();
     }
 } else {
     // Redirect back to login page if request method is not POST
-    echo "<script>alert('Invalid request'); window.location.href = 'LogIn.html';</script>";
+    echo "<script>alert('Invalid request'); window.location.href = '../html/LogIn.html';</script>";
     exit();
 }
 ?>
