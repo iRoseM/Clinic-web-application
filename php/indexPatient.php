@@ -76,7 +76,7 @@ $patient = $patientResult->fetch_assoc();
 
             <div class="popup-card" id="popupCard">
                     <div class="popup-content">
-                        <h3 id="patName">Name: <?php echo htmlspecialchars($patient['firstName']); ?></h3>
+                        <h3 id="patName">Name: <?php echo htmlspecialchars($patient['firstName'] . ' ' . $patient['lastName']); ?></h3>
                         <p id="patEmail">Email: <?php echo htmlspecialchars($patient['emailAddress']); ?></p>
 <!--                        <p id="patId">ID: <?php echo htmlspecialchars($patient['id']); ?></p>-->
                         <p id="patGender"><?php echo htmlspecialchars($patient['Gender']); ?></p>
