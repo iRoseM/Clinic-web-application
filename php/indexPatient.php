@@ -83,10 +83,10 @@ $patient = $patientResult->fetch_assoc();
                         <p id="patDOB">DOB: <?php echo htmlspecialchars($patient['DoB']); ?></p>
 
                         <svg class="logout" width="22" height="25" viewBox="0 0 22 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <a href="index.html"> 
-                            <path d="M6.59998 12.2H21" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M10.9 1H3.5C2.1 1 1 2.1 1 3.4V20.9C1 22.3 2.1 23.4 3.5 23.4H10.9" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M17.2 8.4L21 12.2L17.2 16" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <a href="logout.php"> 
+                                <path d="M6.59998 12.2H21" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M10.9 1H3.5C2.1 1 1 2.1 1 3.4V20.9C1 22.3 2.1 23.4 3.5 23.4H10.9" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M17.2 8.4L21 12.2L17.2 16" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
                             </a> 
                         </svg>
                     </div>
