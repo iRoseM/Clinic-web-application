@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 27, 2025 at 08:47 AM
+-- Generation Time: Mar 27, 2025 at 06:48 PM
 -- Server version: 5.7.24
 -- PHP Version: 8.3.1
 
@@ -46,10 +46,12 @@ INSERT INTO `appointment` (`id`, `PatientID`, `DoctorID`, `date`, `time`, `reaso
 (29, 54, 22, '2025-03-06', '11:22:00', 'having pain', 'Done'),
 (30, 54, 55, '2025-03-14', '11:23:00', 'sport injury', 'Done'),
 (31, 54, 22, '2025-03-13', '04:19:00', 'pain', 'Done'),
-(32, 55, 55, '2025-03-04', '00:35:00', 'pain in legs', 'Confirmed'),
+(32, 55, 55, '2025-03-04', '00:35:00', 'pain in legs', 'Done'),
 (33, 55, 22, '2025-02-27', '01:35:00', 'having severe pain', 'Done'),
 (34, 55, 55, '2025-03-03', '02:36:00', 'pain', 'Done'),
-(35, 55, 55, '2025-06-27', '01:36:00', 'checkup', 'Pending');
+(35, 55, 55, '2025-06-27', '01:36:00', 'checkup', 'Pending'),
+(36, 54, 43, '2025-03-04', '16:23:00', 'having pain', 'Pending'),
+(37, 55, 22, '2025-03-04', '21:45:00', 'having pain', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -118,10 +120,10 @@ CREATE TABLE `patient` (
 --
 
 INSERT INTO `patient` (`id`, `firstName`, `lastName`, `Gender`, `DoB`, `emailAddress`, `password`) VALUES
-(22, ' Michael ', 'Jackson', 'Male', '2022-12-13', 'micheal@gmail.com', '$2y$10$qpW5/7ga31mVPYRTW2xa.OJmb1436AQRB0vQxg6zBUWQkr7CEXbDG'),
-(54, 'Anwar', 'Mahmoud', 'Male', '2025-03-11', 'Anwar@gmail.com', '$2y$10$GztRNXUneVFo/AZl9AEkkuTA6ndQeOpA5Zy1suhF6RwtLeb79Hd3C'),
-(55, 'Kylian', 'Mbappé', 'Male', '2023-12-06', 'mbappe@gmail.com', '$2y$10$zcP7mJ/hU7vU5mmEl7.2OeQjHxHiCpwejk7PAAxwQxRXaBw0qV3t2'),
-(66, 'Ariana', 'Grande', 'Female', '2025-02-26', 'ariana@gmail.com', '$2y$10$hcj.ZzXXbq2UOF.FUpBiNuru.JLYdd7pAUjdri.nQ/Pve67i9CFiC');
+(22, ' Michael ', 'Jackson', 'Male', '1970-12-13', 'micheal@gmail.com', '$2y$10$qpW5/7ga31mVPYRTW2xa.OJmb1436AQRB0vQxg6zBUWQkr7CEXbDG'),
+(54, 'Anwar', 'Mahmoud', 'Male', '2001-03-11', 'Anwar@gmail.com', '$2y$10$GztRNXUneVFo/AZl9AEkkuTA6ndQeOpA5Zy1suhF6RwtLeb79Hd3C'),
+(55, 'Kylian', 'Mbappé', 'Male', '2000-12-06', 'mbappe@gmail.com', '$2y$10$zcP7mJ/hU7vU5mmEl7.2OeQjHxHiCpwejk7PAAxwQxRXaBw0qV3t2'),
+(66, 'Ariana', 'Grande', 'Female', '1998-02-26', 'ariana@gmail.com', '$2y$10$hcj.ZzXXbq2UOF.FUpBiNuru.JLYdd7pAUjdri.nQ/Pve67i9CFiC');
 
 -- --------------------------------------------------------
 
@@ -221,7 +223,7 @@ ALTER TABLE `speciality`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `doctor`

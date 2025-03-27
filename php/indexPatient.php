@@ -112,17 +112,21 @@ $patient = $patientResult->fetch_assoc();
                     </tr>
                 </thead>
                 <tbody>
-                <?php while ($row = $appointments->fetch_assoc()) { ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($row['date']); ?></td>
-                            <td><?php echo htmlspecialchars($row['time']); ?></td>
-                            <td><?php echo htmlspecialchars($row['doctorFirstName'] . ' ' . $row['doctorLastName']); ?></td>
-                            <td><img src="uploads/<?php echo htmlspecialchars($row['uniqueFileName']); ?>" width="50" height="50"></td>
-                            <td><?php echo htmlspecialchars($row['status']); ?></td>
-                            <td><a href="cancelAppointment.php?id=<?php echo $row['id']; ?>">Cancel</a></td>
-                        </tr>
-                        <?php } ?> 
-                </tbody>
+                    <?php while ($row = $appointments->fetch_assoc()) { 
+                        if ($row['status'] === 'Done') {
+                            continue; // Skip rows with status "Done"
+                        }
+                    ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($row['date']); ?></td>
+                        <td><?php echo htmlspecialchars($row['time']); ?></td>
+                        <td><?php echo htmlspecialchars($row['doctorFirstName'] . ' ' . $row['doctorLastName']); ?></td>
+                        <td><img src="uploads/<?php echo htmlspecialchars($row['uniqueFileName']); ?>" width="50" height="50"></td>
+                        <td><?php echo htmlspecialchars($row['status']); ?></td>
+                        <td><a href="cancelAppointment.php?id=<?php echo $row['id']; ?>">Cancel</a></td>
+                    </tr>
+                    <?php } ?>
+                    </tbody>
             </table>
             <p class="BookAppointment"><span><a href="AppointmentBooking.php">Book an appointment</a></span></p>
         </div>
