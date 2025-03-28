@@ -1,18 +1,18 @@
 <?php
-    error_reporting(E_ALL); 
-    ini_set('log_errors','1'); 
-    ini_set('display_errors','1'); 
+//    error_reporting(E_ALL); 
+//    ini_set('log_errors','1'); 
+//    ini_set('display_errors','1'); 
 
     session_start();
     include 'db_connection.php'; 
 
-// Ensure the patient is logged in
-if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'doctor') {
-    header("Location: ../html/index.html?error= Sign up or log in account as a doctor");
-    exit();
-}
+    // Ensure the patient is logged in
+    if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'doctor') {
+        header("Location: ../html/index.html?error= Sign up or log in account as a doctor");
+        exit();
+    }
 
-$doctor_id = $_SESSION['user_id']; // Get the logged-in patient's ID
+    $doctor_id = $_SESSION['user_id']; // Get the logged-in patient's ID
 
     
 

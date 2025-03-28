@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'db_connection.php'; // Ensure this file properly connects to your database
+include 'db_connection.php'; 
 
 // Ensure the patient is logged in
 if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'patient') {
