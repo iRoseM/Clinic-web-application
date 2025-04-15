@@ -2,53 +2,48 @@
 session_start();
 include 'db_connection.php'; 
 
+// Set JSON header
+header('Content-Type: application/json');
+
 // Ensure the patient is logged in
 if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'patient') {
     header("Location: ../html/LogIn.html?error=Please log in as a patient");
     exit();
 }
-
-// Validate the appointment ID
-$appointmentID = isset($_GET['id']) ? intval($_GET['id']) : 0;
+// Validate appointment ID from POST
+$appointmentID = isset($_POST['id']) ? intval($_POST['id']) : 0;
 if ($appointmentID <= 0) {
-    echo "Invalid appointment ID.";
+    echo json_encode(['success' => false, 'message' => 'Invalid appointment ID']);
     exit();
 }
 
-// Check if the appointment belongs to the logged-in patient
-$checkSql = "SELECT * FROM Appointment WHERE id = ? AND PatientID = ?";
-$stmt = $conn->prepare($checkSql);
-if (!$stmt) {
-    echo "Error preparing statement: " . $conn->error;
-    exit();
-}
+try {
+    // Check if appointment belongs to patient
+    $checkSql = "SELECT * FROM Appointment WHERE id = ? AND PatientID = ?";
+    $stmt = $conn->prepare($checkSql);
+    $stmt->bind_param("ii", $appointmentID, $_SESSION['user_id']);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-$stmt->bind_param("ii", $appointmentID, $_SESSION['user_id']);
-if (!$stmt->execute()) {
-    echo "Error executing query: " . $stmt->error;
-    exit();
-}
+    if ($result->num_rows === 0) {
+        echo json_encode(['success' => false, 'message' => 'Appointment not found or unauthorized']);
+        exit();
+    }
 
-$result = $stmt->get_result();
-if ($result->num_rows > 0) {
     // Delete the appointment
     $deleteSql = "DELETE FROM Appointment WHERE id = ?";
     $stmt = $conn->prepare($deleteSql);
-    if (!$stmt) {
-        echo "Error preparing statement: " . $conn->error;
-        exit();
-    }
-
     $stmt->bind_param("i", $appointmentID);
+    
     if ($stmt->execute()) {
-        header('Location: indexPatient.php?msg=Appointment canceled successfully');
-        exit();
+        echo json_encode(['success' => true, 'message' => 'Appointment canceled successfully']);
     } else {
-        echo "Error deleting appointment: " . $stmt->error;
-        exit();
+        echo json_encode(['success' => false, 'message' => 'Failed to cancel appointment']);
     }
-} else {
-    echo "Invalid appointment or unauthorized action.";
-    exit();
+} catch (Exception $e) {
+    echo json_encode(['success' => false, 'message' => 'Database error']);
+} finally {
+    if (isset($stmt)) $stmt->close();
+    $conn->close();
 }
 ?>

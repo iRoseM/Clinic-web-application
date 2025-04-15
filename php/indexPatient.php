@@ -123,7 +123,7 @@ $patient = $patientResult->fetch_assoc();
                         <td><?php echo htmlspecialchars($row['doctorFirstName'] . ' ' . $row['doctorLastName']); ?></td>
                         <td><img src="uploads/<?php echo htmlspecialchars($row['uniqueFileName']); ?>" width="50" height="50"></td>
                         <td><?php echo htmlspecialchars($row['status']); ?></td>
-                        <td><a href="cancelAppointment.php?id=<?php echo $row['id']; ?>">Cancel</a></td>
+                        <td><button class="cancel-btn" data-id="<?php echo $row['id']; ?>">Cancel</button></td>
                     </tr>
                     <?php } ?>
                     </tbody>
@@ -221,6 +221,34 @@ $patient = $patientResult->fetch_assoc();
         }
     </script>
     <?php endif; ?>
-
+    <script>
+        document.querySelectorAll(".cancel-btn").forEach(button => {
+        button.addEventListener("click", async function() {
+        if (!confirm("Are you sure you want to cancel this appointment?")) return;
+        
+        const id = this.dataset.id;
+        const row = this.closest("tr");
+        
+        try {
+            const response = await fetch('cancelAppointment.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `id=${id}`
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                row.remove();
+                alert(data.message);
+            } else {
+                throw new Error(data.message);
+            }
+        } catch (error) {
+            alert(error.message);
+        }
+    });
+});
+</script>
 </body>
 </html>
