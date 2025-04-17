@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </option>
                 <?php endforeach; ?>
             </select>
-            <button type="submit" id="specialtySubmit">Submit</button>
+            <!-- <button type="submit" id="specialtySubmit">Submit</button> --> 
         </form>
 
         <br><hr><br>
@@ -142,5 +142,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function () {
+    $('#specialty').on('change', function () {
+        var specialtyID = $(this).val();
+
+        if (specialtyID) {
+            $.ajax({
+                url: 'getDoctorsBySpecialty.php',
+                method: 'GET',
+                data: { specialty: specialtyID },
+                success: function (data) {
+                    let doctors = JSON.parse(data);
+                    let $doctorDropdown = $('#doctor');
+                    $doctorDropdown.empty();
+                    $doctorDropdown.append('<option value="">--Choose a Doctor--</option>');
+                    doctors.forEach(function (doc) {
+                        $doctorDropdown.append(`<option value="${doc.id}">${doc.firstName} ${doc.lastName}</option>`);
+                    });
+                },
+                error: function () {
+                    alert('Error fetching doctors. Please try again.');
+                }
+            });
+        }
+    });
+});
+</script>
+
 </body>
 </html>
