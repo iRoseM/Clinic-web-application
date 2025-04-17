@@ -168,8 +168,8 @@
 
 
                                 <?php if ($row['status'] == 'Pending') { ?>
-                                    <a href="confirm_appointment.php?id=<?= $row['id']; ?>" style ="background-color: darkgreen;">Confirm</a>
-                                <?php } elseif ($row['status'] == 'Confirmed') { ?>
+                                    <button class="confirm-btn" data-id="<?= $row['id']; ?>" style="background-color: darkgreen; color: white; padding: 5px 10px; border: none; cursor: pointer;">Confirm</button>
+                                    <?php } elseif ($row['status'] == 'Confirmed') { ?>
                                     <a href="medication.php?id=<?= $row['id']; ?>">Prescribe</a>
                                 <?php } ?>
                             </div>
@@ -283,7 +283,37 @@
         event.stopPropagation();
     });
 });
+    document.querySelectorAll(".confirm-btn").forEach(button => {
+        button.addEventListener("click", async function() {
+            if (!confirm("Are you sure you want to confirm this appointment?")) return;
 
+            const id = this.dataset.id;
+            const row = this.closest("tr");
+            const statusSpan = row.querySelector("span");
+
+            try {
+                const response = await fetch('confirm_appointment.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `id=${id}`
+                });
+
+                const text = await response.text();
+                console.log("Raw response:",text); // Log the response for debugging
+
+                const data = JSON.parse(text); // Convert to JSON
+                
+                if (data.success) {
+                    statusSpan.textContent = "Confirmed";
+                    this.outerHTML = `<a href="medication.php?id=${id}">Prescribe</a>`;
+                } else {
+                    alert(data.message || "Failed to confirm appointment.");
+                }
+            } catch (error) {
+                alert("Unexpected error: " + error.message);
+            }
+        });
+    });
         </script>
     </body>
 </html>
