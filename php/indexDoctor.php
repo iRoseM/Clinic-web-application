@@ -75,8 +75,8 @@
         <!-- Nav Bar -->
         <header class="header">
             <div class="logo">
-                <a href="indexDoctor.php"><img src="../img/Logo.png" alt="logo"></a>
-                <span> <a href="indexPatient.php">TheraFlex</a></span>
+                <a href="https://theraflix.infinityfreeapp.com/html/index.html"><img src="../img/Logo.png" alt="logo"></a>
+                <span> <a href="https://theraflix.infinityfreeapp.com/html/index.html">TheraFlex</a></span>
             </div>
             <div class="hamburger" id="hamburger">
                 <span></span>
